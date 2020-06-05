@@ -79,9 +79,13 @@ in
     fonts = [ pkgs.inconsolata ];
   };
 
-  users.users.who.shell = pkgs.bashInteractive_5;
+  users.users.who = {
+    home = "/Users/who";
+    shell = pkgs.bashInteractive_5;
+  };
 
   home-manager.users.who = { lib, pkgs, ... }: {
+    home.stateVersion = "20.03";
     home.packages = [
       pkgs.bash-completion
       pkgs.bashInteractive_5

@@ -1,12 +1,18 @@
 let
   sources = import ./nix/sources.nix;
 
-  pkgs = import sources.nixpkgs {};
+  overlay = self: super: {
+    niv = (import sources.niv {}).niv;
+  };
+
+  pkgs = import sources.nixpkgs {
+    overlays = [ overlay ];
+  };
 
   nixPath = builtins.concatStringsSep ":" [
     "nixpkgs=${sources.nixpkgs}"
     "darwin=${sources.nix-darwin}"
-    "darwin-config=$HOME/nix-config/current-machine"
+    "darwin-config=$HOME/nix-config/current-machine/default.nix"
   ];
 
   scripts = {

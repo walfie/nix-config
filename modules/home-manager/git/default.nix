@@ -5,7 +5,7 @@
 
     aliases = {
       up = "!f() { local branch=\${1:-master}; git checkout $branch && git pull \${3:-upstream} $branch; }; f";
-      fixup = "!git add -A && git commit --fixup=HEAD && git rebase -i --autosquash HEAD~2";
+      fixup = "!git add -u && git commit --fixup=HEAD && git rebase -i --autosquash HEAD~2";
     };
 
     extraConfig = {

@@ -3,6 +3,7 @@
 {
   imports = [
     ../modules/darwin
+    ../modules/kubernetes
     ../modules/home-manager/bash
     ../modules/home-manager/git
     ../modules/home-manager/neovim
@@ -22,8 +23,6 @@
       pkgs.doctl
       pkgs.gnused
       pkgs.htop
-      pkgs.kubectl
-      pkgs.kubectx
       pkgs.ncdu
       pkgs.haskellPackages.niv
       pkgs.tealdeer

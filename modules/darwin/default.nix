@@ -1,7 +1,23 @@
-{ ... }:
+{ config, options, ... }:
 
+let
+  sources = import ../../nix/sources.nix;
+  overlay = self: super: {
+    niv = (import sources.niv {}).niv;
+  };
+in
 {
-  imports = [ ./primary-user.nix ];
+  imports = [
+    "${sources.home-manager}/nix-darwin"
+    ./primary-user.nix
+  ];
+
+  nix.nixPath = [
+    { darwin = "${sources.nix-darwin}"; }
+    { nixpkgs = "${sources.nixpkgs}"; }
+  ];
+
+  nixpkgs.overlays = [ overlay ];
 
   # Path to the main config file. To change this value, run:
   # $ darwin-rebuild switch -I darwin-config=$HOME/path/to/configuration.nix

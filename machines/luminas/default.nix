@@ -1,21 +1,7 @@
-{ config, options, ... }:
+{ config, options, pkgs, ... }:
 
-let
-  # This config file is meant to be used via a symlink, so the paths are
-  # relative to the `current-machine` symlink.
-  sources = import ../nix/sources.nix;
-  overlay = self: super: {
-    niv = (import sources.niv {}).niv;
-  };
-
-  pkgs = import sources.nixpkgs {
-    overlays = [ overlay ];
-  };
-
-in
 {
   imports = [
-    "${sources.home-manager}/nix-darwin"
     ../modules/darwin
     ../modules/home-manager/bash
     ../modules/home-manager/git
@@ -38,11 +24,6 @@ in
     # $ sysctl -n hw.ncpu
     maxJobs = 12;
     buildCores = 12;
-
-    nixPath = [
-      { darwin = "${sources.nix-darwin}"; }
-      { nixpkgs = "${sources.nixpkgs}"; }
-    ];
   };
 
   fonts = {

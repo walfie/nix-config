@@ -1,5 +1,7 @@
 { config, pkgs, lib, ... }:
 {
+  primary-user.home-manager.home.packages = [ pkgs.tmux ];
+
   primary-user.home-manager.programs.tmux = {
     enable = true;
     baseIndex = 1;

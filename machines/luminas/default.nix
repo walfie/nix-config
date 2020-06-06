@@ -17,6 +17,18 @@
       userName = "Walfie";
       userEmail = "walfington@gmail.com";
     };
+
+    home-manager.home.packages = [
+      pkgs.doctl
+      pkgs.gnused
+      pkgs.htop
+      pkgs.kubectl
+      pkgs.kubectx
+      pkgs.ncdu
+      pkgs.haskellPackages.niv
+      pkgs.tealdeer
+      pkgs.wget
+    ];
   };
 
   nix = {
@@ -25,26 +37,4 @@
     maxJobs = 12;
     buildCores = 12;
   };
-
-  fonts = {
-    enableFontDir = true;
-    fonts = [ pkgs.inconsolata ];
-  };
-
-  home-manager.users.who = { lib, pkgs, ... }: {
-    home.stateVersion = "20.03";
-    home.packages = [
-      pkgs.doctl
-      pkgs.gnused
-      pkgs.htop
-      pkgs.kubectl
-      pkgs.kubectx
-      pkgs.ncdu
-      pkgs.niv
-      pkgs.tealdeer
-      pkgs.tmux
-      pkgs.wget
-    ];
-  };
-
 }

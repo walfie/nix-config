@@ -1,5 +1,11 @@
 { config, pkgs, lib, ... }:
+let
+  git-delete-squashed =
+    pkgs.writeShellScriptBin "git-delete-squashed" (lib.fileContents ./delete-squashed.sh);
+in
 {
+  primary-user.home-manager.home.packages = [ git-delete-squashed ];
+
   primary-user.home-manager.programs.git = {
     enable = true;
 

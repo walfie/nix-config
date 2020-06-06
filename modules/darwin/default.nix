@@ -1,5 +1,5 @@
 # This file contains common settings for macOS systems
-{ config, options, pkgs, ... }:
+{ config, lib, options, pkgs, ... }:
 
 let
   sources = import ../../nix/sources.nix;
@@ -22,6 +22,7 @@ in
   # Path to the main config file. To change this value, run:
   # $ darwin-rebuild switch -I darwin-config=$HOME/path/to/configuration.nix
   environment.darwinConfig = "$HOME/nix-config/current-machine/default.nix";
+  environment.extraInit = lib.fileContents ./extra-init.sh;
 
   primary-user.home-manager.home.stateVersion = "20.03";
 
@@ -34,6 +35,7 @@ in
       AppleFontSmoothing = 2;
       AppleShowAllExtensions = true;
       AppleShowScrollBars = "Always";
+      ApplePressAndHoldEnabled = false;
       KeyRepeat = 2;
       InitialKeyRepeat = 15;
       NSAutomaticCapitalizationEnabled = false;
@@ -43,7 +45,7 @@ in
       NSAutomaticSpellingCorrectionEnabled = false;
     };
 
-    dock.tilesize = 32;
+    dock.tilesize = 42;
     finder = {
       AppleShowAllExtensions = true;
       _FXShowPosixPathInTitle = true;

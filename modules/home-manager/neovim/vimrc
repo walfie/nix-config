@@ -124,7 +124,7 @@ inoremap <expr> <C-l> fzf#vim#complete(fzf#wrap({
 \ 'options': '--ansi'
 \}))
 
-" CtrlSF shortcut (ack/ag plugin)
+" CtrlSF shortcut
 map <Leader>f <Plug>CtrlSFPrompt
 
 " JSON conceal off

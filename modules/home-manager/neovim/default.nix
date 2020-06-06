@@ -1,4 +1,22 @@
+# Useful article on setting up vim in nix
+# http://ivanbrennan.nyc/2018-05-09/vim-on-nixos
 { config, pkgs, lib, ... }:
+let
+  sources = import ../../../nix/sources.nix;
+
+  # These plugins aren't in nixpkgs, so load them from niv-managed sources
+  mkPlugin = name: pkgs.vimUtils.buildVimPlugin {
+    inherit name;
+    src = sources.${name};
+  };
+
+  customPlugins = builtins.map mkPlugin [
+    "vim-plugin-minibufexpl"
+    "vim-argwrap"
+    "vim-bbye"
+    "ctrlsf.vim"
+  ];
+in
 {
   primary-user.home-manager.home.packages = [
     pkgs.fzf
@@ -32,13 +50,7 @@
         vim-surround
         vim-visual-increment
         zenburn
-
-        # TODO:
-        # dyng/ctrlsf.vim
-        # foosoft/vim-argwrap
-        # moll/vim-bbye
-        # weynhamz/vim-plugin-minibufexpl
-      ];
+      ] ++ customPlugins;
 
       opt = [
         vim-scala

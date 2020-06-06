@@ -24,7 +24,10 @@ in
   environment.darwinConfig = "$HOME/nix-config/current-machine/default.nix";
   environment.extraInit = lib.fileContents ./extra-init.sh;
 
-  primary-user.home-manager.home.stateVersion = "20.03";
+  primary-user.home-manager = {
+    home.stateVersion = "20.03";
+    xdg.enable = true;
+  };
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog

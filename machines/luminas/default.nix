@@ -18,8 +18,10 @@ in
     "${sources.home-manager}/nix-darwin"
     ../modules/darwin
     ../modules/home-manager/neovim
+    ../modules/home-manager/tmux
   ];
 
+  networking.hostName = "luminas";
   primary-user = {
     name = "who";
     shell = pkgs.bashInteractive_5;
@@ -31,11 +33,6 @@ in
     darwinConfig = "$HOME/nix-config/current-machine/default.nix";
     shells = [ pkgs.bashInteractive_5 ];
 
-    interactiveShellInit = ''
-      # This is needed, otherwise some env vars aren't set in tmux
-      # https://github.com/LnL7/nix-darwin/pull/174
-      unset __NIX_DARWIN_SET_ENVIRONMENT_DONE
-    '';
   };
 
   nix = {
@@ -79,8 +76,6 @@ in
 
   services.nix-daemon.enable = true;
 
-  networking.hostName = "luminas";
-
   fonts = {
     enableFontDir = true;
     fonts = [ pkgs.inconsolata ];
@@ -104,47 +99,6 @@ in
       pkgs.tmux
       pkgs.wget
     ];
-
-    programs.tmux = {
-      enable = true;
-      baseIndex = 1;
-      clock24 = true;
-      keyMode = "vi";
-      shortcut = "a";
-      secureSocket = false;
-      plugins = with pkgs; [
-        tmuxPlugins.pain-control
-        tmuxPlugins.sensible
-        tmuxPlugins.yank
-      ];
-
-      extraConfig = ''
-        set-option -ga update-environment ' NIX_PATH'
-        set -g renumber-windows on
-
-        # Window number, program name, active (or not)
-        set -g set-titles-string '#H:#S.#I.#P #W #T'
-
-        # Highlight active window
-        setw -g window-status-current-style bg=white
-
-        # Lowers delay time between prefix key and other keys
-        set -sg escape-time 0
-
-        # Ctrl-a twice to send Ctrl-a to the application
-        bind a send-prefix
-        bind C-a send-prefix
-
-        # Zenburn color scheme
-        setw -g clock-mode-colour colour117
-        setw -g mode-style fg=colour117,bg=colour238,bold
-        set -g status-style fg=colour248,bg=colour235
-        setw -g window-status-current-style fg=colour223,bg=colour237,bold
-        set -g message-style fg=colour117,bg=colour235,bold
-        set -g pane-active-border-style fg=colour245
-        set -g pane-border-style fg=colour235
-      '';
-    };
 
     programs.git = {
       userName = "Walfie";

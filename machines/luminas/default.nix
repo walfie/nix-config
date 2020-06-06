@@ -17,6 +17,7 @@ in
   imports = [
     "${sources.home-manager}/nix-darwin"
     ../modules/darwin
+    ../modules/home-manager/bash
     ../modules/home-manager/git
     ../modules/home-manager/neovim
     ../modules/home-manager/tmux
@@ -25,20 +26,11 @@ in
   networking.hostName = "luminas";
   primary-user = {
     name = "who";
-    shell = pkgs.bashInteractive_5;
 
     home-manager.programs.git = {
       userName = "Walfie";
       userEmail = "walfington@gmail.com";
     };
-  };
-
-  # Path to this file. To change this value, run:
-  # $ darwin-rebuild switch -I darwin-config=$HOME/path/to/this/file.nix
-  environment = {
-    darwinConfig = "$HOME/nix-config/current-machine/default.nix";
-    shells = [ pkgs.bashInteractive_5 ];
-
   };
 
   nix = {
@@ -51,36 +43,7 @@ in
       { darwin = "${sources.nix-darwin}"; }
       { nixpkgs = "${sources.nixpkgs}"; }
     ];
-
   };
-
-  # Used for backwards compatibility, please read the changelog before changing.
-  # $ darwin-rebuild changelog
-  system.stateVersion = 4;
-
-  system.defaults = {
-    NSGlobalDomain = {
-      AppleFontSmoothing = 2;
-      AppleShowAllExtensions = true;
-      AppleShowScrollBars = "Always";
-      KeyRepeat = 2;
-      InitialKeyRepeat = 15;
-      NSAutomaticCapitalizationEnabled = false;
-      NSAutomaticDashSubstitutionEnabled = false;
-      NSAutomaticPeriodSubstitutionEnabled = false;
-      NSAutomaticQuoteSubstitutionEnabled = false;
-      NSAutomaticSpellingCorrectionEnabled = false;
-    };
-
-    dock.tilesize = 32;
-    finder = {
-      AppleShowAllExtensions = true;
-      _FXShowPosixPathInTitle = true;
-    };
-    screencapture.location = "$HOME/Pictures/screenshots/";
-  };
-
-  services.nix-daemon.enable = true;
 
   fonts = {
     enableFontDir = true;
@@ -90,53 +53,17 @@ in
   home-manager.users.who = { lib, pkgs, ... }: {
     home.stateVersion = "20.03";
     home.packages = [
-      pkgs.bash-completion
-      pkgs.bashInteractive_5
       pkgs.doctl
-      pkgs.fzf
       pkgs.gnused
       pkgs.htop
       pkgs.kubectl
       pkgs.kubectx
       pkgs.ncdu
       pkgs.niv
-      pkgs.ripgrep
       pkgs.tealdeer
       pkgs.tmux
       pkgs.wget
     ];
-
-    programs.bash = {
-      enable = true;
-      enableAutojump = true;
-      historyControl = [ "ignoredups" ];
-      historySize = -1;
-      historyFileSize = -1;
-      initExtra = ''
-        PROMPT_COMMAND="history -a";
-        RLWRAP_HOME="$HOME/.local/share/rlwrap/";
-        EDITOR="nvim";
-
-        LS_COLORS="di=38;5;108:fi=00:ln=38;5;116:ex=38;5;186";
-        COLOR1="\[$(tput setaf 187)\]";
-        COLOR2="\[$(tput setaf 174)\]";
-        RESET="\[$(tput sgr 0)\]";
-        BOLD="\[$(tput bold)\]";
-        PS1="\t $BOLD$COLOR1\u@\h:$COLOR2\W\\$ $RESET";
-      '';
-
-      shellAliases = {
-        ".." = "cd ..";
-        grep = "grep --color -I";
-        ips = "ifconfig | awk '\$1 == \"inet\" {print \$2}'";
-        ll = "ls -l";
-        ls = "ls -G";
-        path = "echo -e $${PATH//:/\\n}";
-        z = "j";
-      };
-
-      sessionVariables = {};
-    };
   };
 
 }

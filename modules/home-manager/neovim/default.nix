@@ -1,5 +1,10 @@
 { config, pkgs, lib, ... }:
 {
+  primary-user.home-manager.home.packages = [
+    pkgs.fzf
+    pkgs.ripgrep
+  ];
+
   primary-user.home-manager.programs.neovim = {
     enable = true;
     viAlias = true;

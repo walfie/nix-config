@@ -17,6 +17,7 @@ in
   imports = [
     "${sources.home-manager}/nix-darwin"
     ../modules/darwin
+    ../modules/home-manager/git
     ../modules/home-manager/neovim
     ../modules/home-manager/tmux
   ];
@@ -25,6 +26,11 @@ in
   primary-user = {
     name = "who";
     shell = pkgs.bashInteractive_5;
+
+    home-manager.programs.git = {
+      userName = "Walfie";
+      userEmail = "walfington@gmail.com";
+    };
   };
 
   # Path to this file. To change this value, run:
@@ -99,37 +105,6 @@ in
       pkgs.tmux
       pkgs.wget
     ];
-
-    programs.git = {
-      userName = "Walfie";
-      userEmail = "walfington@gmail.com";
-
-      aliases = {
-        up = "!f() { local branch=\${1:-master}; git checkout $branch && git pull \${3:-upstream} $branch; }; f";
-        fixup = "!git add -A && git commit --fixup=HEAD && git rebase -i --autosquash HEAD~2";
-      };
-
-      extraConfig = {
-        core = { pager = "less -+F"; };
-        push = { default = "current"; };
-        rebase = { autosquash = true; };
-        rerere = { enabled = true; };
-        color = {
-          branch = "auto";
-          diff = "auto";
-          interactive = "auto";
-          status = "auto";
-        };
-      };
-
-      enable = true;
-      ignores = [
-        "*.swp"
-        "*.swo"
-        ".DS_Store"
-        "Session.vim"
-      ];
-    };
 
     programs.bash = {
       enable = true;

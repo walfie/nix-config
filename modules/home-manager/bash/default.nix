@@ -1,5 +1,7 @@
 { config, pkgs, lib, ... }:
 {
+  programs.bash.enableCompletion = true;
+
   environment.shells = [ pkgs.bashInteractive_5 ];
 
   primary-user.shell = pkgs.bashInteractive_5;

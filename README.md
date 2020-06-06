@@ -72,8 +72,10 @@ sudo nix-collect-garbage -d
 
 ## Resources
 
-Some repositories/articles I found useful during setup:
+Some resources I found useful during setup:
 
+* [home-manager config options](https://rycee.gitlab.io/home-manager/options.html)
+* [nix-darwin config options](https://lnl7.github.io/nix-darwin/manual/index.html#sec-options)
 * [cprussin/dotfiles](https://github.com/cprussin/dotfiles)
 * [Vim on NixOS](http://ivanbrennan.nyc/2018-05-09/vim-on-nixos)
 * [Right way to add a custom package?](https://github.com/LnL7/nix-darwin/issues/16#issuecomment-284262711)

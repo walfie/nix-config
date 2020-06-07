@@ -18,10 +18,16 @@ let
   ];
 in
 {
-  primary-user.home-manager.home.packages = [
-    pkgs.fzf
-    pkgs.ripgrep
-  ];
+  primary-user.home-manager.home = {
+    packages = [
+      pkgs.fzf
+      pkgs.ripgrep
+    ];
+
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
+  };
 
   primary-user.home-manager.programs.neovim = {
     enable = true;

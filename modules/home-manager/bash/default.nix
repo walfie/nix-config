@@ -1,4 +1,17 @@
 { config, pkgs, lib, ... }:
+let
+  prompt = let
+    bold = "$(tput bold)";
+    color1 = "$(tput setaf 187)";
+    color2 = "$(tput setaf 174)";
+    reset = "$(tput sgr 0)";
+    time = ''\t'';
+    user = ''\u'';
+    host = ''\h'';
+    workingDir = ''\W'';
+  in
+    "${time} ${bold}${color1}${user}@${host}:${color2}${workingDir}\$ ${reset}";
+in
 {
   programs.bash.enableCompletion = true;
 
@@ -17,26 +30,19 @@
     historyControl = [ "ignoredups" ];
     historySize = -1;
     historyFileSize = -1;
-    initExtra = ''
-      PROMPT_COMMAND="history -a";
-      RLWRAP_HOME="$HOME/.local/share/rlwrap/";
-      EDITOR="nvim";
-
-      LS_COLORS="di=38;5;108:fi=00:ln=38;5;116:ex=38;5;186";
-      COLOR1="\[$(tput setaf 187)\]";
-      COLOR2="\[$(tput setaf 174)\]";
-      RESET="\[$(tput sgr 0)\]";
-      BOLD="\[$(tput bold)\]";
-      PS1="\t $BOLD$COLOR1\u@\h:$COLOR2\W\\$ $RESET";
-    '';
+    sessionVariables = {
+      PS1 = prompt;
+      RLWRAP_HOME = "$HOME/.local/share/rlwrap/";
+      PROMPT_COMMAND = "history -a";
+    };
 
     shellAliases = {
       ".." = "cd ..";
       grep = "grep --color -I";
       ips = "ifconfig | awk '\$1 == \"inet\" {print \$2}'";
       ll = "ls -l";
-      ls = "ls -G";
-      path = "echo -e $${PATH//:/\\n}";
+      ls = "ls -Gh";
+      path = ''echo -e ''${PATH//:/\\n}'';
       z = "j";
     };
   };

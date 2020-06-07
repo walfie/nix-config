@@ -10,6 +10,7 @@ rec {
     "${sources.home-manager}/nix-darwin"
     ./primary-user.nix
     ../fonts
+    ../home-manager/xdg
   ];
 
   nix.nixPath = [
@@ -22,17 +23,17 @@ rec {
   # Path to the main config file. To change this value, run:
   # $ darwin-rebuild switch -I darwin-config=$HOME/path/to/configuration.nix
   environment.darwinConfig = "$HOME/nix-config/current-machine/default.nix";
-  environment.extraInit = lib.fileContents ./extra-init.sh;
 
   primary-user.home = "/Users/${config.primary-user.name}";
-  primary-user.home-manager = {
-    home.stateVersion = "20.03";
-    xdg.enable = true;
-  };
+  primary-user.home-manager.home.stateVersion = "20.03";
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
+  system.activationScripts.setDefaults = {
+    enable = true;
+    source = ./set-defaults.sh;
+  };
 
   system.defaults = {
     NSGlobalDomain = {

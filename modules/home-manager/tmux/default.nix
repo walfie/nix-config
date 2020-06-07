@@ -1,9 +1,29 @@
 { config, pkgs, lib, ... }:
+let
+  # Unset some environment variables to ensure configs get reloaded. Based on:
+  # https://github.com/LnL7/nix-darwin/blob/1b71f9f21c2e058292ef0d71d65d8655252f02c1/modules/programs/tmux.nix
+  #
+  # Background:
+  # https://github.com/LnL7/nix-darwin/pull/174
+  # https://github.com/rycee/home-manager/issues/183
+  tmux = pkgs.runCommand pkgs.tmux.name
+    { buildInputs = [ pkgs.makeWrapper ]; }
+    ''
+      source $stdenv/setup
+      mkdir -p $out/bin
+      makeWrapper ${pkgs.tmux}/bin/tmux $out/bin/tmux \
+        --set __ETC_BASHRC_SOURCED "" \
+        --set __ETC_ZPROFILE_SOURCED  "" \
+        --set __ETC_ZSHENV_SOURCED "" \
+        --set __ETC_ZSHRC_SOURCED "" \
+        --set __NIX_DARWIN_SET_ENVIRONMENT_DONE "" \
+        --set __HM_SESS_VARS_SOURCED ""
+    '';
+in
 {
-  primary-user.home-manager.home.packages = [ pkgs.tmux ];
-
   primary-user.home-manager.programs.tmux = {
     enable = true;
+    package = tmux;
     baseIndex = 1;
     clock24 = true;
     keyMode = "vi";
@@ -17,20 +37,4 @@
 
     extraConfig = lib.fileContents ./tmux.conf;
   };
-
-  environment.interactiveShellInit = ''
-    if [ -n "$TMUX" ]; then
-      # These are needed, otherwise some env vars aren't set
-      # https://github.com/LnL7/nix-darwin/pull/174
-      unset __ETC_BASHRC_SOURCED
-      unset __ETC_ZPROFILE_SOURCED
-      unset __ETC_ZSHENV_SOURCED
-      unset __ETC_ZSHRC_SOURCED
-      unset __NIX_DARWIN_SET_ENVIRONMENT_DONE
-
-      # Same for home-manager
-      # https://github.com/rycee/home-manager/issues/183
-      unset __HM_SESS_VARS_SOURCED
-    fi
-  '';
 }

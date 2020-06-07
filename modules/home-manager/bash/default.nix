@@ -30,9 +30,9 @@ in
     historyControl = [ "ignoredups" ];
     historySize = -1;
     historyFileSize = -1;
+    historyFile = "${config.primary-user.home-manager.xdg.dataHome}/bash/history";
     sessionVariables = {
       PS1 = prompt;
-      RLWRAP_HOME = "$HOME/.local/share/rlwrap/";
       PROMPT_COMMAND = "history -a";
     };
 

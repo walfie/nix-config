@@ -39,10 +39,25 @@ set visualbell
 set noerrorbells
 
 " Persistent undo
-set undodir=~/.vim/undodir
+set undodir=~/.vim/undo
 set undofile
 set undolevels=1000
 set undoreload=10000
+
+" Conform to XDG base directory specification
+if !empty($XDG_DATA_HOME)
+  set undodir=$XDG_DATA_HOME/vim/undo
+  set directory=$XDG_DATA_HOME/vim/swap
+  set backupdir=$XDG_DATA_HOME/vim/backup
+  set viewdir=$XDG_DATA_HOME/vim/view
+  if !has('nvim')
+    set viminfo+='1000,n$XDG_DATA_HOME/vim/viminfo
+  endif
+endif
+
+if !empty($XDG_CACHE_HOME)
+  let g:netrw_home=$XDG_CACHE_HOME . '/vim'
+endif
 
 " Searching
 set ignorecase

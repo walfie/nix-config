@@ -5,7 +5,7 @@ let
   sources = import ../../nix/sources.nix;
   overlay = self: super: sources;
 in
-{
+rec {
   imports = [
     "${sources.home-manager}/nix-darwin"
     ./primary-user.nix
@@ -24,6 +24,7 @@ in
   environment.darwinConfig = "$HOME/nix-config/current-machine/default.nix";
   environment.extraInit = lib.fileContents ./extra-init.sh;
 
+  primary-user.home = "/Users/${config.primary-user.name}";
   primary-user.home-manager = {
     home.stateVersion = "20.03";
     xdg.enable = true;
@@ -48,12 +49,13 @@ in
       NSAutomaticSpellingCorrectionEnabled = false;
     };
 
-    dock.tilesize = 42;
     finder = {
       AppleShowAllExtensions = true;
       _FXShowPosixPathInTitle = true;
     };
-    screencapture.location = "$HOME/Pictures/screenshots/";
+
+    dock.tilesize = 42;
+    screencapture.location = "${primary-user.home}/Pictures/screenshots/";
   };
 
   services.nix-daemon.enable = true;

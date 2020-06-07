@@ -6,7 +6,7 @@ in
 
 {
   options.primary-user.name = lib.mkOption {
-    type = lib.types.nullOr lib.types.str;
+    type = lib.types.str;
     default = null;
     description = "The name of the primary user account.";
   };
@@ -16,8 +16,4 @@ in
     (lib.mkAliasOptionModule [ "primary-user" "home" ] [ "users" "users" cfg.name "home" ])
     (lib.mkAliasOptionModule [ "primary-user" "shell" ] [ "users" "users" cfg.name "shell" ])
   ];
-
-  config = lib.mkIf (cfg.name != null) {
-    users.users.${cfg.name}.home = "/Users/${cfg.name}";
-  };
 }

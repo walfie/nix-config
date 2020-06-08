@@ -8,6 +8,9 @@ Nix configs with [nix-darwin] and [home-manager].
 
     ```sh
     sh $(curl -L https://nixos.org/nix/install) --daemon --darwin-use-unencrypted-nix-store-volume
+
+    # Disable spotlight indexing for the volume
+    sudo mdutil -i off /nix
     ```
 
   If on macOS Catalina on a machine without a T2 chip, you may need to create

@@ -9,7 +9,6 @@ rec {
   imports = [
     "${sources.home-manager}/nix-darwin"
     ./primary-user.nix
-    ../fonts
     ../home-manager/xdg
   ];
 

@@ -1,10 +1,12 @@
 { config, pkgs, lib, ... }:
 let
+  # The `\[` and `\]` tell bash that the contents are non-printable
+  # https://stackoverflow.com/questions/19092488/custom-bash-prompt-is-overwriting-itself
   prompt = let
-    bold = "$(tput bold)";
-    color1 = "$(tput setaf 187)";
-    color2 = "$(tput setaf 174)";
-    reset = "$(tput sgr 0)";
+    bold = ''\[$(tput bold)\]'';
+    color1 = ''\[$(tput setaf 187)\]'';
+    color2 = ''\[$(tput setaf 174)\]'';
+    reset = ''\[$(tput sgr 0)\]'';
     time = ''\t'';
     user = ''\u'';
     host = ''\h'';

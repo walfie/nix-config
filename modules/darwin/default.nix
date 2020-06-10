@@ -24,7 +24,12 @@ rec {
   environment.darwinConfig = "$HOME/nix-config/current-machine/default.nix";
 
   primary-user.home = "/Users/${config.primary-user.name}";
-  primary-user.home-manager.home.stateVersion = "20.03";
+  primary-user.home-manager.home = {
+    stateVersion = "20.03";
+    sessionVariables = {
+      HOMEBREW_NO_ANALYTICS = "1";
+    };
+  };
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog

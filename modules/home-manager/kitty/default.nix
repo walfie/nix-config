@@ -1,14 +1,8 @@
 { config, pkgs, ... }:
 {
-  # kitty is managed by home-manager, which creates a symlink to the app in
-  # `~/.nix-profile/Applications`, but we want it somewhere in `~/Applications`
-  # instead of a hidden directory. This adds it to the system packages so that
-  # nix-darwin adds it there.
-  #
-  # Relevant issues:
-  # https://github.com/LnL7/nix-darwin/issues/139
-  # https://github.com/NixOS/nix/issues/956
-  environment.systemPackages = [ pkgs.kitty ];
+  dock.applications = [
+    "${pkgs.kitty}/Applications/kitty.app"
+  ];
 
   primary-user.home-manager.programs.kitty = {
     enable = true;

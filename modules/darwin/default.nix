@@ -8,6 +8,7 @@ in
 rec {
   imports = [
     "${sources.home-manager}/nix-darwin"
+    ./dock
     ./primary-user.nix
     ../home-manager/xdg
   ];

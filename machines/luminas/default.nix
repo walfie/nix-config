@@ -12,6 +12,7 @@
     ../modules/rust
   ];
 
+  dock.enable = true;
   networking.hostName = "luminas";
   primary-user = {
     name = "who";

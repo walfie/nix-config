@@ -3,12 +3,13 @@
 {
   imports = [
     ../modules/darwin
-    ../modules/kubernetes
     ../modules/home-manager/bash
     ../modules/home-manager/git
     ../modules/home-manager/kitty
     ../modules/home-manager/neovim
     ../modules/home-manager/tmux
+    ../modules/kubernetes
+    ../modules/rust
   ];
 
   networking.hostName = "luminas";

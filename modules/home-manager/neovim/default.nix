@@ -29,38 +29,50 @@ in
     };
   };
 
+  primary-user.home-manager.xdg.configFile."nvim/coc-settings.json".text = builtins.toJSON {
+    rust-analyzer = {
+      serverPath = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+      "rustfmt.overrideCommand" = "${pkgs.rustfmt}/bin/rustfmt";
+    };
+  };
+
   primary-user.home-manager.programs.neovim = {
     enable = true;
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+    withNodeJs = true;
 
-    configure.customRC = lib.fileContents ./vimrc;
-    configure.packages.neovim-with-plugins = with pkgs.vimPlugins; {
-      start = [
-        camelcasemotion
-        delimitMate
-        emmet-vim
-        fzf-vim
-        fzfWrapper
-        nerdcommenter
-        nerdtree
-        rainbow
-        traces-vim
-        vim-abolish
-        vim-eunuch
-        vim-nerdtree-tabs
-        vim-polyglot
-        vim-repeat
-        vim-sleuth
-        vim-surround
-        vim-visual-increment
-        zenburn
-      ] ++ customPlugins;
+    package = pkgs.neovim.override {
+      configure.customRC = lib.fileContents ./vimrc;
+      configure.packages.neovim-with-plugins = with pkgs.vimPlugins; {
+        start = [
+          coc-nvim # Must be loaded before extensions
+          coc-rust-analyzer
+          camelcasemotion
+          delimitMate
+          emmet-vim
+          fzf-vim
+          fzfWrapper
+          nerdcommenter
+          nerdtree
+          rainbow
+          traces-vim
+          vim-abolish
+          vim-eunuch
+          vim-nerdtree-tabs
+          vim-polyglot
+          vim-repeat
+          vim-sleuth
+          vim-surround
+          vim-visual-increment
+          zenburn
+        ] ++ customPlugins;
 
-      opt = [
-        vim-scala
-      ];
+        opt = [
+          vim-scala
+        ];
+      };
     };
   };
 }

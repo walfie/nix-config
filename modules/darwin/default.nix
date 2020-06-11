@@ -3,7 +3,11 @@
 
 let
   sources = import ../../nix/sources.nix;
-  overlay = self: super: sources;
+  unstable = import sources.nixpkgs-unstable {};
+  overlay = self: super: {
+    # TODO: Add overlays file
+    inherit (unstable) rust-analyzer neovim neovim-unwrapped wrapNeovim vimPlugins;
+  };
 in
 rec {
   imports = [

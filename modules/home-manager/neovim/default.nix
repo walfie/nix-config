@@ -47,8 +47,7 @@ in
       configure.customRC = lib.fileContents ./vimrc;
       configure.packages.neovim-with-plugins = with pkgs.vimPlugins; {
         start = [
-          coc-nvim # Must be loaded before extensions
-          coc-rust-analyzer
+          coc-nvim # Must be loaded before coc-nvim extensions
           camelcasemotion
           delimitMate
           emmet-vim
@@ -71,6 +70,10 @@ in
 
         opt = [
           vim-scala
+          coc-css
+          coc-html
+          coc-json
+          coc-rust-analyzer
         ];
       };
     };

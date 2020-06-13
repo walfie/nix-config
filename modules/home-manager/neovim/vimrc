@@ -177,3 +177,10 @@ let g:rainbow_conf = {
 " DelimitMate
 let delimitMate_quotes = '" `'
 
+" camelcasemotion
+" Adding some `nmap` calls to avoid deleting trailing underscore
+" https://github.com/bkad/CamelCaseMotion/issues/10#issuecomment-8704702
+let g:camelcasemotion_key = ','
+nmap c,w c,e
+nmap ci,w ci,e
+

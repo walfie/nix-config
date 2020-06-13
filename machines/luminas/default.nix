@@ -25,10 +25,11 @@
     home-manager.home.packages = [
       pkgs.doctl
       pkgs.gnused
+      pkgs.haskellPackages.niv
       pkgs.htop
       pkgs.ncdu
-      pkgs.haskellPackages.niv
       pkgs.tealdeer
+      pkgs.tree
       pkgs.wget
     ];
   };

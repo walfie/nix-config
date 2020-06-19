@@ -4,10 +4,27 @@
 let
   sources = import ../../nix/sources.nix;
   unstable = import sources.nixpkgs-unstable {};
-  overlay = self: super: {
-    # TODO: Add overlays file
-    inherit (unstable) rust-analyzer neovim neovim-unwrapped wrapNeovim vimPlugins;
-  };
+
+  # TODO: Add overlays file
+  overlays = [
+    # mozilla
+    (import sources.nixpkgs-mozilla)
+
+    # vim
+    (
+      self: super: {
+        inherit (unstable) neovim neovim-unwrapped wrapNeovim vimPlugins;
+      }
+    )
+
+    # rust
+    (
+      self: super: {
+        inherit (unstable) rust-analyzer;
+      }
+    )
+  ];
+
 in
 rec {
   imports = [
@@ -22,7 +39,7 @@ rec {
     { nixpkgs = "${sources.nixpkgs}"; }
   ];
 
-  nixpkgs.overlays = [ overlay ];
+  nixpkgs.overlays = overlays;
 
   # Path to the main config file. To change this value, run:
   # $ darwin-rebuild switch -I darwin-config=$HOME/path/to/configuration.nix

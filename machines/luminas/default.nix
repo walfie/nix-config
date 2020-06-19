@@ -27,6 +27,7 @@
       pkgs.gnused
       pkgs.haskellPackages.niv
       pkgs.htop
+      pkgs.jq
       pkgs.ncdu
       pkgs.tealdeer
       pkgs.tree

@@ -128,12 +128,14 @@ nnoremap <silent> <CR> :nohlsearch<CR><CR>
 
 " Ctrl+P for fuzzy finder
 let g:fzf_command_prefix = 'Fzf'
+" Disable preview window
+let g:fzf_preview_window = ''
 map <silent> <C-p> <Esc>:FzfFiles<CR>
 map <silent> <Leader>b <Esc>:FzfBuffers<CR>
 map <silent> <Leader>l <Esc>:FzfLines<CR>
-"\a for... well, it used to be `ag` but now it's `rg`
+" \a used to be for `ag`, but now it's `rg`
 map <silent> <Leader>a <Esc>:FzfRg<CR>
-"\d for definition
+" \d for definition
 map <silent> <Leader>d <Esc>:FzfRg (class\|trait\|object\|struct\|enum)<CR>
 
 " Ctrl+l to autocomplete from Rg search

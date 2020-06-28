@@ -32,6 +32,7 @@
       pkgs.tealdeer
       pkgs.tree
       pkgs.wget
+      pkgs.yarn
     ];
   };
 

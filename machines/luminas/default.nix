@@ -27,11 +27,16 @@
       pkgs.gnused
       pkgs.haskellPackages.niv
       pkgs.htop
+      pkgs.imagemagick
       pkgs.jq
       pkgs.ncdu
       pkgs.tealdeer
       pkgs.tree
       pkgs.wget
+
+      # JavaScript stuff
+      pkgs.nodejs
+      pkgs.watchman
       pkgs.yarn
     ];
   };

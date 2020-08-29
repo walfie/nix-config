@@ -5,12 +5,12 @@
   primary-user.home-manager.xdg = {
     enable = true;
 
-    dataFile."wgetrc".text = "hsts-file = ${config.primary-user.home}/wget-hsts";
     dataFile."less/.keep".text = "";
     dataFile."vim/undo/.keep".text = "";
     dataFile."vim/swap/.keep".text = "";
     dataFile."vim/backup/.keep".text = "";
 
+    configFile."wgetrc".text = "hsts-file = ${config.primary-user.home}/wget-hsts";
     configFile."npm/npmrc".text = ''
       prefix=''${XDG_DATA_HOME}/npm
       cache=''${XDG_CACHE_HOME}/npm

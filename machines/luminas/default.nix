@@ -33,6 +33,7 @@
       pkgs.tealdeer
       pkgs.tree
       pkgs.wget
+      pkgs.ffmpeg
 
       # JavaScript stuff
       pkgs.nodejs

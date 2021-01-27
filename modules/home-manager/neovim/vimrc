@@ -136,10 +136,13 @@ map <silent> <Leader>l <Esc>:FzfLines<CR>
 " \a used to be for `ag`, but now it's `rg`
 map <silent> <Leader>a <Esc>:FzfRg<CR>
 " \d for definition
-map <silent> <Leader>d <Esc>:FzfRg (class\|trait\|object\|struct\|enum)<CR>
+map <silent> <Leader>d <Esc>:FzfRg (class\|trait\|object\|struct\|enum\|type)<CR>
 
 " Ctrl+l to autocomplete from Rg search
 imap <C-x><C-l> <Plug>(fzf-complete-line)
+
+" Skip files in gitignore
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
 
 function! RgCompleteCommand(args)
   return "rg ^ --color never --no-filename --no-line-number ".a:args." . | awk '!seen[$0]++'"

@@ -2,6 +2,7 @@
 {
   imports = [
     ../../modules/bash
+    ../../modules/direnv
     ../../modules/git
     ../../modules/home-manager
     ../../modules/kitty

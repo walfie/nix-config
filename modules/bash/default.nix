@@ -34,6 +34,12 @@ in
       HOMEBREW_NO_ANALYTICS = "1";
     };
 
+    initExtra = ''
+      if [ -e $HOME/.nix-profile/etc/profile.d/bash_completion.sh ];
+        then source $HOME/.nix-profile/etc/profile.d/bash_completion.sh
+      fi
+    '';
+
     shellAliases = {
       ".." = "cd ..";
       grep = "grep --color -I";

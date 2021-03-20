@@ -1,0 +1,74 @@
+{
+    "nixpkgs": {
+        "branch": "release-20.09",
+        "description": "Nix Packages collection",
+        "homepage": "",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "36e15cd6e7d55ba143caf3dc930467ace573d85c",
+        "sha256": "15dwscz9s71n6hn1wml95il8hl8aza16jj9qwywps8bsdamgymfq",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/36e15cd6e7d55ba143caf3dc930467ace573d85c.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixpkgs-mozilla": {
+        "branch": "master",
+        "description": "mozilla related nixpkgs (extends nixos/nixpkgs repo)",
+        "homepage": null,
+        "owner": "mozilla",
+        "repo": "nixpkgs-mozilla",
+        "rev": "8c007b60731c07dd7a052cce508de3bb1ae849b4",
+        "sha256": "1zybp62zz0h077zm2zmqs2wcg3whg6jqaah9hcl1gv4x8af4zhs6",
+        "type": "tarball",
+        "url": "https://github.com/mozilla/nixpkgs-mozilla/archive/8c007b60731c07dd7a052cce508de3bb1ae849b4.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-argwrap": {
+        "branch": "master",
+        "description": " Wrap and unwrap function arguments, lists, and dictionaries in Vim",
+        "homepage": "https://foosoft.net/projects/argwrap/",
+        "owner": "foosoft",
+        "repo": "vim-argwrap",
+        "rev": "7e3db5f5178626548cd9f297914dd6b0a34e6409",
+        "sha256": "1kg0srrh84ivd0bjydp7j7c17f89f7s79y4r754avd1j91i7w9hs",
+        "type": "tarball",
+        "url": "https://github.com/foosoft/vim-argwrap/archive/7e3db5f5178626548cd9f297914dd6b0a34e6409.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-bbye": {
+        "branch": "master",
+        "description": "Delete buffers and close files in Vim without closing your windows or messing up your layout. Like Bclose.vim, but rewritten and well maintained.",
+        "homepage": "http://www.vim.org/scripts/script.php?script_id=4664",
+        "owner": "moll",
+        "repo": "vim-bbye",
+        "rev": "25ef93ac5a87526111f43e5110675032dbcacf56",
+        "sha256": "0dlifpbd05fcgndpkgb31ww8p90pwdbizmgkkq00qkmvzm1ik4y4",
+        "type": "tarball",
+        "url": "https://github.com/moll/vim-bbye/archive/25ef93ac5a87526111f43e5110675032dbcacf56.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-ctrlsf": {
+        "branch": "master",
+        "description": "An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2",
+        "homepage": "",
+        "owner": "dyng",
+        "repo": "ctrlsf.vim",
+        "rev": "9503f99336c9088bbc062fdf8fa57a014d2b8c48",
+        "sha256": "0bigzqvijdgf3d58z8psqmmdajb6zrygbwn7ggx1m0s9mlzppslk",
+        "type": "tarball",
+        "url": "https://github.com/dyng/ctrlsf.vim/archive/9503f99336c9088bbc062fdf8fa57a014d2b8c48.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-plugin-minibufexpl": {
+        "branch": "master",
+        "description": "Elegant buffer explorer - takes very little screen space",
+        "homepage": "http://www.vim.org/scripts/script.php?script_id=159",
+        "owner": "weynhamz",
+        "repo": "vim-plugin-minibufexpl",
+        "rev": "349a9fbb7a9da13d029b6a7ed8c8a5e9c048c4ec",
+        "sha256": "1hcn6j85rrygrz6h1rhyjpyp3fp9p6qr7w405sazqiwwrrps8f1f",
+        "type": "tarball",
+        "url": "https://github.com/weynhamz/vim-plugin-minibufexpl/archive/349a9fbb7a9da13d029b6a7ed8c8a5e9c048c4ec.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    }
+}

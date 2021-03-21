@@ -3,21 +3,13 @@ let
   # Find and delete branches that were squash-merged
   git-delete-squashed =
     pkgs.writeShellScriptBin "git-delete-squashed" (lib.fileContents ./delete-squashed.sh);
-
-  # git checkout (with fzf)
-  git-cof =
-    pkgs.writeShellScriptBin "git-cof" ''
-      export PATH=${pkgs.stdenv.lib.makeBinPath [ pkgs.git pkgs.fzf ]}:$PATH
-      git checkout "$(git branch --all | fzf | tr -d '[:space:]')"
-    '';
 in
 {
-  primary-user.home-manager.home.packages = [
+  home.packages = [
     git-delete-squashed
-    git-cof
   ];
 
-  primary-user.home-manager.programs.git = {
+  programs.git = {
     enable = true;
 
     aliases = {
@@ -26,10 +18,14 @@ in
 
       # Squash changes into the previous commit
       fixup = "!git add -u && git commit --fixup=HEAD && git rebase -i --autosquash HEAD~2";
+
+      # git checkout (with fzf)
+      cof = "!f() { git for-each-ref --format='%(refname:short)' refs/heads | ${pkgs.fzf}/bin/fzf | xargs git checkout; }; f";
     };
 
     extraConfig = {
       core = { pager = "less -+F"; };
+      pull = { rebase = false; };
       push = { default = "current"; };
       rebase = { autosquash = true; };
       rerere = { enabled = true; };
@@ -44,6 +40,7 @@ in
     ignores = [
       "*.swp"
       "*.swo"
+      ".git"
       ".DS_Store"
       "Session.vim"
     ];

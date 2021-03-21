@@ -2,7 +2,7 @@
 # http://ivanbrennan.nyc/2018-05-09/vim-on-nixos
 { config, pkgs, lib, ... }:
 let
-  sources = import ../../../nix/sources.nix;
+  sources = import ../../nix/sources.nix;
 
   # These plugins aren't in nixpkgs, so load them from niv-managed sources
   mkPlugin = name: pkgs.vimUtils.buildVimPlugin {
@@ -11,14 +11,14 @@ let
   };
 
   customPlugins = builtins.map mkPlugin [
-    "vim-plugin-minibufexpl"
     "vim-argwrap"
     "vim-bbye"
-    "ctrlsf.vim"
+    "vim-ctrlsf"
+    "vim-plugin-minibufexpl"
   ];
 in
 {
-  primary-user.home-manager.home = {
+  home = {
     packages = [
       pkgs.fzf
       pkgs.ripgrep
@@ -29,23 +29,23 @@ in
     };
   };
 
-  primary-user.home-manager.xdg.configFile."nvim/coc-settings.json".text = builtins.toJSON {
+  xdg.configFile."nvim/coc-settings.json".text = builtins.toJSON {
     rust-analyzer = {
       serverPath = "${pkgs.rust-analyzer}/bin/rust-analyzer";
       "rustfmt.overrideCommand" = "${pkgs.rustfmt}/bin/rustfmt";
     };
   };
 
-  primary-user.home-manager.programs.neovim = {
+  programs.neovim = {
     enable = true;
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
     withNodeJs = true;
 
-    package = pkgs.neovim.override {
-      configure.customRC = lib.fileContents ./vimrc;
-      configure.packages.neovim-with-plugins = with pkgs.vimPlugins; {
+    configure = {
+      customRC = lib.fileContents ./vimrc;
+      packages.neovim-with-plugins = with pkgs.vimPlugins; {
         start = [
           coc-nvim # Must be loaded before coc-nvim extensions
           camelcasemotion
@@ -62,6 +62,7 @@ in
           vim-nerdtree-tabs
           vim-polyglot
           vim-repeat
+          vim-scala
           vim-sleuth
           vim-surround
           vim-visual-increment
@@ -69,7 +70,6 @@ in
         ] ++ customPlugins;
 
         opt = [
-          vim-scala
           coc-css
           coc-html
           coc-json

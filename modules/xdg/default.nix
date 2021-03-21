@@ -2,7 +2,7 @@
 {
   # Suggestions taken from:
   # https://wiki.archlinux.org/index.php/XDG_Base_Directory
-  primary-user.home-manager.xdg = {
+  xdg = {
     enable = true;
 
     dataFile."less/.keep".text = "";
@@ -10,7 +10,7 @@
     dataFile."vim/swap/.keep".text = "";
     dataFile."vim/backup/.keep".text = "";
 
-    configFile."wgetrc".text = "hsts-file = ${config.primary-user.home}/wget-hsts";
+    configFile."wgetrc".text = "hsts-file = ${config.home.homeDirectory}/wget-hsts";
     configFile."npm/npmrc".text = ''
       prefix=''${XDG_DATA_HOME}/npm
       cache=''${XDG_CACHE_HOME}/npm
@@ -19,7 +19,7 @@
     '';
   };
 
-  primary-user.home-manager.home.sessionVariables = {
+  home.sessionVariables = {
     CARGO_HOME = "$XDG_DATA_HOME/cargo";
     DOCKER_CONFIG = "$XDG_CONFIG_HOME/docker";
     INPUTRC = "$XDG_CONFIG_HOME/readline/inputrc";

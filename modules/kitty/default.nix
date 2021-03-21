@@ -1,10 +1,10 @@
 { config, pkgs, ... }:
 {
-  dock.applications = [
+  macos-dock.applications = [
     "${pkgs.kitty}/Applications/kitty.app"
   ];
 
-  primary-user.home-manager.programs.kitty = {
+  programs.kitty = {
     enable = true;
     font = {
       package = pkgs.inconsolata;

@@ -1,51 +1,53 @@
 { config, options, pkgs, ... }:
-
 {
   imports = [
-    ../modules/darwin
-    ../modules/home-manager/bash
-    ../modules/home-manager/git
-    ../modules/home-manager/kitty
-    ../modules/home-manager/neovim
-    ../modules/home-manager/tmux
-    ../modules/kubernetes
-    ../modules/rust
+    ../../modules/bash
+    ../../modules/direnv
+    ../../modules/git
+    ../../modules/home-manager
+    ../../modules/kitty
+    ../../modules/kubernetes
+    ../../modules/macos
+    ../../modules/neovim
+    ../../modules/rust
+    ../../modules/tmux
+    ../../modules/xdg
+    ../../modules/zsh
   ];
 
-  dock.enable = true;
-  networking.hostName = "luminas";
-  primary-user = {
-    name = "who";
+  macos-dock.enable = true;
 
-    home-manager.programs.git = {
-      userName = "Walfie";
-      userEmail = "walfington@gmail.com";
+  home = {
+    username = "who";
+    homeDirectory = "/Users/who";
+    stateVersion = "20.09";
+
+    sessionVariables = {
+      HOME_MANAGER_CONFIG = "/Users/who/nix-config/current-machine";
     };
-
-    home-manager.home.packages = [
-      pkgs.doctl
-      pkgs.gnused
-      pkgs.haskellPackages.niv
-      pkgs.htop
-      pkgs.imagemagick
-      pkgs.jq
-      pkgs.ncdu
-      pkgs.tealdeer
-      pkgs.tree
-      pkgs.wget
-      pkgs.ffmpeg
-
-      # JavaScript stuff
-      pkgs.nodejs
-      pkgs.watchman
-      pkgs.yarn
-    ];
   };
 
-  nix = {
-    # You should generally set this to the total number of logical cores in your system.
-    # $ sysctl -n hw.ncpu
-    maxJobs = 12;
-    buildCores = 12;
+  programs.git = {
+    userName = "Walfie";
+    userEmail = "walfington@gmail.com";
   };
+
+  home.packages = [
+    pkgs.doctl
+    pkgs.ffmpeg
+    pkgs.gnused
+    pkgs.htop
+    pkgs.imagemagick
+    pkgs.jq
+    pkgs.ncdu
+    pkgs.niv
+    pkgs.tealdeer
+    pkgs.tree
+    pkgs.wget
+
+    # JavaScript stuff
+    pkgs.nodejs
+    pkgs.watchman
+    pkgs.yarn
+  ];
 }

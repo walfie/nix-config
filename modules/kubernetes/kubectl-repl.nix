@@ -7,13 +7,14 @@
 let
   version = "1.7";
 
-  meta = if stdenv.isDarwin then {
-    arch = "darwin-amd64";
-    sha256 = "0qgjzxbf4gjg1z9mpqwb8z52gvm0wk1862l4jghks2gdvx6w733l";
-  } else {
-    arch = "linux-amd64";
-    sha256 = "01f2yvdgzi7xanhv7zxpsr0m99hric7a5lfi5bspfc031i4fb8br";
-  };
+  meta =
+    if stdenv.isDarwin then {
+      arch = "darwin-amd64";
+      sha256 = "0qgjzxbf4gjg1z9mpqwb8z52gvm0wk1862l4jghks2gdvx6w733l";
+    } else {
+      arch = "linux-amd64";
+      sha256 = "01f2yvdgzi7xanhv7zxpsr0m99hric7a5lfi5bspfc031i4fb8br";
+    };
 
   url = "https://github.com/clusterise/kubectl-repl/releases/download/${version}/kubectl-repl-${meta.arch}-${version}";
 in

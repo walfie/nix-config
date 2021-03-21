@@ -1,21 +1,20 @@
 # nix-config
 
-Nix configs with [nix-darwin] and [home-manager].
+Nix configs for [home-manager].
 
 ## Install
 
 * Install [Nix package manager](https://nixos.org/download.html):
 
-    ```sh
-    sh $(curl -L https://nixos.org/nix/install) --daemon --darwin-use-unencrypted-nix-store-volume
+    ```
+    curl -L https://nixos.org/nix/install | bash -s -- --daemon --darwin-use-unencrypted-nix-store-volume
 
-    # Disable spotlight indexing for the volume
+    # Recommended, but optional: disable spotlight indexing for the volume.
     sudo mdutil -i off /nix
     ```
 
-  If on macOS Catalina on a machine without a T2 chip, you may need to create
-  the Nix APFS volume manually.  See "Solution 1" in [this GitHub comment by
-  garyverhaegen-da](https://github.com/NixOS/nix/issues/2925).
+  This assumes you're on at least macOS Catalina. Non-macOS setups can exclude
+  the `darwin` flag and the `mdutil` command.
 
 * Symlink to the desired machine config file in the [`machines/`](./machines/) directory:
 
@@ -23,40 +22,26 @@ Nix configs with [nix-darwin] and [home-manager].
     ln -s machines/$MACHINE_NAME current-machine
     ```
 
-* If on macOS, run the provided script to install nix-darwin:
+* Build the first home-manager generation
 
     ```sh
-    nix-shell --run install-darwin
+    nix-shell --run "home-manager switch -f current-machine"
     ```
 
-  You can say no when it asks if you want to manage nix-darwin with channels.
-  The config in this repo pins nix-darwin and nixpkgs with
-  [niv](https://github.com/nmattia/niv/), and doesn't use channels.
-
-  Even though we don't use channels, you may need to remove the
-  `~/.nix-defexpr/channels` symlink and recreate it with `nix-channel --update`,
-  since the Nix installer creates that symlink owned by the root user, but
-  nix-darwin expects it to be owned by the current user.
-
-  The nix-darwin installer will warn you if there are existing files that it
-  would have overwritten (`/etc/nix/nix.conf`, `~/.bashrc`, etc). Feel free to
-  move them or delete them.
+  You can also use `home-manager build` instead of `home-manager switch` to
+  verify the installation before applying it.
 
 ## Rebuild
 
 After making changes to config, you can rebuild with:
 
 ```sh
-rebuild-darwin switch
+home-manager switch
 ```
 
-## Formatting
-
-The following command will run `nixpkgs-fmt` on all `.nix` files in this repo:
-
-```sh
-nix-shell --run format
-```
+The `HOME_MANAGER_CONFIG` environment variable is typically set in the
+`current-machine` config, so the `-f` argument used in the installation isn't
+needed after the initial install.
 
 ## Garbage collection
 
@@ -84,6 +69,5 @@ Some resources I found useful during setup:
 * [Right way to add a custom package?](https://github.com/LnL7/nix-darwin/issues/16#issuecomment-284262711)
 * [List of configurable macOS settings](https://github.com/mathiasbynens/dotfiles/blob/master/.macos)
 
-[nix-darwin]: https://github.com/LnL7/nix-darwin
-[home-manager]: https://github.com/rycee/home-manager
+[home-manager]: https://github.com/nix-community/home-manager
 

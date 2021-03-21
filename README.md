@@ -43,6 +43,23 @@ The `HOME_MANAGER_CONFIG` environment variable is typically set in the
 `current-machine` config, so the `-f` argument used in the installation isn't
 needed after the initial install.
 
+## Updating dependencies
+
+Dependencies are pinned and managed with `niv` (see `nix/sources.json`).
+
+* To update `nixpkgs` to the latest revision on the current configured branch:
+
+    ```sh
+    niv update nixpkgs
+    ```
+
+* To update `nixpkgs` to the latest revision of a new branch (e.g., when
+  switching to a new release branch):
+
+    ```sh
+    niv update nixpkgs -b release-20.09
+    ```
+
 ## Garbage collection
 
 There are various levels of cleanup you can do:

@@ -40,6 +40,7 @@ in
     ignores = [
       "*.swp"
       "*.swo"
+      ".direnv"
       ".git"
       ".DS_Store"
       "Session.vim"

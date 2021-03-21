@@ -29,6 +29,15 @@ in
   programs.zsh = {
     enable = true;
 
+    # Enable autocomplete manually by calling `compinit` ourselves
+    # (to prevent `.zcompdump` from being created in the home directory)
+    # https://unix.stackexchange.com/questions/391641/separate-path-for-zcompdump-files
+    # https://github.com/nix-community/home-manager/blob/ddcd476603dfd3388b1dc8234fa9d550156a51f5/modules/programs/zsh.nix#L458
+    enableCompletion = false;
+    initExtraBeforeCompInit = ''
+      autoload -U compinit && compinit -d ${config.xdg.cacheHome}/zcompdump-$ZSH_VERSION
+    '';
+
     history = {
       path = "${config.xdg.dataHome}/zsh/history";
       expireDuplicatesFirst = true;

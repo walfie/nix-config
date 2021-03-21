@@ -5,6 +5,7 @@
     ../../modules/direnv
     ../../modules/git
     ../../modules/home-manager
+    ../../modules/javascript
     ../../modules/kitty
     ../../modules/kubernetes
     ../../modules/macos
@@ -44,10 +45,5 @@
     pkgs.tealdeer
     pkgs.tree
     pkgs.wget
-
-    # JavaScript stuff
-    pkgs.nodejs
-    pkgs.watchman
-    pkgs.yarn
   ];
 }

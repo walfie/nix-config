@@ -10,5 +10,6 @@
   home.sessionVariables = {
     BASH_SILENCE_DEPRECATION_WARNING = "1";
     HOMEBREW_NO_ANALYTICS = "1";
+    CLICOLOR = "1"; # Enable colors for macOS version of `ls`
   };
 }

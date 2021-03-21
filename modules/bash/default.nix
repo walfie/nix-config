@@ -54,7 +54,7 @@ in
       grep = "grep --color -I";
       ips = "ifconfig | awk '\$1 == \"inet\" {print \$2}'";
       ll = "ls -l";
-      ls = "ls -Gh";
+      ls = "ls --color -h";
       path = ''echo -e ''${PATH//:/\\n}'';
       z = "j";
     };

@@ -29,8 +29,6 @@ in
     historyFile = "${config.xdg.dataHome}/bash/history";
     shellOptions = [ "histappend" "checkwinsize" "extglob" ];
     sessionVariables = {
-      BASH_SILENCE_DEPRECATION_WARNING = "1";
-      HOMEBREW_NO_ANALYTICS = "1";
       PROMPT_COMMAND = "history -a";
       PS1 = prompt;
     };

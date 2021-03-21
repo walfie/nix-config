@@ -15,8 +15,6 @@
       tmuxPlugins.yank
     ];
 
-    extraConfig = ''
-      set -g default-command "${pkgs.bashInteractive}/bin/bash --login"
-    '' + (lib.fileContents ./tmux.conf);
+    extraConfig = lib.fileContents ./tmux.conf;
   };
 }

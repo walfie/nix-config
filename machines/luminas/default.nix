@@ -12,6 +12,7 @@
     ../../modules/rust
     ../../modules/tmux
     ../../modules/xdg
+    ../../modules/zsh
   ];
 
   macos-dock.enable = true;

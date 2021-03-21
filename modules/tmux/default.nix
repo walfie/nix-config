@@ -2,14 +2,16 @@
 {
   programs.tmux = {
     enable = true;
+
     baseIndex = 1;
     clock24 = true;
     keyMode = "vi";
-    shortcut = "a";
     secureSocket = false;
+    shortcut = "a";
+    terminal = "screen-256color";
+
     plugins = with pkgs; [
       tmuxPlugins.pain-control
-      tmuxPlugins.sensible
       tmuxPlugins.yank
     ];
 

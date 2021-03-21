@@ -29,14 +29,25 @@ in
     historyFile = "${config.xdg.dataHome}/bash/history";
     shellOptions = [ "histappend" "checkwinsize" "extglob" ];
     sessionVariables = {
-      PS1 = prompt;
-      PROMPT_COMMAND = "history -a";
+      BASH_SILENCE_DEPRECATION_WARNING = "1";
       HOMEBREW_NO_ANALYTICS = "1";
+      PROMPT_COMMAND = "history -a";
+      PS1 = prompt;
     };
 
     initExtra = ''
       if [ -e $HOME/.nix-profile/etc/profile.d/bash_completion.sh ];
-        then source $HOME/.nix-profile/etc/profile.d/bash_completion.sh
+      then
+        source $HOME/.nix-profile/etc/profile.d/bash_completion.sh
+      fi
+
+      if [ "''${BASH_VERSINFO:-0}" -ge 4 ];
+      then
+        HISTSIZE=-1
+        HISTFILESIZE=-1
+      else
+        HISTSIZE=
+        HISTFILESIZE=
       fi
     '';
 

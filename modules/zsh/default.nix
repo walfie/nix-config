@@ -8,7 +8,7 @@ let
       time = ''%*'';
       user = "%n";
       host = "%m";
-      workingDir = "%1d";
+      workingDir = "%1~";
     in
     builtins.concatStringsSep "" [
       time

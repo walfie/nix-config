@@ -52,6 +52,9 @@ in
       autoload -U edit-command-line
       zle -N edit-command-line
       bindkey '^x^e' edit-command-line
+
+      # Allow selecting completion items with arrow keys
+      zstyle ':completion:*' menu select
     '';
 
     sessionVariables = {

@@ -34,6 +34,11 @@ in
       serverPath = "${pkgs.rust-analyzer}/bin/rust-analyzer";
       "rustfmt.overrideCommand" = "${pkgs.rustfmt}/bin/rustfmt";
     };
+
+    languageserver.nix = {
+      command = "${pkgs.rnix-lsp}/bin/rnix-lsp";
+      filetypes = [ "nix" ];
+    };
   };
 
   programs.neovim = {

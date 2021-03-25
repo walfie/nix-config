@@ -80,11 +80,11 @@ sudo nix-collect-garbage -d
 Some resources I found useful during setup:
 
 * [home-manager config options](https://rycee.gitlab.io/home-manager/options.html)
-* [nix-darwin config options](https://lnl7.github.io/nix-darwin/manual/index.html#sec-options)
 * [cprussin/dotfiles](https://github.com/cprussin/dotfiles)
-* [Vim on NixOS](http://ivanbrennan.nyc/2018-05-09/vim-on-nixos)
+* [Vim on NixOS](https://web.archive.org/web/20200820230106/http://ivanbrennan.nyc/2018-05-09/vim-on-nixos)
 * [Right way to add a custom package?](https://github.com/LnL7/nix-darwin/issues/16#issuecomment-284262711)
 * [List of configurable macOS settings](https://github.com/mathiasbynens/dotfiles/blob/master/.macos)
+* [Nix Package Versions](https://lazamar.co.uk/nix-versions/)
 
 [home-manager]: https://github.com/nix-community/home-manager
 

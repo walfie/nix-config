@@ -14,7 +14,7 @@ let
     "vim-argwrap"
     "vim-bbye"
     "vim-ctrlsf"
-    "vim-plugin-minibufexpl"
+    "vim-minibufexpl"
   ];
 in
 {

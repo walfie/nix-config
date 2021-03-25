@@ -29,10 +29,10 @@
         "homepage": "https://foosoft.net/projects/argwrap/",
         "owner": "foosoft",
         "repo": "vim-argwrap",
-        "rev": "7e3db5f5178626548cd9f297914dd6b0a34e6409",
-        "sha256": "1kg0srrh84ivd0bjydp7j7c17f89f7s79y4r754avd1j91i7w9hs",
+        "rev": "f3d122d9b167ea9489aad8d99c278fe4f3f4e951",
+        "sha256": "15qjffkb2vv64ma0wpay6pi9ji3zplrz0zvvywq93jmqcf8iqn6c",
         "type": "tarball",
-        "url": "https://github.com/foosoft/vim-argwrap/archive/7e3db5f5178626548cd9f297914dd6b0a34e6409.tar.gz",
+        "url": "https://github.com/foosoft/vim-argwrap/archive/f3d122d9b167ea9489aad8d99c278fe4f3f4e951.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-bbye": {
@@ -53,13 +53,13 @@
         "homepage": "",
         "owner": "dyng",
         "repo": "ctrlsf.vim",
-        "rev": "9503f99336c9088bbc062fdf8fa57a014d2b8c48",
-        "sha256": "0bigzqvijdgf3d58z8psqmmdajb6zrygbwn7ggx1m0s9mlzppslk",
+        "rev": "c90632e6a27bfd525a2a4c6e108981d4558202c0",
+        "sha256": "0lala73xl4gm5nvrmyd2p6qjq8d3k3d28awn8byl7z1bdgii41c9",
         "type": "tarball",
-        "url": "https://github.com/dyng/ctrlsf.vim/archive/9503f99336c9088bbc062fdf8fa57a014d2b8c48.tar.gz",
+        "url": "https://github.com/dyng/ctrlsf.vim/archive/c90632e6a27bfd525a2a4c6e108981d4558202c0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "vim-plugin-minibufexpl": {
+    "vim-minibufexpl": {
         "branch": "master",
         "description": "Elegant buffer explorer - takes very little screen space",
         "homepage": "http://www.vim.org/scripts/script.php?script_id=159",

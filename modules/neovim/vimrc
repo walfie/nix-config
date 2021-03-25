@@ -142,7 +142,7 @@ map <silent> <Leader>d <Esc>:FzfRg (class\|trait\|object\|struct\|enum\|type)<CR
 imap <C-x><C-l> <Plug>(fzf-complete-line)
 
 " Skip files in gitignore
-let $FZF_DEFAULT_COMMAND = 'rg --files --hidden'
+let $FZF_DEFAULT_COMMAND = "rg --files --hidden -g '!.git/'"
 
 function! RgCompleteCommand(args)
   return "rg ^ --color never --no-filename --no-line-number ".a:args." . | awk '!seen[$0]++'"

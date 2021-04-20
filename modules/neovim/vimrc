@@ -4,10 +4,7 @@ let g:polyglot_disabled = ['scala']
 autocmd FileType css,scss,sass :packadd coc-css
 autocmd FileType html :packadd coc-html
 autocmd FileType json :packadd coc-json
-autocmd FileType rust :packadd coc-rust-analyzer
 autocmd FileType yaml :packadd coc-yaml
-
-autocmd FileType scala :packadd vim-scala
 
 " Write to a file as root
 command! W :execute ':silent w !sudo tee % >/dev/null' | :edit!

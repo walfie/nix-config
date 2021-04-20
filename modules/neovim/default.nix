@@ -53,6 +53,8 @@ in
       packages.neovim-with-plugins = with pkgs.vimPlugins; {
         start = [
           coc-nvim # Must be loaded before coc-nvim extensions
+          coc-rust-analyzer
+
           camelcasemotion
           delimitMate
           emmet-vim
@@ -78,7 +80,6 @@ in
           coc-css
           coc-html
           coc-json
-          coc-rust-analyzer
         ];
       };
     };

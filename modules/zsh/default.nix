@@ -41,8 +41,10 @@ in
     history = {
       path = "${config.xdg.dataHome}/zsh/history";
       expireDuplicatesFirst = true;
-      save = 9999999;
-      size = 9999999;
+      save = 999999999;
+      size = 999999999;
+      share = false;
+      extended = true;
     };
 
     defaultKeymap = "emacs";
@@ -55,6 +57,12 @@ in
 
       # Allow selecting completion items with arrow keys
       zstyle ':completion:*' menu select
+
+      # Append history immediately (but don't share between shells)
+      setopt INC_APPEND_HISTORY
+
+      # Don't return duplicates when searching history
+      setopt HIST_FIND_NO_DUPS
     '';
 
     sessionVariables = {

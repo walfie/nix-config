@@ -44,6 +44,11 @@ in
       ".git"
       ".DS_Store"
       "Session.vim"
+
+      # scala
+      ".bloop/"
+      ".metals/"
+      "metals.sbt"
     ];
   };
 }

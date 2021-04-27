@@ -30,6 +30,8 @@ in
   };
 
   xdg.configFile."nvim/coc-settings.json".text = builtins.toJSON {
+    metals.javaHome = pkgs.jdk11.home;
+
     rust-analyzer = {
       serverPath = "${pkgs.rust-analyzer}/bin/rust-analyzer";
       "rustfmt.overrideCommand" = "${pkgs.rustfmt}/bin/rustfmt";
@@ -54,6 +56,7 @@ in
         start = [
           coc-nvim # Must be loaded before coc-nvim extensions
           coc-rust-analyzer
+          coc-metals
 
           camelcasemotion
           delimitMate

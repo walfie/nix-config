@@ -30,11 +30,12 @@ in
   };
 
   xdg.configFile."nvim/coc-settings.json".text = builtins.toJSON {
+    diagnostic.checkCurrentLine = true;
     metals.javaHome = pkgs.jdk11.home;
 
     rust-analyzer = {
       serverPath = "${pkgs.rust-analyzer}/bin/rust-analyzer";
-      "rustfmt.overrideCommand" = "${pkgs.rustfmt}/bin/rustfmt";
+      rustfmt.overrideCommand = "${pkgs.rustfmt}/bin/rustfmt";
     };
 
     languageserver.nix = {
@@ -56,6 +57,7 @@ in
         start = [
           coc-nvim # Must be loaded before coc-nvim extensions
           coc-rust-analyzer
+          coc-tsserver
           coc-metals
 
           camelcasemotion

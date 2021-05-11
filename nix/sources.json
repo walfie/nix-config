@@ -12,15 +12,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-mozilla": {
-        "branch": "master",
+        "branch": "install-docs-optional",
         "description": "mozilla related nixpkgs (extends nixos/nixpkgs repo)",
         "homepage": null,
-        "owner": "mozilla",
+        "owner": "walfie",
         "repo": "nixpkgs-mozilla",
-        "rev": "8c007b60731c07dd7a052cce508de3bb1ae849b4",
-        "sha256": "1zybp62zz0h077zm2zmqs2wcg3whg6jqaah9hcl1gv4x8af4zhs6",
+        "rev": "55d48bcc05960d780fdfe317ff5fb566df96041e",
+        "sha256": "0dbgg6qk6vk1wlpxbkjfpibpnda2mkp64hg5pzyd87f52sz645il",
         "type": "tarball",
-        "url": "https://github.com/mozilla/nixpkgs-mozilla/archive/8c007b60731c07dd7a052cce508de3bb1ae849b4.tar.gz",
+        "url": "https://github.com/walfie/nixpkgs-mozilla/archive/55d48bcc05960d780fdfe317ff5fb566df96041e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-argwrap": {

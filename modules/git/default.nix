@@ -46,6 +46,7 @@ in
       "Session.vim"
 
       # scala
+      ".bsp/"
       ".bloop/"
       ".metals/"
       "metals.sbt"

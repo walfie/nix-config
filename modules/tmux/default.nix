@@ -22,13 +22,14 @@
         # https://github.com/tmux-plugins/tmux-resurrect/issues/348
         extraConfig = ''
           set -g @resurrect-dir '${config.xdg.dataHome}/tmux/resurrect'
+          set -g @resurrect-capture-pane-contents 'on'
         '';
       }
       {
         plugin = tmuxPlugins.continuum;
         extraConfig = ''
           set -g @continuum-restore 'on'
-          set -g @continuum-save-interval '15' # minutes
+          set -g @continuum-save-interval '20' # minutes
         '';
       }
     ];

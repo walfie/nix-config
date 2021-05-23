@@ -23,6 +23,7 @@
         extraConfig = ''
           set -g @resurrect-dir '${config.xdg.dataHome}/tmux/resurrect'
           set -g @resurrect-capture-pane-contents 'on'
+          set -g @resurrect-pane-contents-area 'visible'
         '';
       }
       {

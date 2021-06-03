@@ -41,10 +41,10 @@
         "homepage": "",
         "owner": "dyng",
         "repo": "ctrlsf.vim",
-        "rev": "c90632e6a27bfd525a2a4c6e108981d4558202c0",
-        "sha256": "0lala73xl4gm5nvrmyd2p6qjq8d3k3d28awn8byl7z1bdgii41c9",
+        "rev": "51c5b285146f042bd2015278f9b8ad74ae915e00",
+        "sha256": "1901cr6sbaa8js4ylirz9p4m0r9q0a06gm71ghl6kp6pw7h5fgmq",
         "type": "tarball",
-        "url": "https://github.com/dyng/ctrlsf.vim/archive/c90632e6a27bfd525a2a4c6e108981d4558202c0.tar.gz",
+        "url": "https://github.com/dyng/ctrlsf.vim/archive/51c5b285146f042bd2015278f9b8ad74ae915e00.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-minibufexpl": {

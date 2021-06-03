@@ -31,6 +31,7 @@ let
     rainbow
     traces-vim
     vim-abolish
+    vim-bbye
     vim-eunuch
     vim-nerdtree-tabs
     vim-polyglot
@@ -50,7 +51,6 @@ let
 
   customPlugins = builtins.map mkPlugin [
     "vim-argwrap"
-    "vim-bbye"
     "vim-ctrlsf"
     "vim-minibufexpl"
   ];

@@ -10,6 +10,44 @@ let
     src = sources.${name};
   };
 
+  mkOptionalPlugin = plugin: {
+    inherit plugin;
+    optional = true;
+  };
+
+  plugins = with pkgs.vimPlugins; [
+    coc-nvim # Must be loaded before coc-nvim extensions
+    coc-rust-analyzer
+    coc-tsserver
+    coc-metals
+
+    camelcasemotion
+    delimitMate
+    emmet-vim
+    fzf-vim
+    fzfWrapper
+    nerdcommenter
+    nerdtree
+    rainbow
+    traces-vim
+    vim-abolish
+    vim-eunuch
+    vim-nerdtree-tabs
+    vim-polyglot
+    vim-repeat
+    vim-scala
+    vim-sleuth
+    vim-surround
+    vim-visual-increment
+    zenburn
+  ];
+
+  optionalPlugins = builtins.map mkOptionalPlugin (with pkgs.vimPlugins; [
+    coc-css
+    coc-html
+    coc-json
+  ]);
+
   customPlugins = builtins.map mkPlugin [
     "vim-argwrap"
     "vim-bbye"
@@ -51,42 +89,7 @@ in
     vimdiffAlias = true;
     withNodeJs = true;
 
-    configure = {
-      customRC = lib.fileContents ./vimrc;
-      packages.neovim-with-plugins = with pkgs.vimPlugins; {
-        start = [
-          coc-nvim # Must be loaded before coc-nvim extensions
-          coc-rust-analyzer
-          coc-tsserver
-          coc-metals
-
-          camelcasemotion
-          delimitMate
-          emmet-vim
-          fzf-vim
-          fzfWrapper
-          nerdcommenter
-          nerdtree
-          rainbow
-          traces-vim
-          vim-abolish
-          vim-eunuch
-          vim-nerdtree-tabs
-          vim-polyglot
-          vim-repeat
-          vim-scala
-          vim-sleuth
-          vim-surround
-          vim-visual-increment
-          zenburn
-        ] ++ customPlugins;
-
-        opt = [
-          coc-css
-          coc-html
-          coc-json
-        ];
-      };
-    };
+    plugins = plugins ++ optionalPlugins ++ customPlugins;
+    extraConfig = lib.fileContents ./vimrc;
   };
 }

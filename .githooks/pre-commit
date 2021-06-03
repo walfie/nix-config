@@ -1,2 +1,4 @@
-nixpkgs-fmt .
+set -euo pipefail
+
+nixpkgs-fmt --check .
 

@@ -21,7 +21,7 @@
   home = {
     username = "who";
     homeDirectory = "/Users/who";
-    stateVersion = "20.09";
+    stateVersion = "21.05";
 
     sessionVariables = {
       HOME_MANAGER_CONFIG = "/Users/who/nix-config/current-machine";

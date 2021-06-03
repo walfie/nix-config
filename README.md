@@ -57,7 +57,15 @@ Dependencies are pinned and managed with `niv` (see `nix/sources.json`).
   switching to a new release branch):
 
     ```sh
-    niv update nixpkgs -b release-20.09
+    niv update nixpkgs -b release-21.05
+    ```
+
+* To get the updated packages to be picked up by `nix-direnv` in this
+  directory, you may have to [manually re-trigger
+  evaluation][direnv-evaluation]:
+
+    ```sh
+    touch shell.nix
     ```
 
 ## Garbage collection
@@ -87,4 +95,5 @@ Some resources I found useful during setup:
 * [Nix Package Versions](https://lazamar.co.uk/nix-versions/)
 
 [home-manager]: https://github.com/nix-community/home-manager
+[direnv-evaluation]: https://github.com/nix-community/nix-direnv/tree/40b96cbd3589fd7f06e8da9324b98aa9c2b6b594#manually-re-triggering-evaluation
 

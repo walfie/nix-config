@@ -44,6 +44,7 @@
     pkgs.ncdu
     pkgs.niv
     pkgs.tealdeer
+    pkgs.telnet
     pkgs.tree
     pkgs.wget
   ];

@@ -2,7 +2,7 @@
 let
   sources = import ../../nix/sources.nix;
   rustStable = pkgs.rustChannelOf {
-    channel = "1.52.1";
+    channel = "1.54.0";
 
     # Disable installation of rustdoc (which is very slow).
     # This flag is provided by the code in this PR:

@@ -20,6 +20,7 @@ in
   home.packages = [
     pkgs.nodejs
     pkgs.watchman # For react-native
+    pkgs.nodePackages.pnpm
     yarn
   ];
 }

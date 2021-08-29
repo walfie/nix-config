@@ -72,7 +72,7 @@ in
 
     shellAliases = {
       grep = "grep --color -I";
-      ips = "ifconfig | awk '\$1 == \"inet\" {print \$2}'";
+      ips = "${pkgs.inetutils}/bin/ifconfig | awk '\$1 == \"inet\" {print \$3}'";
       ll = "ls -l";
       ls = "ls --color -h";
       path = ''echo -e ''${PATH//:/\\n}'';

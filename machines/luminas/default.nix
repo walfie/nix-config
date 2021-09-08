@@ -3,6 +3,7 @@
   imports = [
     ../../modules/bash
     ../../modules/direnv
+    ../../modules/flakes
     ../../modules/git
     ../../modules/home-manager
     ../../modules/javascript
@@ -43,6 +44,7 @@
     pkgs.jq
     pkgs.ncdu
     pkgs.niv
+    pkgs.nixpkgs-fmt
     pkgs.tealdeer
     pkgs.telnet
     pkgs.tree

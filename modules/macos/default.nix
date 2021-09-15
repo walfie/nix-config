@@ -2,6 +2,7 @@
 {
   imports = [
     ./dock
+    ./applescript
   ];
 
   home.activation.setDefaults =

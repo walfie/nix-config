@@ -39,6 +39,7 @@
     pkgs.doctl
     pkgs.ffmpeg
     pkgs.gnused
+    pkgs.gron
     pkgs.htop
     pkgs.imagemagick
     pkgs.jq

@@ -74,7 +74,7 @@ in
       grep = "grep --color -I";
       ips = "${pkgs.inetutils}/bin/ifconfig | awk '\$1 == \"inet\" {print \$3}'";
       ll = "ls -l";
-      ls = "ls --color -h";
+      ls = "${pkgs.coreutils}/bin/ls --color -h";
       path = ''echo -e ''${PATH//:/\\n}'';
       z = "j";
     };

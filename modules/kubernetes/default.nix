@@ -16,6 +16,12 @@ let
     kubectl logs --tail 100 $@ \
       | jq -Rr '. as $line | try (fromjson | "\(.["@timestamp"]) \(.level) \(.logger_name) \(.message) \(.stack_trace // "")") catch $line'
   '';
+
+  # kubectx except it supports multiple kubeconfig files
+  kubectx = pkgs.writeShellScriptBin "kubectx" ''
+    export PATH=${lib.makeBinPath [ pkgs.kubectl pkgs.fzf ]}:$PATH
+    kubectl config use-context $(kubectl config get-contexts -o name | fzf)
+  '';
 in
 {
   home = {
@@ -31,10 +37,9 @@ in
       kubectl-repl
       kubectl-getg
       kubectl-lg
+      kubectx
 
-      pkgs.fzf
       pkgs.kubectl
-      pkgs.kubectx
     ];
   };
 }

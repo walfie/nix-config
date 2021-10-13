@@ -6,15 +6,12 @@ let
       bold = "%B";
       unbold = "%b";
       time = ''%*'';
-      user = "%n";
-      host = "%m";
       workingDir = "%1~";
     in
     builtins.concatStringsSep "" [
       time
       " "
       bold
-      (color "187" "${user}@${host}:")
       (color "174" "${workingDir}$")
       unbold
       " "

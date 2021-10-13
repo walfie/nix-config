@@ -22,7 +22,11 @@ let
   rprompt = "%(?..%F{red}✘ %?%f)";
 in
 {
-  programs.autojump.enable = true;
+  programs.z-lua = {
+    enable = true;
+    options = [ "enhanced" "once" "echo" ];
+  };
+
   programs.zsh = {
     enable = true;
 
@@ -73,7 +77,6 @@ in
       ll = "ls -l";
       ls = "${pkgs.coreutils}/bin/ls --color -h";
       path = ''echo -e ''${PATH//:/\\n}'';
-      z = "j";
     };
   };
 }

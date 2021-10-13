@@ -20,7 +20,11 @@ in
     pkgs.bash-completion
   ];
 
-  programs.autojump.enable = true;
+  programs.z-lua = {
+    enable = true;
+    options = [ "enhanced" "once" "echo" ];
+  };
+
   programs.bash = {
     enable = true;
     historyControl = [ "ignoredups" ];
@@ -56,7 +60,6 @@ in
       ll = "ls -l";
       ls = "ls --color -h";
       path = ''echo -e ''${PATH//:/\\n}'';
-      z = "j";
     };
   };
 }

@@ -22,10 +22,7 @@ let
   rprompt = "%(?..%F{red}✘ %?%f)";
 in
 {
-  programs.z-lua = {
-    enable = true;
-    options = [ "enhanced" "once" "echo" ];
-  };
+  programs.zoxide.enable = true;
 
   programs.zsh = {
     enable = true;

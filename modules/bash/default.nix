@@ -20,10 +20,7 @@ in
     pkgs.bash-completion
   ];
 
-  programs.z-lua = {
-    enable = true;
-    options = [ "enhanced" "once" "echo" ];
-  };
+  programs.zoxide.enable = true;
 
   programs.bash = {
     enable = true;

@@ -33,6 +33,7 @@ let
     vim-abolish
     vim-bbye
     vim-eunuch
+    vim-fugitive
     vim-nerdtree-tabs
     vim-polyglot
     vim-repeat

@@ -1,6 +1,8 @@
 { pkgs, config, ... }:
 let
   sources = import ../../nix/sources.nix;
+  rust-stable = pkgs.rust-bin.stable."1.56.1".default;
+  rust-nightly = pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.default);
 in
 {
   # How to override rust version using mozilla's nix overlay:
@@ -8,7 +10,7 @@ in
   nixpkgs.overlays = [ (import sources.rust-overlay) ];
 
   home.packages = [
-    pkgs.rust-bin.stable."1.56.1".default
+    rust-stable
     pkgs.cargo-edit
     pkgs.cargo-watch
   ];

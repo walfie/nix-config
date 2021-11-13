@@ -75,6 +75,9 @@ in
     rust-analyzer = {
       serverPath = "${pkgs.rust-analyzer}/bin/rust-analyzer";
       rustfmt.overrideCommand = "${pkgs.rustfmt}/bin/rustfmt";
+
+      # https://users.rust-lang.org/t/can-i-stop-vscode-rust-analyzer-from-shading-out-cfgs/58773
+      cargo.allFeatures = true;
     };
 
     languageserver.nix = {

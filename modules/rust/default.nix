@@ -1,24 +1,15 @@
 { pkgs, config, ... }:
 let
   sources = import ../../nix/sources.nix;
-  rustStable = pkgs.rustChannelOf {
-    channel = "1.54.0";
-
-    # Disable installation of rustdoc (which is very slow).
-    # This flag is provided by the code in this PR:
-    # https://github.com/mozilla/nixpkgs-mozilla/pull/253
-    installDoc = false;
-  };
 in
 {
   # How to override rust version using mozilla's nix overlay:
   # https://github.com/mozilla/nixpkgs-mozilla/issues/185
-  nixpkgs.overlays = [ (import sources.nixpkgs-mozilla) ];
+  nixpkgs.overlays = [ (import sources.rust-overlay) ];
 
   home.packages = [
-    rustStable.rust
+    pkgs.rust-bin.stable."1.56.1".default
     pkgs.cargo-edit
-    pkgs.cargo-release
     pkgs.cargo-watch
   ];
 

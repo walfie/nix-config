@@ -11,16 +11,16 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/adfdebe96c8a1d73a1609db4c6749420d138d1e1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "nixpkgs-mozilla": {
-        "branch": "install-docs-optional",
-        "description": "mozilla related nixpkgs (extends nixos/nixpkgs repo)",
-        "homepage": null,
-        "owner": "walfie",
-        "repo": "nixpkgs-mozilla",
-        "rev": "55d48bcc05960d780fdfe317ff5fb566df96041e",
-        "sha256": "0dbgg6qk6vk1wlpxbkjfpibpnda2mkp64hg5pzyd87f52sz645il",
+    "rust-overlay": {
+        "branch": "master",
+        "description": "Pure and reproducible nix overlay of binary distributed rust toolchains",
+        "homepage": "",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "2b97caa27af3693bdb46d70ebc2b76f03dacb72a",
+        "sha256": "17bnnyzma8s9h0636yzqfy2by68zr5g6fswx01dhjmhjlb0rblfr",
         "type": "tarball",
-        "url": "https://github.com/walfie/nixpkgs-mozilla/archive/55d48bcc05960d780fdfe317ff5fb566df96041e.tar.gz",
+        "url": "https://github.com/oxalica/rust-overlay/archive/2b97caa27af3693bdb46d70ebc2b76f03dacb72a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-argwrap": {

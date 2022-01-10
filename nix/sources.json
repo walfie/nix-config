@@ -1,14 +1,14 @@
 {
     "nixpkgs": {
-        "branch": "release-21.05",
+        "branch": "release-21.11",
         "description": "Nix Packages collection",
         "homepage": "",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "adfdebe96c8a1d73a1609db4c6749420d138d1e1",
-        "sha256": "0j3qcwwlm0ziz6b1l7dk7i3yigv4xqyvs3zjwz891gmz11l0pq6g",
+        "rev": "ae659e5468ea1ab1da58dd705d8555660eee7f86",
+        "sha256": "17ybffizr4r9ybq65g9hqj4vhk5m5jf9h6sn9yij33q1wzl23wsk",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/adfdebe96c8a1d73a1609db4c6749420d138d1e1.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/ae659e5468ea1ab1da58dd705d8555660eee7f86.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "rust-overlay": {

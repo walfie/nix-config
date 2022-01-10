@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 let
   sources = import ../../nix/sources.nix;
-  rust-stable = pkgs.rust-bin.stable."1.56.1".default;
+  rust-stable = pkgs.rust-bin.stable."1.57.0".default;
   rust-nightly = pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.default);
 in
 {
@@ -10,7 +10,7 @@ in
   nixpkgs.overlays = [ (import sources.rust-overlay) ];
 
   home.packages = [
-    rust-stable
+    rust-nightly
     pkgs.cargo-edit
     pkgs.cargo-watch
   ];

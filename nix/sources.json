@@ -17,10 +17,10 @@
         "homepage": "",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "2b97caa27af3693bdb46d70ebc2b76f03dacb72a",
-        "sha256": "17bnnyzma8s9h0636yzqfy2by68zr5g6fswx01dhjmhjlb0rblfr",
+        "rev": "39da4d7b7cbccd3e424974b5b190184dde6e07d9",
+        "sha256": "038zb38cybwzap759w5g3g1fxgni9rj1b79ykv5599a59980083z",
         "type": "tarball",
-        "url": "https://github.com/oxalica/rust-overlay/archive/2b97caa27af3693bdb46d70ebc2b76f03dacb72a.tar.gz",
+        "url": "https://github.com/oxalica/rust-overlay/archive/39da4d7b7cbccd3e424974b5b190184dde6e07d9.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-argwrap": {

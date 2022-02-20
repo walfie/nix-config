@@ -1,7 +1,9 @@
 { pkgs, config, ... }:
 let
   sources = import ../../nix/sources.nix;
-  rust-stable = pkgs.rust-bin.stable."1.58.1".default;
+  rust-stable = pkgs.rust-bin.stable."1.58.1".default.override {
+    targets = [ "wasm32-unknown-unknown" ];
+  };
   rust-nightly = pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.default);
 in
 {

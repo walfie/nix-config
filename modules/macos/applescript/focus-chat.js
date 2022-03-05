@@ -26,26 +26,27 @@ if (!activeTab.url().includes(youtubeUrl) && !activeTab.url().includes(twitchUrl
 
 // This will run inside Chrome
 const focusTextInput = () => {
+  let el;
   try {
     // YouTube
-    const el = document
+    el = document
       .querySelector('#chatframe')
       .contentWindow
       .document
       .querySelector('#input')
       .querySelector('#input');
-
-    const selection = window.getSelection();
-    const range = document.createRange();
-    selection.removeAllRanges();
-    range.selectNodeContents(el);
-    range.collapse(false);
-    selection.addRange(range);
-    el.focus();
   } catch (e) {
     // Twitch
-    document.querySelector('[data-a-target="chat-input"]').focus();
+    el = document.querySelector('[data-a-target="chat-input"]');
   }
+
+  const selection = window.getSelection();
+  const range = document.createRange();
+  selection.removeAllRanges();
+  range.selectNodeContents(el);
+  range.collapse(false);
+  selection.addRange(range);
+  el.focus();
 };
 
 const javascript = `(${focusTextInput.toString()})()`;

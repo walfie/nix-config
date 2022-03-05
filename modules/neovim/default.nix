@@ -8,6 +8,7 @@ let
   mkPlugin = name: pkgs.vimUtils.buildVimPlugin {
     inherit name;
     src = sources.${name};
+    dontBuild = true;
   };
 
   mkOptionalPlugin = plugin: {
@@ -54,6 +55,7 @@ let
     "vim-argwrap"
     "vim-ctrlsf"
     "vim-minibufexpl"
+    "vim-rescript"
   ];
 in
 {
@@ -83,6 +85,14 @@ in
     languageserver.nix = {
       command = "${pkgs.rnix-lsp}/bin/rnix-lsp";
       filetypes = [ "nix" ];
+    };
+
+    languageserver.rescript = {
+      enable = true;
+      module = "${sources.vim-rescript}/server/out/server.js";
+      args = [ "--node-ipc" ];
+      filetypes = [ "rescript" ];
+      rootPatterns = [ "bsconfig.json" ];
     };
   };
 

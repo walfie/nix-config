@@ -58,5 +58,17 @@
         "type": "tarball",
         "url": "https://github.com/weynhamz/vim-plugin-minibufexpl/archive/349a9fbb7a9da13d029b6a7ed8c8a5e9c048c4ec.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-rescript": {
+        "branch": "master",
+        "description": null,
+        "homepage": null,
+        "owner": "rescript-lang",
+        "repo": "vim-rescript",
+        "rev": "6a0497704c8deb758d934f79030d6e18bede9e54",
+        "sha256": "1lhmwsq1xbibj5slg0zq36rj8nadc3mlidvczym0rdma5pglhn35",
+        "type": "tarball",
+        "url": "https://github.com/rescript-lang/vim-rescript/archive/6a0497704c8deb758d934f79030d6e18bede9e54.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

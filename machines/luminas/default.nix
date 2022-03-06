@@ -53,7 +53,6 @@
     pkgs.wget
 
     # For react-native
-    pkgs.watchman
     pkgs.nodePackages.expo-cli
     pkgs.nodePackages.get-graphql-schema
   ];

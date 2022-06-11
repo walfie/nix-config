@@ -51,6 +51,7 @@
     pkgs.telnet
     pkgs.tree
     pkgs.wget
+    pkgs.trunk
 
     # For react-native
     pkgs.nodePackages.expo-cli

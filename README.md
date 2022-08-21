@@ -57,7 +57,7 @@ Dependencies are pinned and managed with `niv` (see `nix/sources.json`).
   switching to a new release branch):
 
     ```sh
-    niv update nixpkgs -b release-21.05
+    niv update nixpkgs -b release-22.05
     ```
 
 * To get the updated packages to be picked up by `nix-direnv` in this

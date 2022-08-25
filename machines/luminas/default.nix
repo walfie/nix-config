@@ -52,6 +52,7 @@
     pkgs.tree
     pkgs.wget
     pkgs.trunk
+    pkgs.pup
 
     # For react-native
     pkgs.nodePackages.expo-cli

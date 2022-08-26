@@ -1,28 +1,4 @@
 {
-    "coc-nvim": {
-        "branch": "master",
-        "description": "Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers.",
-        "homepage": "",
-        "owner": "neoclide",
-        "repo": "coc.nvim",
-        "rev": "ba2c04049bf02d1b6fd8037a78171e5f1394fcc1",
-        "sha256": "0s1ncwj8k3a05i4yph80lh04jljhbxjgh7a60xkxsp3zc1mv2fnn",
-        "type": "tarball",
-        "url": "https://github.com/neoclide/coc.nvim/archive/ba2c04049bf02d1b6fd8037a78171e5f1394fcc1.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "home-manager": {
-        "branch": "release-22.05",
-        "description": "Manage a user environment using Nix  [maintainer=@rycee] ",
-        "homepage": "https://nix-community.github.io/home-manager/",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "4a3d01fb53f52ac83194081272795aa4612c2381",
-        "sha256": "0sdirpwqk61hnq8lvz4r2j60fxpcpwc8ffmicail2n4h6zifcn9n",
-        "type": "tarball",
-        "url": "https://github.com/nix-community/home-manager/archive/4a3d01fb53f52ac83194081272795aa4612c2381.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "nixpkgs": {
         "branch": "nixpkgs-22.05-darwin",
         "description": "Nix Packages collection",

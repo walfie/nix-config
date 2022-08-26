@@ -47,6 +47,7 @@
     pkgs.ncdu
     pkgs.niv
     pkgs.nixpkgs-fmt
+    pkgs.pup
     pkgs.rename
     pkgs.tealdeer
     pkgs.tree

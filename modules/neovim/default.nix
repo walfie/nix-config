@@ -17,6 +17,27 @@ let
   };
 
   plugins = with pkgs.vimPlugins; [
+    emmet-vim
+    nerdcommenter
+    traces-vim
+    vim-abolish
+    vim-bbye
+    vim-eunuch
+    vim-fugitive
+    vim-nerdtree-tabs
+    vim-repeat
+    vim-scala
+    vim-sleuth
+    vim-surround
+    vim-visual-increment
+
+    # Used by nvim-cmp
+    luasnip
+    cmp-buffer
+    cmp-nvim-lsp
+    cmp-nvim-lua
+    cmp-path
+
     # LSP config initially based on: https://sharksforarms.dev/posts/neovim-rust/
     {
       plugin = nvim-lspconfig;
@@ -71,13 +92,6 @@ let
       '';
     }
 
-    # Used by nvim-cmp
-    luasnip
-    cmp-buffer
-    cmp-nvim-lsp
-    cmp-nvim-lua
-    cmp-path
-
     # https://github.com/hrsh7th/nvim-cmp/tree/058100d81316239f3874064064f0f0c5d43c2103#recommended-configuration
     {
       plugin = nvim-cmp;
@@ -110,40 +124,127 @@ let
       '';
     }
 
-    # Other
-    camelcasemotion
-    delimitMate
-    emmet-vim
-    fzf-vim
-    fzfWrapper
-    nerdcommenter
-    nerdtree
-    rainbow
-    traces-vim
-    vim-abolish
-    vim-bbye
-    vim-eunuch
-    vim-fugitive
-    vim-nerdtree-tabs
-    vim-polyglot
-    vim-repeat
-    vim-scala
-    vim-sleuth
-    vim-surround
-    vim-visual-increment
+    {
+      plugin = camelcasemotion;
+      config = ''
+        " Adding some `nmap` calls to avoid deleting trailing underscore
+        " https://github.com/bkad/CamelCaseMotion/issues/10#issuecomment-8704702
+        let g:camelcasemotion_key = ','
+        nmap c,w c,e
+        nmap ci,w ci,e
+      '';
+    }
+
+    {
+      plugin = delimitMate;
+      config = ''
+        let delimitMate_quotes = '" `'
+      '';
+    }
+
+    {
+      plugin = fzf-vim;
+      config = ''
+        " Ctrl+P for fuzzy finder
+        let g:fzf_command_prefix = 'Fzf'
+
+        " Disable preview window
+        let g:fzf_preview_window = ""
+        map <silent> <C-p> <Esc>:FzfFiles<CR>
+        map <silent> <Leader>b <Esc>:FzfBuffers<CR>
+        map <silent> <Leader>l <Esc>:FzfLines<CR>
+        " \a used to be for `ag`, but now it's `rg`
+        map <silent> <Leader>a <Esc>:FzfRg<CR>
+        " \d for definition
+        map <silent> <Leader>d <Esc>:FzfRg (class\|trait\|object\|struct\|enum\|type)<CR>
+
+        " Ctrl+l to autocomplete from Rg search
+        imap <C-x><C-l> <Plug>(fzf-complete-line)
+
+        " Skip files in gitignore
+        let $FZF_DEFAULT_COMMAND = "rg --files --hidden -g '!.git/'"
+
+        function! RgCompleteCommand(args)
+          return "rg ^ --color never --no-filename --no-line-number ".a:args." . | awk '!seen[$0]++'"
+        endfunction
+
+        inoremap <expr> <C-l> fzf#vim#complete(fzf#wrap({
+        \ 'prefix': '^.*$',
+        \ 'source': function('RgCompleteCommand'),
+        \ 'options': '--ansi'
+        \}))
+      '';
+    }
+
+    {
+      plugin = nerdtree;
+      config = ''
+        map <Leader>n <Plug>NERDTreeTabsToggle<CR>
+        let NERDTreeShowLineNumbers=1
+        let NERDTreeMinimalUI=1
+        let NERDTreeIgnore = ['\.class$', '\.jar$', '\.bk$']
+        let NERDTreeShowHidden=1
+      '';
+    }
+
+    {
+      plugin = rainbow;
+      config = ''
+        let g:rainbow_active = 1
+        let g:rainbow_conf = {
+        \  'ctermfgs': [
+        \    'darkred', 'darkgreen', 'darkmagenta', 'darkcyan', 'red',
+        \    'yellow', 'green', 'darkyellow', 'magenta', 'cyan', 'darkyellow'
+        \  ]
+        \}
+      '';
+    }
+
+    {
+      plugin = vim-argwrap;
+      config = ''
+        nnoremap <silent> <Leader>w :ArgWrap<CR>
+      '';
+    }
+
+    {
+      plugin = vim-polyglot;
+      config = ''
+        " Use vim-scala for scala
+        let g:polyglot_disabled = ['scala']
+
+        " JSON conceal off
+        let g:vim_json_syntax_conceal = 0
+      '';
+    }
+
+    {
+      plugin = mkPlugin "vim-ctrlsf";
+      config = ''
+        map <Leader>f <Plug>CtrlSFPrompt
+      '';
+    }
 
     # Color scheme
-    zenburn
+    {
+      plugin = zenburn;
+      config = ''
+        let g:zenburn_high_Contrast=1
+        colorscheme zenburn
+        highlight Visual term=reverse cterm=reverse
+        highlight MatchParen cterm=bold ctermbg=none ctermfg=magenta
+        highlight TrailingWhitespace ctermfg=darkgreen
+      '';
+    }
+
   ];
 
   optionalPlugins = builtins.map mkOptionalPlugin (with pkgs.vimPlugins; [
   ]);
 
   customPlugins = builtins.map mkPlugin [
-    "vim-argwrap"
     "vim-ctrlsf"
     "vim-minibufexpl"
-    "vim-rescript"
   ];
 in
 {
@@ -166,6 +267,7 @@ in
     withNodeJs = true;
 
     plugins = plugins ++ optionalPlugins ++ customPlugins;
+
     extraConfig = builtins.concatStringsSep "\n" [
       (lib.fileContents ./init.vim)
     ];

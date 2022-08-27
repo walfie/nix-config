@@ -1,5 +1,3 @@
-let g:polyglot_disabled = ['scala']
-
 " Write to a file as root
 command! W :execute ':silent w !sudo tee % >/dev/null' | :edit!
 command! Wq :execute ':W' | :q
@@ -80,11 +78,6 @@ let g:omni_sql_no_default_maps = 1
 
 " Colors
 set t_Co=256
-let g:zenburn_high_Contrast=1
-colorscheme zenburn
-highlight Visual term=reverse cterm=reverse
-highlight MatchParen cterm=bold ctermbg=none ctermfg=magenta
-highlight TrailingWhitespace ctermfg=darkgreen
 match TrailingWhiteSpace /\s\+$/
 
 "Highlight right margin
@@ -116,69 +109,6 @@ nnoremap <silent> <C-h> :bprevious<CR>
 
 " Clear highlighted text
 nnoremap <silent> <CR> :nohlsearch<CR><CR>
-
-" Ctrl+P for fuzzy finder
-let g:fzf_command_prefix = 'Fzf'
-" Disable preview window
-let g:fzf_preview_window = ''
-map <silent> <C-p> <Esc>:FzfFiles<CR>
-map <silent> <Leader>b <Esc>:FzfBuffers<CR>
-map <silent> <Leader>l <Esc>:FzfLines<CR>
-" \a used to be for `ag`, but now it's `rg`
-map <silent> <Leader>a <Esc>:FzfRg<CR>
-" \d for definition
-map <silent> <Leader>d <Esc>:FzfRg (class\|trait\|object\|struct\|enum\|type)<CR>
-
-" Ctrl+l to autocomplete from Rg search
-imap <C-x><C-l> <Plug>(fzf-complete-line)
-
-" Skip files in gitignore
-let $FZF_DEFAULT_COMMAND = "rg --files --hidden -g '!.git/'"
-
-function! RgCompleteCommand(args)
-  return "rg ^ --color never --no-filename --no-line-number ".a:args." . | awk '!seen[$0]++'"
-endfunction
-
-inoremap <expr> <C-l> fzf#vim#complete(fzf#wrap({
-\ 'prefix': '^.*$',
-\ 'source': function('RgCompleteCommand'),
-\ 'options': '--ansi'
-\}))
-
-" CtrlSF shortcut
-map <Leader>f <Plug>CtrlSFPrompt
-
-" JSON conceal off
-let g:vim_json_syntax_conceal = 0
-
-" NERDTree plugin
-map <Leader>n <Plug>NERDTreeTabsToggle<CR>
-let NERDTreeShowLineNumbers=1
-let NERDTreeMinimalUI=1
-let NERDTreeIgnore = ['\.class$', '\.jar$', '\.bk$']
-let NERDTreeShowHidden=1
-
-" ArgWrap
-nnoremap <silent> <Leader>w :ArgWrap<CR>
-
-" Rainbow parentheses
-let g:rainbow_active = 1
-let g:rainbow_conf = {
-\  'ctermfgs': [
-\    'darkred', 'darkgreen', 'darkmagenta', 'darkcyan', 'red',
-\    'yellow', 'green', 'darkyellow', 'magenta', 'cyan', 'darkyellow'
-\  ]
-\}
-
-" DelimitMate
-let delimitMate_quotes = '" `'
-
-" camelcasemotion
-" Adding some `nmap` calls to avoid deleting trailing underscore
-" https://github.com/bkad/CamelCaseMotion/issues/10#issuecomment-8704702
-let g:camelcasemotion_key = ','
-nmap c,w c,e
-nmap ci,w ci,e
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.

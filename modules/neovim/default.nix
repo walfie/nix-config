@@ -1,5 +1,3 @@
-# Useful article on setting up vim in nix
-# http://ivanbrennan.nyc/2018-05-09/vim-on-nixos
 { config, pkgs, lib, ... }:
 let
   sources = import ../../nix/sources.nix;
@@ -30,6 +28,9 @@ let
     vim-sleuth
     vim-surround
     vim-visual-increment
+
+    (mkPlugin "vim-ctrlsf")
+    (mkPlugin "vim-minibufexpl")
 
     # Used by nvim-cmp
     luasnip
@@ -239,13 +240,6 @@ let
 
   ];
 
-  optionalPlugins = builtins.map mkOptionalPlugin (with pkgs.vimPlugins; [
-  ]);
-
-  customPlugins = builtins.map mkPlugin [
-    "vim-ctrlsf"
-    "vim-minibufexpl"
-  ];
 in
 {
   home = {
@@ -260,13 +254,13 @@ in
   };
 
   programs.neovim = {
+    inherit plugins;
+
     enable = true;
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
     withNodeJs = true;
-
-    plugins = plugins ++ optionalPlugins ++ customPlugins;
 
     extraConfig = builtins.concatStringsSep "\n" [
       (lib.fileContents ./init.vim)

@@ -42,17 +42,17 @@
     pkgs.gron
     pkgs.htop
     pkgs.imagemagick
+    pkgs.inetutils
     pkgs.jq
     pkgs.ncdu
     pkgs.niv
     pkgs.nixpkgs-fmt
+    pkgs.pup
     pkgs.rename
     pkgs.tealdeer
-    pkgs.telnet
     pkgs.tree
-    pkgs.wget
     pkgs.trunk
-    pkgs.pup
+    pkgs.wget
 
     # For react-native
     pkgs.nodePackages.expo-cli

@@ -1,14 +1,14 @@
 {
     "nixpkgs": {
-        "branch": "release-21.11",
+        "branch": "nixpkgs-22.05-darwin",
         "description": "Nix Packages collection",
         "homepage": "",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "ae659e5468ea1ab1da58dd705d8555660eee7f86",
-        "sha256": "17ybffizr4r9ybq65g9hqj4vhk5m5jf9h6sn9yij33q1wzl23wsk",
+        "rev": "9a91318fffec81ad009b73fd3b640d2541d87909",
+        "sha256": "16j9il4a540ihz16dz8bzsxxqwiiyy1i2c1xvs5y7qm9s6v3dr4b",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/ae659e5468ea1ab1da58dd705d8555660eee7f86.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/9a91318fffec81ad009b73fd3b640d2541d87909.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "rust-overlay": {

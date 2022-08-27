@@ -17,11 +17,18 @@ let
   };
 
   plugins = with pkgs.vimPlugins; [
-    coc-nvim # Must be loaded before coc-nvim extensions
-    coc-rust-analyzer
-    coc-tsserver
-    coc-metals
+    # LSP config
+    nvim-lspconfig
+    rust-tools-nvim
 
+    # LSP completion
+    nvim-cmp
+    cmp-buffer
+    cmp-nvim-lsp
+    cmp-nvim-lua
+    cmp-path
+
+    # Other
     camelcasemotion
     delimitMate
     emmet-vim
@@ -42,13 +49,12 @@ let
     vim-sleuth
     vim-surround
     vim-visual-increment
+
+    # Color scheme
     zenburn
   ];
 
   optionalPlugins = builtins.map mkOptionalPlugin (with pkgs.vimPlugins; [
-    coc-css
-    coc-html
-    coc-json
   ]);
 
   customPlugins = builtins.map mkPlugin [
@@ -63,36 +69,11 @@ in
     packages = [
       pkgs.fzf
       pkgs.ripgrep
+      pkgs.rust-analyzer
     ];
 
     sessionVariables = {
       EDITOR = "nvim";
-    };
-  };
-
-  xdg.configFile."nvim/coc-settings.json".text = builtins.toJSON {
-    diagnostic.checkCurrentLine = true;
-    metals.javaHome = pkgs.jdk11.home;
-
-    rust-analyzer = {
-      serverPath = "${pkgs.rust-analyzer}/bin/rust-analyzer";
-      rustfmt.overrideCommand = "${pkgs.rustfmt}/bin/rustfmt";
-
-      # https://users.rust-lang.org/t/can-i-stop-vscode-rust-analyzer-from-shading-out-cfgs/58773
-      cargo.allFeatures = true;
-    };
-
-    languageserver.nix = {
-      command = "${pkgs.rnix-lsp}/bin/rnix-lsp";
-      filetypes = [ "nix" ];
-    };
-
-    languageserver.rescript = {
-      enable = true;
-      module = "${sources.vim-rescript}/server/out/server.js";
-      args = [ "--node-ipc" ];
-      filetypes = [ "rescript" ];
-      rootPatterns = [ "bsconfig.json" ];
     };
   };
 

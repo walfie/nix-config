@@ -44,20 +44,20 @@ let
       plugin = nvim-lspconfig;
       type = "lua";
       config = ''
-        local nvim_lsp = require'lspconfig'
+        local nvim_lsp = require("lspconfig")
 
-        nvim_lsp.tsserver.setup {
+        nvim_lsp.tsserver.setup({
           cmd = {
             "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server",
             "--stdio",
             "--tsserver-path",
             "${pkgs.nodePackages.typescript}/lib/node_modules/typescript/lib/",
           },
-        }
+        })
 
-        nvim_lsp.rnix.setup {
+        nvim_lsp.rnix.setup({
           cmd = { "${pkgs.rnix-lsp}/bin/rnix-lsp" },
-        }
+        })
       '';
     }
 
@@ -66,7 +66,7 @@ let
       plugin = rust-tools-nvim;
       type = "lua";
       config = ''
-        require'rust-tools'.setup {
+        require("rust-tools").setup({
           tools = {
             hover_with_actions = true,
             inlay_hints = {
@@ -89,7 +89,7 @@ let
               },
             }
           },
-        }
+        })
       '';
     }
 
@@ -98,30 +98,61 @@ let
       plugin = nvim-cmp;
       type = "lua";
       config = ''
-        local cmp = require'cmp'
-        cmp.setup {
+        local cmp = require("cmp")
+        cmp.setup({
           snippet = {
             expand = function(args)
-              require'luasnip'.lsp_expand(args.body)
+              require("luasnip").lsp_expand(args.body)
             end,
           },
           preselect = cmp.PreselectMode.None,
           mapping = {
-            ['<C-p>'] = cmp.mapping.select_prev_item(),
-            ['<C-n>'] = cmp.mapping.select_next_item(),
-            ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-            ['<Tab>'] = cmp.mapping.select_next_item(),
-            ['<CR>'] = cmp.mapping.confirm(),
+            ["<C-p>"] = cmp.mapping.select_prev_item(),
+            ["<C-n>"] = cmp.mapping.select_next_item(),
+            ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+            ["<Tab>"] = cmp.mapping.select_next_item(),
+            ["<CR>"] = cmp.mapping.confirm(),
           },
           -- Installed sources
           sources = {
-            { name = 'nvim_lsp' },
-            { name = 'nvim_lua' },
-            { name = 'luasnip' },
-            { name = 'buffer' },
-            { name = 'path' },
+            { name = "nvim_lsp" },
+            { name = "nvim_lua" },
+            { name = "luasnip" },
+            { name = "buffer" },
+            { name = "path" },
           },
-        }
+        })
+      '';
+    }
+
+    {
+      plugin = nvim-tree-lua;
+      type = "lua";
+      config = ''
+        vim.keymap.set("n", "<Leader>n", ":NvimTreeToggle<CR>", {
+          desc = "Toggle nvim-tree",
+        })
+
+        require("nvim-tree").setup({
+          view = {
+            number = true,
+            signcolumn = "no",
+          },
+          git = {
+            enable = false,
+          },
+        })
+
+        -- Close neovim if the tree is the last remaining pane
+        -- https://github.com/kyazdani42/nvim-tree.lua/discussions/1115#discussioncomment-2454398
+        vim.api.nvim_create_autocmd("BufEnter", {
+          nested = true,
+          callback = function()
+            if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
+              vim.cmd "quit"
+            end
+          end,
+        })
       '';
     }
 
@@ -174,37 +205,6 @@ let
         \ 'source': function('RgCompleteCommand'),
         \ 'options': '--ansi'
         \}))
-      '';
-    }
-
-    {
-      plugin = nvim-tree-lua;
-      type = "lua";
-      config = ''
-        vim.keymap.set("n", "<Leader>n", ":NvimTreeToggle<CR>", {
-          desc = "Toggle nvim-tree",
-        })
-
-        require("nvim-tree").setup {
-          view = {
-            number = true,
-            signcolumn = "no",
-          },
-          git = {
-            enable = false,
-          },
-        }
-
-        -- Close neovim if the tree is the last remaining pane
-        -- https://github.com/kyazdani42/nvim-tree.lua/discussions/1115#discussioncomment-2454398
-        vim.api.nvim_create_autocmd("BufEnter", {
-          nested = true,
-          callback = function()
-            if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
-              vim.cmd "quit"
-            end
-          end
-        })
       '';
     }
 

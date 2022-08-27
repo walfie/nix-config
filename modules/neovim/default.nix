@@ -178,13 +178,33 @@ let
     }
 
     {
-      plugin = nerdtree;
+      plugin = nvim-tree-lua;
+      type = "lua";
       config = ''
-        map <Leader>n <Plug>NERDTreeTabsToggle<CR>
-        let NERDTreeShowLineNumbers=1
-        let NERDTreeMinimalUI=1
-        let NERDTreeIgnore = ['\.class$', '\.jar$', '\.bk$']
-        let NERDTreeShowHidden=1
+        vim.keymap.set("n", "<Leader>n", ":NvimTreeToggle<CR>", {
+          desc = "Toggle nvim-tree",
+        })
+
+        require("nvim-tree").setup {
+          view = {
+            number = true,
+            signcolumn = "no",
+          },
+          git = {
+            enable = false,
+          },
+        }
+
+        -- Close neovim if the tree is the last remaining pane
+        -- https://github.com/kyazdani42/nvim-tree.lua/discussions/1115#discussioncomment-2454398
+        vim.api.nvim_create_autocmd("BufEnter", {
+          nested = true,
+          callback = function()
+            if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
+              vim.cmd "quit"
+            end
+          end
+        })
       '';
     }
 

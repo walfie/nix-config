@@ -17,6 +17,7 @@ let
   plugins = with pkgs.vimPlugins; [
     emmet-vim
     nerdcommenter
+    nvim-web-devicons
     traces-vim
     vim-abolish
     vim-bbye

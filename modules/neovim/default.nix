@@ -22,7 +22,6 @@ let
     vim-bbye
     vim-eunuch
     vim-fugitive
-    vim-nerdtree-tabs
     vim-repeat
     vim-scala
     vim-sleuth
@@ -38,6 +37,14 @@ let
     cmp-nvim-lsp
     cmp-nvim-lua
     cmp-path
+
+    {
+      plugin = which-key-nvim;
+      type = "lua";
+      config = ''
+        require("which-key").setup({})
+      '';
+    }
 
     # LSP config initially based on: https://sharksforarms.dev/posts/neovim-rust/
     {

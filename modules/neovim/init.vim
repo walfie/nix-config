@@ -47,7 +47,6 @@ if !empty($XDG_DATA_HOME)
   set directory=$XDG_DATA_HOME/vim/swap
   set backupdir=$XDG_DATA_HOME/vim/backup
   set viewdir=$XDG_DATA_HOME/vim/view
-  let g:NERDTreeBookmarksFile=$XDG_DATA_HOME . '/vim/NERDTreeBookmarks'
 
   if !has('nvim')
     set viminfo+='1000,n$XDG_DATA_HOME/vim/viminfo

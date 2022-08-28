@@ -7,9 +7,6 @@ with config.xdg;
     enable = true;
 
     dataFile."less/.keep".text = "";
-    dataFile."vim/undo/.keep".text = "";
-    dataFile."vim/swap/.keep".text = "";
-    dataFile."vim/backup/.keep".text = "";
 
     configFile."wgetrc".text = "hsts-file = ${cacheHome}/wget-hsts";
     configFile."npm/npmrc".text = ''

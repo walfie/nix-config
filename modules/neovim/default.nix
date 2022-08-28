@@ -30,7 +30,6 @@ let
     vim-visual-increment
 
     (mkPlugin "vim-ctrlsf")
-    (mkPlugin "vim-minibufexpl")
 
     # Used by nvim-cmp
     luasnip
@@ -38,6 +37,13 @@ let
     cmp-nvim-lsp
     cmp-nvim-lua
     cmp-path
+
+    {
+      plugin = (mkPlugin "vim-minibufexpl");
+      config = ''
+        autocmd FileType minibufexpl setlocal statusline=%#Normal#
+      '';
+    }
 
     {
       plugin = which-key-nvim;

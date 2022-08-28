@@ -6,80 +6,48 @@ command! Wq :execute ':W' | :q
 command! Clean :execute ':%s/\s\+$//'
 
 " Misc settings
-syntax on
-set autoindent
-set backspace=2
-set expandtab
-set hidden
-set lazyredraw
-set linebreak
-set list
-set listchars=tab:>\ ,trail:.
-set noincsearch
-set nomodeline
-set number
-set sessionoptions=buffers
-set shiftwidth=2
-set shortmess-=S
-set showcmd
-set showmode
-set synmaxcol=2048
-set tabstop=2
-set virtualedit=block
+set expandtab " Insert spaces instead of tabs
+set lazyredraw " Don't redraw screen while executing macros
+set linebreak " Wrap long lines on word boundaries
+set list " Show listchars
+set listchars=tab:>\ ,trail:.,nbsp:+ " Display characters for whitespace
+set noincsearch " Disable incremental search (only scroll on submitting the search)
+set nomodeline " Ignore modelines (vim-specific comments in files)
+set number " Show line numbers
+set sessionoptions=buffers " Only store buffer info in `:mksession`
+set shiftwidth=2 " 2-space indentation by default
+set synmaxcol=2048 " Stop syntax highlighting on long lines
+set undofile " Keep undo history after closing nvim
+set virtualedit=block " Allow placing cursor anywhere in virtual select mode
+set visualbell " Disable error sounds
 
 " Status line (file, line, total lines, vcolumn, percent)
-set laststatus=2
 set statusline=%F%=%l/%L,%v\ %p%%
 
-" Disable error sounds
-set visualbell
-set noerrorbells
-
-" Persistent undo
-set undodir=~/.vim/undo
-set undofile
-set undolevels=1000
-set undoreload=10000
-
-" Conform to XDG base directory specification
-if !empty($XDG_DATA_HOME)
-  set undodir=$XDG_DATA_HOME/vim/undo
-  set directory=$XDG_DATA_HOME/vim/swap
-  set backupdir=$XDG_DATA_HOME/vim/backup
-  set viewdir=$XDG_DATA_HOME/vim/view
-
-  if !has('nvim')
-    set viminfo+='1000,n$XDG_DATA_HOME/vim/viminfo
-  endif
-endif
-
-if !empty($XDG_CACHE_HOME)
-  let g:netrw_home=$XDG_CACHE_HOME . '/vim'
-endif
-
 " Searching
-set ignorecase
-set smartcase
-set hlsearch
+set ignorecase " Case-insensitive search by default
+set smartcase " If search pattern has uppercase, consider case
 
 " Don't change cursor shape in neovim insert mode
 " https://github.com/neovim/neovim/wiki/FAQ#how-to-change-cursor-shape-in-the-terminal
-:set guicursor=
-:autocmd OptionSet guicursor noautocmd set guicursor=
+set guicursor=
+autocmd OptionSet guicursor noautocmd set guicursor=
 
 "FormatOptions to disable autocomments
 autocmd FileType * setlocal formatoptions-=c fo-=o fo-=r fo+=l
-autocmd FileType minibufexpl setlocal statusline=%#Normal#
+
+" Avoid 'crontab: temp file must be edited in place' error while editing crontab
+" https://vim.fandom.com/wiki/Editing_crontab
 autocmd FileType crontab setlocal nobackup nowritebackup
 
-" Disable SQL dynamic completion
+" Disable slow SQL dynamic completion
 let g:omni_sql_no_default_maps = 1
 
 " Colors
 set t_Co=256
 match TrailingWhiteSpace /\s\+$/
 
-"Highlight right margin
+" Highlight right margin
 if exists('+colorcolumn')
   set colorcolumn=72,80,90,100
   highlight ColorColumn ctermbg=235

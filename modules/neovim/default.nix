@@ -190,13 +190,6 @@ let
 
         " Disable preview window
         let g:fzf_preview_window = ""
-        "map <silent> <C-p> <Esc>:FzfFiles<CR>
-        "map <silent> <Leader>b <Esc>:FzfBuffers<CR>
-        map <silent> <Leader>l <Esc>:FzfLines<CR>
-        " \a used to be for `ag`, but now it's `rg`
-        "map <silent> <Leader>a <Esc>:FzfRg<CR>
-        " \d for definition
-        "map <silent> <Leader>d <Esc>:FzfRg (class\|trait\|object\|struct\|enum\|type)<CR>
 
         " Ctrl+l to autocomplete from Rg search
         imap <C-x><C-l> <Plug>(fzf-complete-line)
@@ -255,56 +248,34 @@ let
     }
 
     {
-      plugin = telescope-fzy-native-nvim;
+      plugin = fzf-lua;
       type = "lua";
       config = ''
-        local telescope = require("telescope")
-        local actions = require('telescope.actions')
-        telescope.setup({
-          defaults = {
-            preview = {
-              hide_on_startup = true,
-            },
-            layout_config = {
-              horizontal = {
-                width = 0.9,
-              },
-            },
-            path_display = { truncate = 3 },
-            mappings = {
-              i = {
-                ["<C-a>"] = { "<Home>", type = "command" },
-                ["<C-e>"] = { "<End>", type = "command" },
-                ["<C-j>"] = actions.move_selection_next,
-                ["<C-k>"] = actions.move_selection_previous,
-                ["<C-u>"] = false, -- Clear prompt
-                ["<C-f>"] = function(prompt_bufnr)
-                  require("telescope.actions.generate").refine(prompt_bufnr)
-                end,
-              },
-            },
+        local fzf = require("fzf-lua")
+        fzf.setup({
+          fzf_opts = {
+            ["--layout"] = "default",
           },
-          extensions = {
-            fzy_native = {
-              override_generic_sorter = false,
-              override_file_sorter = true,
+          winopts = {
+            width = 0.9,
+            preview = {
+              hidden = "hidden",
             },
           },
         })
 
-        telescope.load_extension("fzy_native")
-        local builtin = require("telescope.builtin")
-
-        vim.keymap.set("n", "<C-p>", builtin.find_files)
-        vim.keymap.set("n", "<Leader>b", builtin.buffers)
-        vim.keymap.set("n", "<Leader>a", builtin.live_grep)
+        vim.keymap.set("n", "<C-p>", fzf.files)
+        vim.keymap.set("n", "<Leader>b", fzf.buffers)
+        vim.keymap.set("n", "<Leader>a", fzf.grep_project)
+        vim.keymap.set("n", "<Leader>l", fzf.lines)
         vim.keymap.set("n", "<Leader>d", function()
-          builtin.grep_string({
-            prompt_title = "Find definition",
-            word_match = "-w", -- Exact word matches
-            search = "(class|trait|object|struct|enum|type)",
+          fzf.grep_project({
+            search = "(class|trait|object|struct|enum|type) ",
+            no_esc = true,
           })
         end)
+
+        -- TODO: Set <C-x><C-l> in insert mode to complete line
       '';
     }
 

@@ -20,7 +20,6 @@ let
     nvim-web-devicons
     traces-vim
     vim-abolish
-    vim-bbye
     vim-eunuch
     vim-fugitive
     vim-repeat
@@ -37,6 +36,15 @@ let
     cmp-nvim-lsp
     cmp-nvim-lua
     cmp-path
+
+    {
+      plugin = vim-bbye;
+      config = ''
+        " Delete buffer
+        map <silent> <Leader>q :Bdelete<CR>
+        map <silent> <Leader>Q :Bdelete!<CR>
+      '';
+    }
 
     {
       plugin = (mkPlugin "vim-minibufexpl");
@@ -291,6 +299,8 @@ let
       config = ''
         let g:zenburn_high_Contrast=1
         colorscheme zenburn
+
+        match TrailingWhiteSpace /\s\+$/
         highlight Visual term=reverse cterm=reverse
         highlight MatchParen cterm=bold ctermbg=none ctermfg=magenta
         highlight TrailingWhitespace ctermfg=darkgreen
@@ -323,6 +333,11 @@ in
 
     extraConfig = builtins.concatStringsSep "\n" [
       (lib.fileContents ./init.vim)
+      ''
+        lua << EOF
+        ${ lib.fileContents ./init.lua }
+        EOF
+      ''
     ];
   };
 }

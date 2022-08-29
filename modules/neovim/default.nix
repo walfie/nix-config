@@ -331,13 +331,10 @@ in
     vimdiffAlias = true;
     withNodeJs = true;
 
-    extraConfig = builtins.concatStringsSep "\n" [
-      (lib.fileContents ./init.vim)
-      ''
-        lua << EOF
-        ${ lib.fileContents ./init.lua }
-        EOF
-      ''
-    ];
+    extraConfig = ''
+      lua << EOF
+      ${ lib.fileContents ./init.lua }
+      EOF
+    '';
   };
 }

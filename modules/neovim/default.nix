@@ -115,6 +115,17 @@ let
       '';
     }
 
+    {
+      plugin = lsp_signature-nvim;
+      type = "lua";
+      config = ''
+        require("lsp_signature").setup({
+          hint_enable = false, -- Virtual hint not needed since `floating_window` is true
+          always_trigger = true, -- Continue showing even on newline
+        })
+      '';
+    }
+
     # https://github.com/hrsh7th/nvim-cmp/tree/058100d81316239f3874064064f0f0c5d43c2103#recommended-configuration
     {
       plugin = nvim-cmp;

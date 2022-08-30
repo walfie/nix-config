@@ -1,71 +1,54 @@
 # nix-config
 
-Nix configs for [home-manager].
+Nix configs for [home-manager] on macOS.
 
 ## Install
 
 * Install [Nix package manager](https://nixos.org/download.html):
 
-    ```
-    curl -L https://nixos.org/nix/install | bash -s -- --daemon --darwin-use-unencrypted-nix-store-volume
-
-    # Recommended, but optional: disable spotlight indexing for the volume.
-    sudo mdutil -i off /nix
+    ```sh
+    curl -L https://nixos.org/nix/install | bash -s -- --daemon
     ```
 
-  This assumes you're on at least macOS Catalina. Non-macOS setups can exclude
-  the `darwin` flag and the `mdutil` command.
+* Enable nix flakes by adding the following to `~/.config/nix/nix.conf`:
 
-* Symlink to the desired machine config file in the [`machines/`](./machines/) directory:
+    ```
+    experimental-features = nix-command flakes
+    ```
+
+* Install home-manager (while in this directory):
 
     ```sh
-    ln -s machines/$MACHINE_NAME current-machine
+    # Substitute "luminas" with whichever config you want to apply
+    nix build --no-link ".#homeConfigurations.luminas.activationPackage"
+    $(nix path-info ".#homeConfigurations.luminas.activationPackage")/activate
     ```
-
-* Build the first home-manager generation
-
-    ```sh
-    nix-shell --run "home-manager switch -f current-machine"
-    ```
-
-  You can also use `home-manager build` instead of `home-manager switch` to
-  verify the installation before applying it.
 
 ## Rebuild
 
 After making changes to config, you can rebuild with:
 
 ```sh
-home-manager switch
+home-manager switch --flake ".#luminas"
 ```
 
-The `HOME_MANAGER_CONFIG` environment variable is typically set in the
-`current-machine` config, so the `-f` argument used in the installation isn't
-needed after the initial install.
+To apply changes without being in this directory, replace `.` with the path to
+this directory.
 
 ## Updating dependencies
 
-Dependencies are pinned and managed with `niv` (see `nix/sources.json`).
+Dependencies are defined in `flake.nix` and versions are pinned in `flake.lock`.
 
-* To update `nixpkgs` to the latest revision on the current configured branch:
+* To update all dependencies:
 
     ```sh
-    niv update nixpkgs
+    nix flake update
     ```
 
-* To update `nixpkgs` to the latest revision of a new branch (e.g., when
-  switching to a new release branch):
+* To update a specific depedency (such as `nixpkgs`):
 
     ```sh
-    niv update nixpkgs -b release-22.05
-    ```
-
-* To get the updated packages to be picked up by `nix-direnv` in this
-  directory, you may have to [manually re-trigger
-  evaluation][direnv-evaluation]:
-
-    ```sh
-    touch shell.nix
+    nix flake lock --update-input nixpkgs
     ```
 
 ## Garbage collection
@@ -82,6 +65,16 @@ nix-collect-garbage -d
 # Clean up files not used by the current generation for any profile
 sudo nix-collect-garbage -d
 ```
+
+## Notes
+
+In the past, it has been recommended to also run `sudo mdutil -i off /nix`
+after installation to disable spotlight indexing, but recent versions of the
+installer set the `nobrowse` option in the mount options, accomplishing the
+same thing. See the [macOS installation] section of the documentation for
+details.
+
+[macOS installation]: https://github.com/NixOS/nix/blob/ddb82ffda993d237d62d59578f7808a9d98c77fe/doc/manual/src/installation/installing-binary.md#macos-installation
 
 ## Resources
 

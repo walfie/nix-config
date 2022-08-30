@@ -1,61 +1,55 @@
-{ config, options, pkgs, ... }:
+{ pkgs, system, ... }:
 {
-  imports = [
-    ../../modules/bash
-    ../../modules/direnv
-    ../../modules/flakes
-    ../../modules/git
-    ../../modules/home-manager
-    ../../modules/javascript
-    ../../modules/kitty
-    ../../modules/kubernetes
-    ../../modules/macos
-    ../../modules/neovim
-    ../../modules/rust
-    ../../modules/tmux
-    ../../modules/xdg
-    ../../modules/zsh
-  ];
+  inherit pkgs system;
 
-  macos-dock.enable = true;
+  stateVersion = "21.05";
+  username = "who";
+  homeDirectory = "/Users/who";
 
-  home = {
-    username = "who";
-    homeDirectory = "/Users/who";
-    stateVersion = "21.05";
+  configuration = {
+    imports = [
+      ../../modules/bash
+      ../../modules/direnv
+      ../../modules/flakes
+      ../../modules/git
+      ../../modules/home-manager
+      ../../modules/javascript
+      ../../modules/kitty
+      ../../modules/kubernetes
+      ../../modules/macos
+      ../../modules/neovim
+      ../../modules/rust
+      ../../modules/tmux
+      ../../modules/xdg
+      ../../modules/zsh
+    ];
 
-    sessionVariables = {
-      HOME_MANAGER_CONFIG = "/Users/who/nix-config/current-machine";
+    macos-dock.enable = true;
+
+    programs.git = {
+      userName = "Walfie";
+      userEmail = "walfington@gmail.com";
     };
+
+    home.packages = [
+      pkgs.coreutils # Use GNU versions of `ls`, etc
+      pkgs.doctl
+      pkgs.ffmpeg
+      pkgs.gnused
+      pkgs.gron
+      pkgs.htop
+      pkgs.imagemagick
+      pkgs.inetutils
+      pkgs.jq
+      pkgs.ncdu
+      pkgs.niv
+      pkgs.nixpkgs-fmt
+      pkgs.pup
+      pkgs.rename
+      pkgs.tealdeer
+      pkgs.tree
+      pkgs.trunk
+      pkgs.wget
+    ];
   };
-
-  programs.git = {
-    userName = "Walfie";
-    userEmail = "walfington@gmail.com";
-  };
-
-  home.packages = [
-    pkgs.coreutils # Use GNU versions of `ls`, etc
-    pkgs.doctl
-    pkgs.ffmpeg
-    pkgs.gnused
-    pkgs.gron
-    pkgs.htop
-    pkgs.imagemagick
-    pkgs.inetutils
-    pkgs.jq
-    pkgs.ncdu
-    pkgs.niv
-    pkgs.nixpkgs-fmt
-    pkgs.pup
-    pkgs.rename
-    pkgs.tealdeer
-    pkgs.tree
-    pkgs.trunk
-    pkgs.wget
-
-    # For react-native
-    pkgs.nodePackages.expo-cli
-    pkgs.nodePackages.get-graphql-schema
-  ];
 }

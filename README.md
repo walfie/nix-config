@@ -10,12 +10,6 @@ Nix configs for [home-manager] on macOS.
     curl -L https://nixos.org/nix/install | bash -s -- --daemon
     ```
 
-* Enable nix flakes by adding the following to `~/.config/nix/nix.conf`:
-
-    ```
-    experimental-features = nix-command flakes
-    ```
-
 * Install home-manager (while in this directory):
 
     ```sh

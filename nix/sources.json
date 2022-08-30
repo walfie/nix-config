@@ -1,28 +1,4 @@
 {
-    "nixpkgs": {
-        "branch": "nixpkgs-22.05-darwin",
-        "description": "Nix Packages collection",
-        "homepage": "",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "9a91318fffec81ad009b73fd3b640d2541d87909",
-        "sha256": "16j9il4a540ihz16dz8bzsxxqwiiyy1i2c1xvs5y7qm9s6v3dr4b",
-        "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/9a91318fffec81ad009b73fd3b640d2541d87909.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "rust-overlay": {
-        "branch": "master",
-        "description": "Pure and reproducible nix overlay of binary distributed rust toolchains",
-        "homepage": "",
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "rev": "4b600525be94c23b44c42441f33460343fafe7a1",
-        "sha256": "07258qdvd945678whihyk8aasgf4a22ygj2wvs2d15d8149i0wp9",
-        "type": "tarball",
-        "url": "https://github.com/oxalica/rust-overlay/archive/4b600525be94c23b44c42441f33460343fafe7a1.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "vim-ctrlsf": {
         "branch": "master",
         "description": "An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2",

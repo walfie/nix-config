@@ -19,9 +19,14 @@ Nix configs for [home-manager] on macOS.
 * Install home-manager (while in this directory):
 
     ```sh
-    # Substitute "luminas" with whichever config you want to apply
-    nix build --no-link ".#homeConfigurations.luminas.activationPackage"
-    $(nix path-info ".#homeConfigurations.luminas.activationPackage")/activate
+    CONFIG_NAME=luminas
+    $(
+      nix build \
+      --extra-experimental-features "nix-command flakes" \
+      --no-link \
+      --print-out-paths \
+      ".#homeConfigurations.$CONFIG_NAME.activationPackage"
+    )/activate
     ```
 
 ## Rebuild
@@ -34,6 +39,12 @@ home-manager switch --flake ".#luminas"
 
 To apply changes without being in this directory, replace `.` with the path to
 this directory.
+
+Note the `--extra-experimental-features` flag isn't needed because our
+home-manager config (via the [flakes module]) adds the relevant lines to
+`~/.config/nix/nix.conf`.
+
+[flakes module]: ./modules/flakes/default.nix
 
 ## Updating dependencies
 

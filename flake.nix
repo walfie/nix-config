@@ -15,8 +15,6 @@
       pkgs = import nixpkgs { inherit system; };
     in
     {
-      defaultPackage.${system} = home-manager.defaultPackage.${system};
-
       homeConfigurations.luminas = home-manager.lib.homeManagerConfiguration (
         import ./machines/luminas { inherit system pkgs; }
       );

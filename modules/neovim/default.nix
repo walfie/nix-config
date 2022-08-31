@@ -1,25 +1,12 @@
 { config, pkgs, lib, ... }:
 let
-  sources = import ../../nix/sources.nix;
-
-  # These plugins aren't in nixpkgs, so load them from niv-managed sources
-  mkPlugin = name: pkgs.vimUtils.buildVimPlugin {
-    inherit name;
-    src = sources.${name};
-    dontBuild = true;
-  };
-
-  mkOptionalPlugin = plugin: {
-    inherit plugin;
-    optional = true;
-  };
-
   plugins = with pkgs.vimPlugins; [
     emmet-vim
     nerdcommenter
     nvim-web-devicons
     traces-vim
     vim-abolish
+    vim-ctrlsf
     vim-eunuch
     vim-fugitive
     vim-repeat
@@ -27,8 +14,6 @@ let
     vim-sleuth
     vim-surround
     vim-visual-increment
-
-    (mkPlugin "vim-ctrlsf")
 
     # Used by nvim-cmp
     luasnip
@@ -47,7 +32,7 @@ let
     }
 
     {
-      plugin = (mkPlugin "vim-minibufexpl");
+      plugin = vim-minibufexpl;
       config = ''
         autocmd FileType minibufexpl setlocal statusline=%#Normal#
       '';
@@ -266,7 +251,7 @@ let
     }
 
     {
-      plugin = mkPlugin "vim-ctrlsf";
+      plugin = vim-ctrlsf;
       config = ''
         map <Leader>f <Plug>CtrlSFPrompt
       '';

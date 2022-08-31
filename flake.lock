@@ -1,0 +1,120 @@
+{
+  "nodes": {
+    "flake-utils": {
+      "locked": {
+        "lastModified": 1656928814,
+        "narHash": "sha256-RIFfgBuKz6Hp89yRr7+NR5tzIAbn52h8vT6vXkYjZoM=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "7e2a3b3dfd9af950a856d66b0a7d01e3c18aa249",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1656169755,
+        "narHash": "sha256-Nlnm4jeQWEGjYrE6hxi/7HYHjBSZ/E0RtjCYifnNsWk=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "4a3d01fb53f52ac83194081272795aa4612c2381",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "release-22.05",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1661754554,
+        "narHash": "sha256-de5B2kxfNBLYQrAw7jiavjkNTqI7+2ff5etpn7h1OYo=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "8771f639c5539e0285aea854404047af78ed7007",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixpkgs-22.05-darwin",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "home-manager": "home-manager",
+        "nixpkgs": "nixpkgs",
+        "rust-overlay": "rust-overlay",
+        "vim-ctrlsf": "vim-ctrlsf",
+        "vim-minibufexpl": "vim-minibufexpl"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1661828444,
+        "narHash": "sha256-PDVS1L+rfCanIzmtpjouySfeS1UoPGOj/hZzz3POjPA=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "6bc5e02b2bcd94568813ab238e3b567c84647b84",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "vim-ctrlsf": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1659515770,
+        "narHash": "sha256-vnR50ao36+7oF79yPsjOaL0YK6gXBkNwWqvVA3lW+7c=",
+        "owner": "dyng",
+        "repo": "ctrlsf.vim",
+        "rev": "40cdf404b39911cdc4c5432e65247311ee8cd8ac",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dyng",
+        "repo": "ctrlsf.vim",
+        "type": "github"
+      }
+    },
+    "vim-minibufexpl": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1371985142,
+        "narHash": "sha256-Ljikb86cR/yVLoDwk7G56bpx/ZUe5gDNz8/nXJA0lsE=",
+        "owner": "weynhamz",
+        "repo": "vim-plugin-minibufexpl",
+        "rev": "349a9fbb7a9da13d029b6a7ed8c8a5e9c048c4ec",
+        "type": "github"
+      },
+      "original": {
+        "owner": "weynhamz",
+        "repo": "vim-plugin-minibufexpl",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

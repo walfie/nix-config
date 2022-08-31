@@ -31,8 +31,8 @@
       pkgs = import nixpkgs { inherit system overlays; };
     in
     {
-      homeConfigurations.luminas = home-manager.lib.homeManagerConfiguration (
-        import ./machines/luminas { inherit system pkgs; }
+      homeConfigurations.personal = home-manager.lib.homeManagerConfiguration (
+        import ./machines/personal { inherit system pkgs; }
       );
     };
 }

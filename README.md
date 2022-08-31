@@ -1,6 +1,8 @@
 # nix-config
 
-Nix configs for [home-manager] on macOS.
+My personal Nix flake for [home-manager] on macOS.
+
+[home-manager]: https://github.com/nix-community/home-manager
 
 ## Install
 
@@ -10,25 +12,30 @@ Nix configs for [home-manager] on macOS.
     curl -L https://nixos.org/nix/install | bash -s -- --daemon
     ```
 
-* Install home-manager (while in this directory):
+  You can also replace the install URL with a specific version such as
+  `https://releases.nixos.org/nix/nix-2.10.3/install` (this setup has been
+  verified to work on at least `2.10.3`).
+
+* Install home-manager and activate the [`personal` config] (while in this directory):
 
     ```sh
-    CONFIG_NAME=luminas
     $(
       nix build \
       --extra-experimental-features "nix-command flakes" \
       --no-link \
       --print-out-paths \
-      ".#homeConfigurations.$CONFIG_NAME.activationPackage"
+      ".#homeConfigurations.personal.activationPackage"
     )/activate
     ```
+
+[`personal` config]: ./machines/personal/default.nix
 
 ## Rebuild
 
 After making changes to config, you can rebuild with:
 
 ```sh
-home-manager switch --flake ".#luminas"
+home-manager switch --flake ".#personal"
 ```
 
 To apply changes without being in this directory, replace `.` with the path to
@@ -85,13 +92,12 @@ details.
 
 Some resources I found useful during setup:
 
-* [home-manager config options](https://rycee.gitlab.io/home-manager/options.html)
+* [home-manager config options](https://nix-community.github.io/home-manager/options.html)
 * [cprussin/dotfiles](https://github.com/cprussin/dotfiles)
 * [Vim on NixOS](https://web.archive.org/web/20200820230106/http://ivanbrennan.nyc/2018-05-09/vim-on-nixos)
 * [Right way to add a custom package?](https://github.com/LnL7/nix-darwin/issues/16#issuecomment-284262711)
 * [List of configurable macOS settings](https://github.com/mathiasbynens/dotfiles/blob/master/.macos)
 * [Nix Package Versions](https://lazamar.co.uk/nix-versions/)
-
-[home-manager]: https://github.com/nix-community/home-manager
-[direnv-evaluation]: https://github.com/nix-community/nix-direnv/tree/40b96cbd3589fd7f06e8da9324b98aa9c2b6b594#manually-re-triggering-evaluation
+* [Pkgs on Nix](https://pkgs.on-nix.com/)
+* [Flakes - NixOS Wiki](https://nixos.wiki/wiki/Flakes)
 

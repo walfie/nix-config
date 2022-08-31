@@ -20,22 +20,14 @@
     let
       system = "x86_64-darwin";
 
-      mkVimOverlay = { inputs, names }: final: prev:
-        let
-          mkVimPlugin = name: prev.vimUtils.buildVimPlugin {
-            inherit name;
-            src = inputs.${name};
-          };
-        in
-        {
-          vimPlugins = prev.vimPlugins // (prev.lib.genAttrs names mkVimPlugin);
-        };
-
-      vimOverlay = mkVimOverlay {
-        inherit inputs;
-        names = [ "vim-ctrlsf" "vim-minibufexpl" ];
+      vimPluginNames = [ "vim-ctrlsf" "vim-minibufexpl" ];
+      vimOverlay = final: prev: {
+        vimPlugins = prev.vimPlugins // (prev.lib.genAttrs vimPluginNames (name:
+          prev.vimUtils.buildVimPlugin { inherit name; src = inputs.${name}; }
+        ));
       };
-      overlays = [ (import rust-overlay) (vimOverlay) ];
+
+      overlays = [ (import rust-overlay) vimOverlay ];
       pkgs = import nixpkgs { inherit system overlays; };
     in
     {

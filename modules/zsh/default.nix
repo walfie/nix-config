@@ -63,7 +63,7 @@ in
       setopt HIST_FIND_NO_DUPS
     '';
 
-    sessionVariables = {
+    localVariables = {
       PROMPT = prompt;
       RPROMPT = rprompt;
     };

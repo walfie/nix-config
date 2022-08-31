@@ -12,6 +12,7 @@
       ../../modules/direnv
       ../../modules/flakes
       ../../modules/git
+      ../../modules/home-manager
       ../../modules/javascript
       ../../modules/kitty
       ../../modules/kubernetes

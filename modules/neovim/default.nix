@@ -24,17 +24,25 @@ let
 
     {
       plugin = vim-bbye;
+      type = "lua";
       config = ''
-        " Delete buffer
-        map <silent> <Leader>q :Bdelete<CR>
-        map <silent> <Leader>Q :Bdelete!<CR>
+        -- Delete buffer
+        vim.keymap.set("n", "<Leader>q", ":Bdelete<CR>")
+        vim.keymap.set("n", "<Leader>Q", ":Bdelete!<CR>")
       '';
     }
 
     {
       plugin = vim-minibufexpl;
+      type = "lua";
       config = ''
-        autocmd FileType minibufexpl setlocal statusline=%#Normal#
+        -- https://stackoverflow.com/questions/24466037/hide-lightline-for-minibufexplorer
+        vim.api.nvim_create_autocmd("FileType", {
+          pattern = "minibufexpl",
+          callback = function()
+            vim.opt_local.statusline = "%#Normal#"
+          end,
+        })
       '';
     }
 
@@ -176,26 +184,29 @@ let
 
     {
       plugin = camelcasemotion;
+      type = "lua";
       config = ''
-        " Adding some `nmap` calls to avoid deleting trailing underscore
-        " https://github.com/bkad/CamelCaseMotion/issues/10#issuecomment-8704702
-        let g:camelcasemotion_key = ','
-        nmap c,w c,e
-        nmap ci,w ci,e
+        -- Adding some `nmap` calls to avoid deleting trailing underscore
+        -- https://github.com/bkad/CamelCaseMotion/issues/10#issuecomment-8704702
+        vim.g.camelcasemotion_key = ","
+        vim.keymap.set("n", "c,w", "c,e", { remap = true })
+        vim.keymap.set("n", "ci,w", "ci,e", { remap = true })
       '';
     }
 
     {
       plugin = delimitMate;
+      type = "lua";
       config = ''
-        let delimitMate_quotes = '" `'
+        -- Space-separated list of characters to consider as quote characters.
+        -- Don't auto-close single quotes (often used in Rust/Scala).
+        vim.g.delimitMate_quotes = [[" `]]
       '';
     }
 
     {
       plugin = fzf-vim;
       config = ''
-        " Ctrl+P for fuzzy finder
         let g:fzf_command_prefix = 'Fzf'
 
         " Disable preview window
@@ -221,39 +232,43 @@ let
 
     {
       plugin = rainbow;
+      type = "lua";
       config = ''
-        let g:rainbow_active = 1
-        let g:rainbow_conf = {
-        \  'ctermfgs': [
-        \    'darkred', 'darkgreen', 'darkmagenta', 'darkcyan', 'red',
-        \    'yellow', 'green', 'darkyellow', 'magenta', 'cyan', 'darkyellow'
-        \  ]
-        \}
+        vim.g.rainbow_active = 1
+        vim.g.rainbow_conf = {
+          ctermfgs = {
+            "darkred", "darkgreen", "darkmagenta", "darkcyan", "red",
+            "yellow", "green", "darkyellow", "magenta", "cyan", "darkyellow",
+          }
+        }
       '';
     }
 
     {
       plugin = vim-argwrap;
+      type = "lua";
       config = ''
-        nnoremap <silent> <Leader>w :ArgWrap<CR>
+        vim.keymap.set("n", "<Leader>w", ":ArgWrap<CR>", { silent = true })
       '';
     }
 
     {
       plugin = vim-polyglot;
+      type = "lua";
       config = ''
-        " Use vim-scala for scala
-        let g:polyglot_disabled = ['scala']
+        -- Use vim-scala for scala
+        vim.g.polyglot_disabled = { "scala" }
 
-        " JSON conceal off
-        let g:vim_json_syntax_conceal = 0
+        -- JSON conceal off
+        vim.g.vim_json_syntax_conceal = 0
       '';
     }
 
     {
       plugin = vim-ctrlsf;
+      type = "lua";
       config = ''
-        map <Leader>f <Plug>CtrlSFPrompt
+        vim.keymap.set("n", "<Leader>f", "<Plug>CtrlSFPrompt")
       '';
     }
 

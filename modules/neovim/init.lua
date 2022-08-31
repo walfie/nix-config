@@ -50,20 +50,20 @@ end
 do
   -- Copy to clipboard
   -- https://www.reddit.com/r/neovim/comments/3fricd/easiest_way_to_copy_from_neovim_to_system/ctrru3b/
-  vim.keymap.set({"n", "v"}, "<Leader>y", [["+y]], { noremap = true })
-  vim.keymap.set({"n", "v"}, "<Leader>Y", [["+yg_]], { noremap = true })
+  vim.keymap.set({"n", "v"}, "<Leader>y", [["+y]])
+  vim.keymap.set({"n", "v"}, "<Leader>Y", [["+yg_]])
 
   -- Paste from clipboard
-  vim.keymap.set({"n", "v"}, "<Leader>p", [["+p]], { noremap = true })
-  vim.keymap.set({"n", "v"}, "<Leader>P", [["+P]], { noremap = true })
+  vim.keymap.set({"n", "v"}, "<Leader>p", [["+p]])
+  vim.keymap.set({"n", "v"}, "<Leader>P", [["+P]])
 
   -- Switch between buffers
-  vim.keymap.set("n", "<C-t>", ":enew<CR>", { noremap = true, silent = true })
-  vim.keymap.set("n", "<C-h>", ":bprevious<CR>", { noremap = true, silent = true })
-  vim.keymap.set("n", "<C-l>", ":bnext<CR>", { noremap = true, silent = true })
+  vim.keymap.set("n", "<C-t>", ":enew<CR>", { silent = true })
+  vim.keymap.set("n", "<C-h>", ":bprevious<CR>", { silent = true })
+  vim.keymap.set("n", "<C-l>", ":bnext<CR>", { silent = true })
 
   -- Clear highlighed search
-  vim.keymap.set("n", "<CR>", ":nohlsearch<CR><CR>", { noremap = true, silent = true })
+  vim.keymap.set("n", "<CR>", ":nohlsearch<CR><CR>", { silent = true })
 end
 
 -- Autocommands
@@ -71,23 +71,23 @@ do
   -- Stop automatically inserting comments when inserting a new line
   -- https://vim.fandom.com/wiki/Disable_automatic_comment_insertion#Disabling_in_general
   vim.api.nvim_create_autocmd("FileType", {
-      pattern = "*",
-      callback = function ()
-        vim.opt.formatoptions:remove('c')
-        vim.opt.formatoptions:remove('r')
-        vim.opt.formatoptions:remove('o')
-      end,
+    pattern = "*",
+    callback = function()
+      vim.opt.formatoptions:remove('c')
+      vim.opt.formatoptions:remove('r')
+      vim.opt.formatoptions:remove('o')
+    end,
   })
 
   -- When editing crontab, disable backups to avoid the 'temp file must be
   -- edited in place' error
   -- https://vim.fandom.com/wiki/Editing_crontab
   vim.api.nvim_create_autocmd("FileType", {
-      pattern = "crontab",
-      callback = function ()
-        vim.opt_local.backup = false
-        vim.opt_local.writebackup = false
-      end,
+    pattern = "crontab",
+    callback = function()
+      vim.opt_local.backup = false
+      vim.opt_local.writebackup = false
+    end,
   })
 end
 

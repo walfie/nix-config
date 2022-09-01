@@ -57,8 +57,7 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "rust-overlay": "rust-overlay",
-        "vim-ctrlsf": "vim-ctrlsf",
-        "vim-minibufexpl": "vim-minibufexpl"
+        "vim-plugins-overlay": "vim-plugins-overlay"
       }
     },
     "rust-overlay": {
@@ -85,11 +84,11 @@
     "vim-ctrlsf": {
       "flake": false,
       "locked": {
-        "lastModified": 1659515770,
-        "narHash": "sha256-vnR50ao36+7oF79yPsjOaL0YK6gXBkNwWqvVA3lW+7c=",
+        "lastModified": 1662000305,
+        "narHash": "sha256-6L9D8SOFYuQoWKCR1uTCJKOztOfmknJ7/pldaLIWVio=",
         "owner": "dyng",
         "repo": "ctrlsf.vim",
-        "rev": "40cdf404b39911cdc4c5432e65247311ee8cd8ac",
+        "rev": "5ef60358a6ba073c0657427edd01f2358798ac8c",
         "type": "github"
       },
       "original": {
@@ -112,6 +111,22 @@
         "owner": "weynhamz",
         "repo": "vim-plugin-minibufexpl",
         "type": "github"
+      }
+    },
+    "vim-plugins-overlay": {
+      "inputs": {
+        "vim-ctrlsf": "vim-ctrlsf",
+        "vim-minibufexpl": "vim-minibufexpl"
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-JCpp2NsLnw/btLb3+lBQMk2xvgVOA1ecUa8o+1VA30w=",
+        "path": "/nix/store/bk3nbsj19qfqq983yclil173cq1z608r-source/overlays/vim-plugins",
+        "type": "path"
+      },
+      "original": {
+        "path": "/nix/store/bk3nbsj19qfqq983yclil173cq1z608r-source/overlays/vim-plugins",
+        "type": "path"
       }
     }
   },

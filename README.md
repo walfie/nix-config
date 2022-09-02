@@ -63,6 +63,19 @@ Dependencies are defined in `flake.nix` and versions are pinned in `flake.lock`.
     nix flake lock --update-input nixpkgs
     ```
 
+## Errors
+
+If you get the following error when trying to `switch`:
+
+> cannot fetch input 'path:./overlays/vim-plugins?...' because it uses a relative path
+
+It's likely because changes were made to `vim-plugins-overlay` without updating
+the lock file. You may need to update it with the following command:
+
+```sh
+nix flake lock --update-input vim-plugins-overlay
+```
+
 ## Garbage collection
 
 There are various levels of cleanup you can do:
@@ -93,11 +106,12 @@ details.
 Some resources I found useful during setup:
 
 * [home-manager config options](https://nix-community.github.io/home-manager/options.html)
-* [cprussin/dotfiles](https://github.com/cprussin/dotfiles)
 * [Vim on NixOS](https://web.archive.org/web/20200820230106/http://ivanbrennan.nyc/2018-05-09/vim-on-nixos)
 * [Right way to add a custom package?](https://github.com/LnL7/nix-darwin/issues/16#issuecomment-284262711)
 * [List of configurable macOS settings](https://github.com/mathiasbynens/dotfiles/blob/master/.macos)
 * [Nix Package Versions](https://lazamar.co.uk/nix-versions/)
 * [Pkgs on Nix](https://pkgs.on-nix.com/)
 * [Flakes - NixOS Wiki](https://nixos.wiki/wiki/Flakes)
+* [cprussin/dotfiles](https://github.com/cprussin/dotfiles)
+* [m15a/nixpkgs-vim-extra-plugins](https://github.com/m15a/nixpkgs-vim-extra-plugins)
 

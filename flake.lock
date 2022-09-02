@@ -36,6 +36,23 @@
         "type": "github"
       }
     },
+    "neo-tree-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1660951200,
+        "narHash": "sha256-yKZXHByatDefFeJpl067RGn9JClOKAnCwAnBFKeWYAs=",
+        "owner": "nvim-neo-tree",
+        "repo": "neo-tree.nvim",
+        "rev": "a7d6f05e57487326fd70b24195c3b7a86a88b156",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-neo-tree",
+        "ref": "v2.x",
+        "repo": "neo-tree.nvim",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1661754554,
@@ -49,6 +66,22 @@
         "owner": "nixos",
         "ref": "nixpkgs-22.05-darwin",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nui-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1661439400,
+        "narHash": "sha256-I6VZ3DECwIGqpsJBj35bcN0Boantp3Rn6DU3S6yYeaY=",
+        "owner": "MunifTanjim",
+        "repo": "nui.nvim",
+        "rev": "62facd37e0dd8196212399a897374f689886f500",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MunifTanjim",
+        "repo": "nui.nvim",
         "type": "github"
       }
     },
@@ -84,11 +117,11 @@
     "vim-ctrlsf": {
       "flake": false,
       "locked": {
-        "lastModified": 1662000305,
-        "narHash": "sha256-6L9D8SOFYuQoWKCR1uTCJKOztOfmknJ7/pldaLIWVio=",
+        "lastModified": 1662087703,
+        "narHash": "sha256-td8eE5t1t5xBAxYq19U5fQXMXS1ZIxAzl2Q6nsIRR6Q=",
         "owner": "dyng",
         "repo": "ctrlsf.vim",
-        "rev": "5ef60358a6ba073c0657427edd01f2358798ac8c",
+        "rev": "32236a8b376d9311dec9b5fe795ca99d32060b13",
         "type": "github"
       },
       "original": {
@@ -115,12 +148,14 @@
     },
     "vim-plugins-overlay": {
       "inputs": {
+        "neo-tree-nvim": "neo-tree-nvim",
+        "nui-nvim": "nui-nvim",
         "vim-ctrlsf": "vim-ctrlsf",
         "vim-minibufexpl": "vim-minibufexpl"
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-JCpp2NsLnw/btLb3+lBQMk2xvgVOA1ecUa8o+1VA30w=",
+        "narHash": "sha256-LnrJmb+ehgqv4bNY3vl9WF+qcOQ3rsrRvLY3rNsBXv8=",
         "path": "./overlays/vim-plugins",
         "type": "path"
       },

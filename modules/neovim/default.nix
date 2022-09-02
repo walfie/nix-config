@@ -152,6 +152,19 @@ let
     }
 
     {
+      plugin = nvim-autopairs;
+      type = "lua";
+      config = ''
+        local autopairs = require("nvim-autopairs")
+        autopairs.setup({})
+        autopairs.remove_rule("'") -- Single quote is often used on its own in Rust
+
+        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+        require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+      '';
+    }
+
+    {
       plugin = nvim-tree-lua;
       type = "lua";
       config = ''
@@ -191,16 +204,6 @@ let
         vim.g.camelcasemotion_key = ","
         vim.keymap.set("n", "c,w", "c,e", { remap = true })
         vim.keymap.set("n", "ci,w", "ci,e", { remap = true })
-      '';
-    }
-
-    {
-      plugin = delimitMate;
-      type = "lua";
-      config = ''
-        -- Space-separated list of characters to consider as quote characters.
-        -- Don't auto-close single quotes (often used in Rust/Scala).
-        vim.g.delimitMate_quotes = [[" `]]
       '';
     }
 

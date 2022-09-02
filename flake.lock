@@ -121,11 +121,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-JCpp2NsLnw/btLb3+lBQMk2xvgVOA1ecUa8o+1VA30w=",
-        "path": "/nix/store/bk3nbsj19qfqq983yclil173cq1z608r-source/overlays/vim-plugins",
+        "path": "./overlays/vim-plugins",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/bk3nbsj19qfqq983yclil173cq1z608r-source/overlays/vim-plugins",
+        "path": "./overlays/vim-plugins",
         "type": "path"
       }
     }

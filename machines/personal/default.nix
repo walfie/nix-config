@@ -34,6 +34,7 @@
     home.packages = [
       pkgs.coreutils # Use GNU versions of `ls`, etc
       pkgs.doctl
+      pkgs.fd
       pkgs.ffmpeg
       pkgs.gnused
       pkgs.gron

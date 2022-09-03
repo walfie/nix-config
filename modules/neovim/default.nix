@@ -203,6 +203,7 @@ let
               mappings = {
                 ["d"] = "buffer_delete",
                 ["b"] = "filesystem",
+                ["bd"] = "none",
               },
             },
             commands = {
@@ -210,6 +211,16 @@ let
                 neotree_command.execute({ source = "filesystem" })
               end,
             },
+          },
+          event_handlers = {
+            {
+              event = "vim_buffer_enter",
+              handler = function(_)
+                if vim.bo.filetype == "neo-tree" then
+                  vim.opt_local.statusline = "%#Normal#"
+                end
+              end,
+            }
           },
           -- Remove default containers (allow seeing long file names)
           -- https://github.com/nvim-neo-tree/neo-tree.nvim/blob/a7d6f05e57487326fd70b24195c3b7a86a88b156/lua/neo-tree/defaults.lua#L216-L257
@@ -238,6 +249,7 @@ let
 
         vim.keymap.set("n", "<Leader>n", ":Neotree toggle<CR>", {
           desc = "Toggle neo-tree",
+          silent = true,
         })
       '';
     }

@@ -6,7 +6,6 @@ let
     nvim-web-devicons
     traces-vim
     vim-abolish
-    vim-ctrlsf
     vim-eunuch
     vim-fugitive
     vim-repeat
@@ -33,7 +32,7 @@ let
     }
 
     {
-      plugin = vim-minibufexpl;
+      plugin = pkgs.vimExtraPlugins.vim-minibufexpl;
       type = "lua";
       config = ''
         -- https://stackoverflow.com/questions/24466037/hide-lightline-for-minibufexplorer
@@ -165,7 +164,7 @@ let
     }
 
     {
-      plugin = neo-tree-nvim;
+      plugin = pkgs.vimExtraPlugins.neo-tree-nvim;
       type = "lua";
       config = lib.fileContents ./lua/neo-tree.lua;
     }
@@ -243,7 +242,7 @@ let
     }
 
     {
-      plugin = vim-ctrlsf;
+      plugin = pkgs.vimExtraPlugins.vim-ctrlsf;
       type = "lua";
       config = ''
         vim.keymap.set("n", "<Leader>f", "<Plug>CtrlSFPrompt")

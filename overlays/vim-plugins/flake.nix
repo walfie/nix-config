@@ -20,7 +20,7 @@
             mkVimPlugin = name: src: super.vimUtils.buildVimPluginFrom2Nix { inherit name src; };
           in
           {
-            vimPlugins = super.vimPlugins // (builtins.mapAttrs mkVimPlugin inputs);
+            vimExtraPlugins = builtins.mapAttrs mkVimPlugin inputs;
           }
         )
 

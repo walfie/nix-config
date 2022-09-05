@@ -155,7 +155,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-LnrJmb+ehgqv4bNY3vl9WF+qcOQ3rsrRvLY3rNsBXv8=",
+        "narHash": "sha256-NINH5jPDZW/zfvGIXrakIyAZFASkQnoNkkI6DHYqJTE=",
         "path": "./overlays/vim-plugins",
         "type": "path"
       },

@@ -15,6 +15,22 @@
         "type": "github"
       }
     },
+    "fzf-lua": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1661534606,
+        "narHash": "sha256-NezFGVahrdn1Ee7BQGhXEveta5JjPE79tNsHFkV+AT0=",
+        "owner": "ibhagwan",
+        "repo": "fzf-lua",
+        "rev": "0944e1e85fc74c7c006c696b74b7af3acf345d8b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ibhagwan",
+        "repo": "fzf-lua",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -148,6 +164,7 @@
     },
     "vim-plugins-overlay": {
       "inputs": {
+        "fzf-lua": "fzf-lua",
         "neo-tree-nvim": "neo-tree-nvim",
         "nui-nvim": "nui-nvim",
         "vim-ctrlsf": "vim-ctrlsf",
@@ -155,7 +172,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-NINH5jPDZW/zfvGIXrakIyAZFASkQnoNkkI6DHYqJTE=",
+        "narHash": "sha256-OQGbCyCuuE7i51c+tvvxrbxiUF9ry9Imto1d9SLftzg=",
         "path": "./overlays/vim-plugins",
         "type": "path"
       },

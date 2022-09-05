@@ -2,14 +2,16 @@
   description = "Overlay for (Neo)vim plugins";
 
   inputs = {
-    vim-ctrlsf.url = "github:dyng/ctrlsf.vim";
-    vim-ctrlsf.flake = false;
-    vim-minibufexpl.url = "github:weynhamz/vim-plugin-minibufexpl";
-    vim-minibufexpl.flake = false;
+    fzf-lua.url = "github:ibhagwan/fzf-lua";
+    fzf-lua.flake = false;
     neo-tree-nvim.url = "github:nvim-neo-tree/neo-tree.nvim/v2.x";
     neo-tree-nvim.flake = false;
     nui-nvim.url = "github:MunifTanjim/nui.nvim";
     nui-nvim.flake = false;
+    vim-ctrlsf.url = "github:dyng/ctrlsf.vim";
+    vim-ctrlsf.flake = false;
+    vim-minibufexpl.url = "github:weynhamz/vim-plugin-minibufexpl";
+    vim-minibufexpl.flake = false;
   };
 
   outputs = inputs: {

@@ -250,7 +250,7 @@ let
     }
 
     {
-      plugin = fzf-lua;
+      plugin = pkgs.vimExtraPlugins.fzf-lua;
       type = "lua";
       config = ''
         local fzf = require("fzf-lua")
@@ -277,6 +277,34 @@ let
           })
         end)
 
+        local lsp_actions = {
+          ["Type definitions"] = fzf.lsp_typedefs,
+          ["Signature help"] = vim.lsp.buf.signature_help,
+          ["Rename"] = vim.lsp.buf.rename,
+          ["References"] = fzf.lsp_references,
+          ["Outgoing calls"] = fzf.lsp_outgoing_calls,
+          ["Incoming calls"] = fzf.lsp_incoming_calls,
+          ["Implementations"] = fzf.lsp_implementations,
+          ["Hover"] = vim.lsp.buf.hover,
+          ["Formatting"] = vim.lsp.buf.formatting,
+          ["Definitions"] = fzf.lsp_definitions,
+          ["Declarations"] = fzf.lsp_declarations,
+          ["Code actions"] = fzf.lsp_code_actions,
+        }
+
+        vim.keymap.set("n", "gl", function()
+          fzf.fzf_exec(vim.tbl_keys(lsp_actions), {
+            prompt = "LSP> ",
+            actions = {
+              ["default"] = function(selected)
+                for i, value in ipairs(selected) do
+                  lsp_actions[value]()
+                end
+              end,
+            },
+          })
+        end)
+
         -- TODO: Set <C-x><C-l> in insert mode to complete line
       '';
     }
@@ -288,7 +316,7 @@ let
         let g:zenburn_high_Contrast=1
         colorscheme zenburn
 
-        match TrailingWhiteSpace /\s\+$/
+        match TrailingWhitespace /\s\+$/
         highlight Visual term=reverse cterm=reverse
         highlight MatchParen cterm=bold ctermbg=none ctermfg=magenta
         highlight TrailingWhitespace ctermfg=darkgreen

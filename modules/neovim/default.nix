@@ -54,6 +54,52 @@ let
       '';
     }
 
+    {
+      plugin = vim-clap;
+      type = "lua";
+      config = ''
+        -- This is disabled by default as of https://github.com/liuchengxu/vim-clap/commit/181524
+        vim.g.clap_enable_background_shadow = false
+
+        vim.g.clap_open_preview = "never"
+        vim.g.clap_layout = {
+          width = "90%",
+          height = "80%",
+          col = "5%",
+          row = "10%",
+          relative = "editor",
+        }
+
+        local lsp_actions = {
+          ["Type definition"] = vim.lsp.buf.type_definition,
+          ["Signature help"] = vim.lsp.buf.signature_help,
+          ["Rename"] = vim.lsp.buf.rename,
+          ["References"] = vim.lsp.buf.references,
+          ["Outgoing calls"] = vim.lsp.buf.outgoing_calls,
+          ["Incoming calls"] = vim.lsp.buf.incoming_calls,
+          ["Implementation"] = vim.lsp.buf.implementation,
+          ["Hover"] = vim.lsp.buf.hover,
+          ["Formatting"] = vim.lsp.buf.formatting,
+          ["Definition"] = vim.lsp.buf.definition,
+          ["Declaration"] = vim.lsp.buf.declaration,
+          ["Code action"] = vim.lsp.buf.code_action,
+        }
+
+        vim.g.clap_provider_lsp_actions = {
+          description = "Common LSP actions",
+          source = vim.tbl_keys(lsp_actions),
+          sink = function(selected)
+            lsp_actions[selected]()
+          end,
+        }
+
+        vim.keymap.set("n", "<C-p>", ":Clap files<CR>")
+        vim.keymap.set("n", "<Leader>b", ":Clap buffers<CR>")
+        vim.keymap.set("n", "<Leader>a", ":Clap grep2<CR>")
+        vim.keymap.set("n", "<Leader>l", ":Clap lines<CR>")
+      '';
+    }
+
     # LSP config initially based on: https://sharksforarms.dev/posts/neovim-rust/
     {
       plugin = nvim-lspconfig;
@@ -267,10 +313,6 @@ let
           },
         })
 
-        vim.keymap.set("n", "<C-p>", fzf.files)
-        vim.keymap.set("n", "<Leader>b", fzf.buffers)
-        vim.keymap.set("n", "<Leader>a", fzf.grep_project)
-        vim.keymap.set("n", "<Leader>l", fzf.lines)
         vim.keymap.set("n", "<Leader>d", function()
           fzf.grep_project({
             search = "(class|trait|object|struct|enum|type) ",

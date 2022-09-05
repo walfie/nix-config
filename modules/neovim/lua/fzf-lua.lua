@@ -50,4 +50,19 @@ vim.keymap.set("n", "gl", function()
   })
 end)
 
--- TODO: Set <C-x><C-l> in insert mode to complete line
+-- Fuzzy autocomplete current line
+vim.keymap.set("i", "<C-x><C-l>", function()
+  fzf.grep_project({
+    search = string.gsub(vim.api.nvim_get_current_line(), "%s", ".+"),
+    no_esc = true,
+    actions = {
+      ["default"] = function(selected)
+        local parts = vim.split(selected[1], ":")
+        local line = table.concat(parts, ":", 4, #parts)
+        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+        vim.api.nvim_buf_set_lines(0, row - 1, row, true, { line })
+      end
+    },
+  })
+end)
+

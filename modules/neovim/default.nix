@@ -182,32 +182,6 @@ let
     }
 
     {
-      plugin = fzf-vim;
-      config = ''
-        let g:fzf_command_prefix = 'Fzf'
-
-        " Disable preview window
-        let g:fzf_preview_window = ""
-
-        " Ctrl+l to autocomplete from Rg search
-        imap <C-x><C-l> <Plug>(fzf-complete-line)
-
-        " Skip files in gitignore
-        let $FZF_DEFAULT_COMMAND = "rg --files --hidden -g '!.git/'"
-
-        function! RgCompleteCommand(args)
-          return "rg ^ --color never --no-filename --no-line-number ".a:args." . | awk '!seen[$0]++'"
-        endfunction
-
-        inoremap <expr> <C-l> fzf#vim#complete(fzf#wrap({
-        \ 'prefix': '^.*$',
-        \ 'source': function('RgCompleteCommand'),
-        \ 'options': '--ansi'
-        \}))
-      '';
-    }
-
-    {
       plugin = rainbow;
       type = "lua";
       config = ''

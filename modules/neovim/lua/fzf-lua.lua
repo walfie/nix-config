@@ -11,59 +11,6 @@ fzf.setup({
   },
 })
 
-vim.keymap.set("n", "<C-p>", fzf.files)
-vim.keymap.set("n", "<Leader>b", fzf.buffers)
-vim.keymap.set("n", "<Leader>a", fzf.grep_project)
-vim.keymap.set("n", "<Leader>l", fzf.lines)
-vim.keymap.set("n", "<Leader>d", function()
-  fzf.grep_project({
-    search = "(class|trait|object|struct|enum|type) ",
-    no_esc = true,
-  })
-end)
-
-local function with_preview(f)
-  return function()
-    f({
-      winopts = {
-        preview = {
-          hidden = "nohidden",
-          layout = "vertical",
-          vertical = "up:90%",
-        }
-      }
-    })
-  end
-end
-
-local lsp_actions = {
-  ["Type definitions"] = with_preview(fzf.lsp_typedefs),
-  ["Signature help"] = vim.lsp.buf.signature_help,
-  ["Rename"] = vim.lsp.buf.rename,
-  ["References"] = with_preview(fzf.lsp_references),
-  ["Outgoing calls"] = fzf.lsp_outgoing_calls,
-  ["Incoming calls"] = fzf.lsp_incoming_calls,
-  ["Implementations"] = with_preview(fzf.lsp_implementations),
-  ["Hover"] = vim.lsp.buf.hover,
-  ["Formatting"] = vim.lsp.buf.formatting,
-  ["Definitions"] = with_preview(fzf.lsp_definitions),
-  ["Declarations"] = with_preview(fzf.lsp_declarations),
-  ["Code actions"] = fzf.lsp_code_actions,
-}
-
-vim.keymap.set("n", "gl", function()
-  fzf.fzf_exec(vim.tbl_keys(lsp_actions), {
-    prompt = "LSP> ",
-    actions = {
-      ["default"] = function(selected)
-        for i, value in ipairs(selected) do
-          lsp_actions[value]()
-        end
-      end,
-    },
-  })
-end)
-
 -- Fuzzy autocomplete current line
 vim.keymap.set("i", "<C-x><C-l>", function()
   fzf.grep_project({
@@ -86,6 +33,67 @@ do
   function nmap(keys, fn, desc)
     vim.keymap.set("n", keys, fn, { desc = desc })
   end
+
+  nmap("<C-p>", fzf.files, "Find files")
+  nmap("<Leader>b", fzf.buffers, "Find buffers")
+  nmap("<Leader>a", fzf.grep_project, "Find in project")
+  nmap("<Leader>l", fzf.lines, "Find lines in open buffers")
+  nmap("<Leader>d", function()
+    fzf.grep_project({
+      search = "(class|trait|object|struct|enum|type) ",
+      no_esc = true,
+    })
+  end, "Find definition")
+
+  local function with_preview(f, size)
+    local size = size or 90
+    opts = {
+      winopts = {
+        preview = {
+          hidden = "nohidden",
+          layout = "vertical",
+          vertical = "up:" .. size .. "%",
+        }
+      }
+    }
+
+    return function()
+      f(opts)
+    end
+  end
+
+  local lsp_actions = {
+    ["Workplace symbols"] = fzf.lsp_workplace_symbols,
+    ["Workplace diagnostics"] = fzf.diagnostics_workspace,
+    ["Type definitions"] = with_preview(fzf.lsp_typedefs),
+    ["Signature help"] = vim.lsp.buf.signature_help,
+    ["Rename"] = vim.lsp.buf.rename,
+    ["References"] = with_preview(fzf.lsp_references),
+    ["Outgoing calls"] = fzf.lsp_outgoing_calls,
+    ["Incoming calls"] = fzf.lsp_incoming_calls,
+    ["Implementations"] = with_preview(fzf.lsp_implementations),
+    ["Hover"] = vim.lsp.buf.hover,
+    ["Formatting"] = vim.lsp.buf.formatting,
+    ["Document diagnostics"] = fzf.document_diagnostics,
+    ["Document symbols"] = fzf.lsp_document_symbols,
+    ["Definitions"] = with_preview(fzf.lsp_definitions),
+    ["Declarations"] = with_preview(fzf.lsp_declarations),
+    ["Code actions"] = fzf.lsp_code_actions,
+  }
+
+  -- Fuzzy finder for common LSP actions
+  nmap("n", "gl", function()
+    fzf.fzf_exec(vim.tbl_keys(lsp_actions), {
+      prompt = "LSP> ",
+      actions = {
+        ["default"] = function(selected)
+          for i, value in ipairs(selected) do
+            lsp_actions[value]()
+          end
+        end,
+      },
+    })
+  end, "LSP actions")
 
   -- Set keymaps based on some recommendations from `nvim-lspconfig`
   nmap("gD", with_preview(fzf.lsp_declarations), "LSP declarations")

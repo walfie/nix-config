@@ -53,58 +53,17 @@ let
       '';
     }
 
-    # LSP config initially based on: https://sharksforarms.dev/posts/neovim-rust/
+    rust-tools-nvim
     {
       plugin = nvim-lspconfig;
       type = "lua";
-      config = ''
-        local nvim_lsp = require("lspconfig")
-
-        nvim_lsp.tsserver.setup({
-          cmd = {
-            "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server",
-            "--stdio",
-            "--tsserver-path",
-            "${pkgs.nodePackages.typescript}/lib/node_modules/typescript/lib/",
-          },
-        })
-
-        nvim_lsp.rnix.setup({
-          cmd = { "${pkgs.rnix-lsp}/bin/rnix-lsp" },
-        })
-      '';
-    }
-
-    # https://github.com/simrat39/rust-tools.nvim/tree/b696e6dee1e79a53159f1c0472289f5486ac31bc#configuration
-    {
-      plugin = rust-tools-nvim;
-      type = "lua";
-      config = ''
-        require("rust-tools").setup({
-          tools = {
-            hover_with_actions = true,
-            inlay_hints = {
-              parameter_hints_prefix = "« ",
-              other_hints_prefix = "» ",
-            },
-          },
-          -- Override default rust-tools settings
-          -- https://github.com/neovim/nvim-lspconfig/blob/bdfcca4af7ac8171e6d4ae4b375aad61ff747429/doc/server_configurations.md#rust_analyzer
-          server = {
-            cmd = { "${pkgs.rust-analyzer}/bin/rust-analyzer" },
-            settings = {
-              -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-              ["rust-analyzer"] = {
-                cargo = {
-                  -- Compile with all features to prevent "code is inactive due to #[cfg] directives" messages
-                  -- https://users.rust-lang.org/t/can-i-stop-vscode-rust-analyzer-from-shading-out-cfgs/58773/4
-                  features = "all",
-                },
-              },
-            }
-          },
-        })
-      '';
+      config = lib.fileContents (pkgs.substituteAll {
+        src = ./lua/lsp.lua;
+        tsserver_cmd = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
+        tsserver_path = "${pkgs.nodePackages.typescript}/lib/node_modules/typescript/lib/";
+        rnix_cmd = "${pkgs.rnix-lsp}/bin/rnix-lsp";
+        rust_analyzer_cmd = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+      });
     }
 
     {

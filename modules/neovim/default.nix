@@ -22,16 +22,6 @@ let
     cmp-path
 
     {
-      plugin = vim-bbye;
-      type = "lua";
-      config = ''
-        -- Delete buffer
-        vim.keymap.set("n", "<Leader>q", ":Bdelete<CR>")
-        vim.keymap.set("n", "<Leader>Q", ":Bdelete!<CR>")
-      '';
-    }
-
-    {
       plugin = pkgs.vimExtraPlugins.barbar-nvim;
       type = "lua";
       config = ''

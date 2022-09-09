@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "barbar-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1662051456,
+        "narHash": "sha256-QG9G4YZj/CQMvXuBHiqh2Evvs0iMluOasPJSFjWvsVU=",
+        "owner": "romgrk",
+        "repo": "barbar.nvim",
+        "rev": "c41ad6e3f68c2c9f6aa268c6232cdef885107303",
+        "type": "github"
+      },
+      "original": {
+        "owner": "romgrk",
+        "repo": "barbar.nvim",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1656928814,
@@ -146,33 +162,17 @@
         "type": "github"
       }
     },
-    "vim-minibufexpl": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1371985142,
-        "narHash": "sha256-Ljikb86cR/yVLoDwk7G56bpx/ZUe5gDNz8/nXJA0lsE=",
-        "owner": "weynhamz",
-        "repo": "vim-plugin-minibufexpl",
-        "rev": "349a9fbb7a9da13d029b6a7ed8c8a5e9c048c4ec",
-        "type": "github"
-      },
-      "original": {
-        "owner": "weynhamz",
-        "repo": "vim-plugin-minibufexpl",
-        "type": "github"
-      }
-    },
     "vim-plugins-overlay": {
       "inputs": {
+        "barbar-nvim": "barbar-nvim",
         "fzf-lua": "fzf-lua",
         "neo-tree-nvim": "neo-tree-nvim",
         "nui-nvim": "nui-nvim",
-        "vim-ctrlsf": "vim-ctrlsf",
-        "vim-minibufexpl": "vim-minibufexpl"
+        "vim-ctrlsf": "vim-ctrlsf"
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-OQGbCyCuuE7i51c+tvvxrbxiUF9ry9Imto1d9SLftzg=",
+        "narHash": "sha256-x4Lh04Wja2AUHgX6jCuYmz6M8KXmBHRqgzPLoTmdNp8=",
         "path": "./overlays/vim-plugins",
         "type": "path"
       },

@@ -57,10 +57,8 @@ do
   vim.keymap.set({"n", "v"}, "<Leader>p", [["+p]])
   vim.keymap.set({"n", "v"}, "<Leader>P", [["+P]])
 
-  -- Switch between buffers
+  -- Create new buffer
   vim.keymap.set("n", "<C-t>", ":enew<CR>", { silent = true })
-  vim.keymap.set("n", "<C-h>", ":bprevious<CR>", { silent = true })
-  vim.keymap.set("n", "<C-l>", ":bnext<CR>", { silent = true })
 
   -- Clear highlighed search
   vim.keymap.set("n", "<CR>", ":nohlsearch<CR><CR>", { silent = true })

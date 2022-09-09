@@ -10,8 +10,8 @@
     nui-nvim.flake = false;
     vim-ctrlsf.url = "github:dyng/ctrlsf.vim";
     vim-ctrlsf.flake = false;
-    vim-minibufexpl.url = "github:weynhamz/vim-plugin-minibufexpl";
-    vim-minibufexpl.flake = false;
+    barbar-nvim.url = "github:romgrk/barbar.nvim";
+    barbar-nvim.flake = false;
   };
 
   outputs = inputs: {

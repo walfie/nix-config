@@ -32,16 +32,35 @@ let
     }
 
     {
-      plugin = pkgs.vimExtraPlugins.vim-minibufexpl;
+      plugin = pkgs.vimExtraPlugins.barbar-nvim;
       type = "lua";
       config = ''
-        -- https://stackoverflow.com/questions/24466037/hide-lightline-for-minibufexplorer
-        vim.api.nvim_create_autocmd("FileType", {
-          pattern = "minibufexpl",
-          callback = function()
-            vim.opt_local.statusline = "%#Normal#"
-          end,
+        require("bufferline").setup({
+          animation = false,
+          icons = "both",
+          closable = false,
         })
+
+        -- Switch between buffers
+        vim.keymap.set("n", "<C-h>", "<Cmd>BufferPrevious<CR>", { silent = true })
+        vim.keymap.set("n", "<C-l>", "<Cmd>BufferNext<CR>", { silent = true })
+
+        vim.api.nvim_create_user_command(
+          "B",
+          require("bufferline.jump_mode").activate,
+          { desc = "Pick a buffer" }
+        )
+
+        local bufferline_state = require("bufferline.state")
+        for index = 1,9 do
+          vim.api.nvim_create_user_command("B" .. index, function()
+            bufferline_state.goto_buffer(index)
+          end, { desc = "Go to buffer " .. index })
+        end
+
+        -- Delete buffer
+        vim.keymap.set("n", "<Leader>q", "<Cmd>BufferClose<CR>")
+        vim.keymap.set("n", "<Leader>Q", "<Cmd>BufferClose!<CR>")
       '';
     }
 

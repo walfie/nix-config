@@ -8,7 +8,6 @@
     home-manager.url = "github:nix-community/home-manager/release-22.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     vim-plugins-overlay.url = "path:./overlays/vim-plugins";
-    vim-plugins-overlay.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ { nixpkgs, home-manager, ... }:

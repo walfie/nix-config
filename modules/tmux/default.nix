@@ -9,6 +9,7 @@
     secureSocket = false;
     shortcut = "a";
     terminal = "screen-256color";
+    historyLimit = 50000;
     sensibleOnTop = true;
 
     plugins = with pkgs; [

@@ -9,6 +9,7 @@
     secureSocket = false;
     shortcut = "a";
     terminal = "screen-256color";
+    sensibleOnTop = true;
 
     plugins = with pkgs; [
       tmuxPlugins.copycat

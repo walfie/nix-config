@@ -1,6 +1,6 @@
 { pkgs, config, ... }:
 let
-  rust-stable = pkgs.rust-bin.stable."1.61.0".default.override {
+  rust-stable = pkgs.rust-bin.stable."1.65.0".default.override {
     targets = [ "wasm32-unknown-unknown" ];
   };
   rust-nightly = pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.default);
@@ -8,7 +8,6 @@ in
 {
   home.packages = [
     rust-stable
-    pkgs.cargo-edit
     pkgs.cargo-watch
   ];
 

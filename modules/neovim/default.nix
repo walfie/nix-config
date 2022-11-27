@@ -208,6 +208,7 @@ let
         highlight Visual term=reverse cterm=reverse
         highlight MatchParen cterm=bold ctermbg=none ctermfg=magenta
         highlight TrailingWhitespace ctermfg=darkgreen
+        highlight LspInlayHint ctermfg=darkgray
       '';
     }
 

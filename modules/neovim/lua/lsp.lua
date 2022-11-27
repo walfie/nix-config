@@ -15,6 +15,7 @@ require("rust-tools").setup({
     inlay_hints = {
       parameter_hints_prefix = "« ",
       other_hints_prefix = "» ",
+      highlight = "LspInlayHint",
     },
   },
   -- Override default rust-tools settings

@@ -11,7 +11,11 @@ neotree.setup({
     width = 30,
     mappings = {
       ["/"] = "none",
-      ["b"] = "buffers"
+      ["b"] = "buffers",
+      ["A"] = { "add_directory", config = { show_path = "absolute" } },
+      ["a"] = { "add", config = { show_path = "absolute" } },
+      ["c"] = { "copy", config = { show_path = "absolute" } },
+      ["m"] = { "move", config = { show_path = "absolute" } },
     },
   },
   filesystem = {

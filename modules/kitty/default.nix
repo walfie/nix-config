@@ -35,6 +35,7 @@
       tab_bar_style = "powerline";
       macos_quit_when_last_window_closed = true;
       macos_thicken_font = "0.75";
+      macos_option_as_alt = true;
     };
   };
 }

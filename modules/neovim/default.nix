@@ -72,6 +72,9 @@ let
         tsserver_path = "${pkgs.nodePackages.typescript}/lib/node_modules/typescript/lib/";
         rnix_cmd = "${pkgs.rnix-lsp}/bin/rnix-lsp";
         rust_analyzer_cmd = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+        gopls_cmd = "${pkgs.gopls}/bin/gopls";
+        pyright_cmd = "${pkgs.pyright}/bin/pyright-langserver";
+        terraformls_cmd = "${pkgs.terraform-ls}/bin/terraform-ls";
       });
     }
 

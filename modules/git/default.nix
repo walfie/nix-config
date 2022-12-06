@@ -59,12 +59,7 @@ in
       ".git"
       ".DS_Store"
       "Session.vim"
-
-      # scala
-      ".bsp/"
-      ".bloop/"
-      ".metals/"
-      "metals.sbt"
+      "._/" # Personal directory to stash things I don't want to commit
     ];
   };
 }

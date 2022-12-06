@@ -47,6 +47,8 @@
       pkgs.nixpkgs-fmt
       pkgs.pup
       pkgs.rename
+      pkgs.rlwrap
+      pkgs.sqlite
       pkgs.tealdeer
       pkgs.tree
       pkgs.trunk

@@ -187,6 +187,16 @@ let
     }
 
     {
+      plugin = trouble-nvim;
+      type = "lua";
+      config = ''
+        local trouble = require("trouble")
+        trouble.setup({})
+        vim.keymap.set("n", "<Leader>x", "<Cmd>TroubleToggle<CR>")
+      '';
+    }
+
+    {
       plugin = pkgs.vimExtraPlugins.vim-ctrlsf;
       type = "lua";
       config = ''

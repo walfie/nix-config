@@ -29,8 +29,17 @@ require("rust-tools").setup({
   server = {
     cmd = { "@rust_analyzer_cmd@" },
     settings = {
-      -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+      -- https://github.com/rust-lang/rust-analyzer/blob/6e8a54d0f68702cf7981c8299357838eb0f4d5b2/docs/user/generated_config.adoc
       ["rust-analyzer"] = {
+        imports = {
+          -- Auto-imported paths from current crate should prefer `crate::` rather than `super::`
+          prefix = "crate",
+          granularity = {
+            -- Prefer grouping imports by module rather than crate.
+            -- E.g., avoid `use a::{b::c, d::{e, f}};`
+            group = "module",
+          },
+        },
         cargo = {
           -- Compile with all features to prevent "code is inactive due to #[cfg] directives" messages
           -- https://users.rust-lang.org/t/can-i-stop-vscode-rust-analyzer-from-shading-out-cfgs/58773/4

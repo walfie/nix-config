@@ -12,18 +12,9 @@
 
   outputs = inputs @ { nixpkgs, home-manager, ... }:
     let
-      # `cargo-watch` fails to build on M1 Mac, so use the x86 version.
-      #
-      # Workaround: https://github.com/hercules-ci/flake-parts/issues/50#issuecomment-1212175176
-      # Underlying issue: https://github.com/NixOS/nixpkgs/issues/146349
-      rosetta-overlay = final: prev: {
-        cargo-watch = inputs.nixpkgs.legacyPackages.x86_64-darwin.cargo-watch;
-      };
-
       overlays = [
         inputs.rust-overlay.overlays.default
         inputs.vim-plugins-overlay.overlays.default
-        rosetta-overlay
       ];
     in
     {

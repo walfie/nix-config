@@ -65,13 +65,17 @@ do
     end
   end
 
+  local function format()
+    vim.lsp.buf.format { async = true }
+  end
+
   local actions = {
     { desc = "Code actions", fn = fzf.lsp_code_actions, nmap = "<Space>ca" },
     { desc = "Declarations", fn = preview(fzf.lsp_declarations), nmap = "gD" },
     { desc = "Definitions", fn = preview(fzf.lsp_definitions), nmap = "gd" },
     { desc = "Document diagnostics", fn = fzf.document_diagnostics },
     { desc = "Document symbols", fn = fzf.lsp_document_symbols },
-    { desc = "Formatting", fn = vim.lsp.buf.formatting },
+    { desc = "Formatting", fn = format, nmap = "<Space>f" },
     { desc = "Hover", fn = vim.lsp.buf.hover, nmap = "K" },
     { desc = "Implementations", fn = preview(fzf.lsp_implementations, 70), nmap = "gi" },
     { desc = "Incoming calls", fn = fzf.lsp_incoming_calls },

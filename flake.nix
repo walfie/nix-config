@@ -2,10 +2,10 @@
   description = "Home Manager configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-22.05-darwin";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-22.11-darwin";
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager/release-22.05";
+    home-manager.url = "github:nix-community/home-manager/release-22.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     vim-plugins-overlay.url = "path:./overlays/vim-plugins";
   };
@@ -28,11 +28,12 @@
     in
     {
       homeConfigurations.personal = home-manager.lib.homeManagerConfiguration (
-        let
-          system = "x86_64-darwin";
-          pkgs = import nixpkgs { inherit system overlays; };
-        in
-        import ./machines/personal { inherit system pkgs; }
+        import ./machines/personal {
+          pkgs = import nixpkgs {
+            inherit overlays;
+            system = "x86_64-darwin";
+          };
+        }
       );
     };
 }

@@ -22,7 +22,7 @@ let
     cmp-path
 
     {
-      plugin = pkgs.vimExtraPlugins.barbar-nvim;
+      plugin = barbar-nvim;
       type = "lua";
       config = ''
         require("bufferline").setup({
@@ -35,16 +35,16 @@ let
         vim.keymap.set("n", "<C-h>", "<Cmd>BufferPrevious<CR>", { silent = true })
         vim.keymap.set("n", "<C-l>", "<Cmd>BufferNext<CR>", { silent = true })
 
+        local bufferline_api = require("bufferline.api")
         vim.api.nvim_create_user_command(
           "B",
-          require("bufferline.jump_mode").activate,
+          bufferline_api.pick_buffer,
           { desc = "Pick a buffer" }
         )
 
-        local bufferline_state = require("bufferline.state")
         for index = 1,9 do
           vim.api.nvim_create_user_command("B" .. index, function()
-            bufferline_state.goto_buffer(index)
+            bufferline_api.goto_buffer(index)
           end, { desc = "Go to buffer " .. index })
         end
 
@@ -135,7 +135,7 @@ let
     }
 
     {
-      plugin = pkgs.vimExtraPlugins.neo-tree-nvim;
+      plugin = neo-tree-nvim;
       type = "lua";
       config = lib.fileContents ./lua/neo-tree.lua;
     }
@@ -205,7 +205,7 @@ let
     }
 
     {
-      plugin = pkgs.vimExtraPlugins.fzf-lua;
+      plugin = fzf-lua;
       type = "lua";
       config = lib.fileContents ./lua/fzf-lua.lua;
     }

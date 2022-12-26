@@ -17,7 +17,6 @@ nvim_lsp.tsserver.setup({
 -- https://github.com/simrat39/rust-tools.nvim/tree/b696e6dee1e79a53159f1c0472289f5486ac31bc#configuration
 require("rust-tools").setup({
   tools = {
-    hover_with_actions = true,
     inlay_hints = {
       parameter_hints_prefix = "« ",
       other_hints_prefix = "» ",

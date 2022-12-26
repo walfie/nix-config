@@ -1,5 +1,6 @@
 -- General vim settings
 do
+  vim.opt.mouse = "" -- Disable mouse
   vim.opt.expandtab = true -- Insert spaces instead of tabs
   vim.opt.incsearch = false -- Disable incremental search (only scroll on submitting the search)
   vim.opt.lazyredraw = true -- Don't redraw screen while executing macros

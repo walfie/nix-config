@@ -68,13 +68,18 @@ let
       type = "lua";
       config = lib.fileContents (pkgs.substituteAll {
         src = ./lua/lsp.lua;
-        tsserver_cmd = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
-        tsserver_path = "${pkgs.nodePackages.typescript}/lib/node_modules/typescript/lib/";
+
+        cssls_cmd = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-css-language-server";
+        eslint_cmd = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-eslint-language-server";
+        gopls_cmd = "${pkgs.gopls}/bin/gopls";
+        html_cmd = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-html-language-server";
+        jsonls_cmd = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-json-language-server";
+        pyright_cmd = "${pkgs.pyright}/bin/pyright-langserver";
         rnix_cmd = "${pkgs.rnix-lsp}/bin/rnix-lsp";
         rust_analyzer_cmd = "${pkgs.rust-analyzer}/bin/rust-analyzer";
-        gopls_cmd = "${pkgs.gopls}/bin/gopls";
-        pyright_cmd = "${pkgs.pyright}/bin/pyright-langserver";
         terraformls_cmd = "${pkgs.terraform-ls}/bin/terraform-ls";
+        tsserver_cmd = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
+        tsserver_path = "${pkgs.nodePackages.typescript}/lib/node_modules/typescript/lib/";
       });
     }
 

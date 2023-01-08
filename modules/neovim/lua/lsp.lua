@@ -2,17 +2,15 @@
 
 local nvim_lsp = require("lspconfig")
 
-nvim_lsp.rnix.setup({ cmd = { "@rnix_cmd@" } })
-
+nvim_lsp.cssls.setup({ cmd = { "@cssls_cmd@", "--stdio" } })
+nvim_lsp.eslint.setup({ cmd = { "@eslint_cmd@", "--stdio" } })
 nvim_lsp.gopls.setup({ cmd = { "@gopls_cmd@" } })
-
+nvim_lsp.html.setup({ cmd = { "@html_cmd@", "--stdio" } })
+nvim_lsp.jsonls.setup({ cmd = { "@jsonls_cmd@", "--stdio" } })
 nvim_lsp.pyright.setup({ cmd = { "@pyright_cmd@", "--stdio" } })
-
+nvim_lsp.rnix.setup({ cmd = { "@rnix_cmd@" } })
 nvim_lsp.terraformls.setup({ cmd = { "@terraformls_cmd@", "serve" } })
-
-nvim_lsp.tsserver.setup({
-  cmd = { "@tsserver_cmd@", "--stdio", "--tsserver-path", "@tsserver_path@" },
-})
+nvim_lsp.tsserver.setup({ cmd = { "@tsserver_cmd@", "--stdio", "--tsserver-path", "@tsserver_path@" } })
 
 -- https://github.com/simrat39/rust-tools.nvim/tree/b696e6dee1e79a53159f1c0472289f5486ac31bc#configuration
 require("rust-tools").setup({

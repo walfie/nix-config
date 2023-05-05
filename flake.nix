@@ -15,6 +15,7 @@
       overlays = [
         inputs.rust-overlay.overlays.default
         inputs.vim-plugins-overlay.overlays.default
+        (import ./overlays/packages)
       ];
     in
     {

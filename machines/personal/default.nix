@@ -33,6 +33,7 @@
       };
 
       home.packages = [
+        pkgs.bazelisk
         pkgs.coreutils # Use GNU versions of `ls`, etc
         pkgs.doctl
         pkgs.fd
@@ -46,10 +47,12 @@
         pkgs.ncdu
         pkgs.niv
         pkgs.nixpkgs-fmt
+        pkgs.pngcrush
         pkgs.pup
         pkgs.rename
         pkgs.rlwrap
         pkgs.sqlite
+        pkgs.starlark-rust
         pkgs.tealdeer
         pkgs.tree
         pkgs.trunk

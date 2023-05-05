@@ -4,6 +4,8 @@
   inputs = {
     vim-ctrlsf.url = "github:dyng/ctrlsf.vim";
     vim-ctrlsf.flake = false;
+    nvim-lspconfig.url = "github:neovim/nvim-lspconfig";
+    nvim-lspconfig.flake = false;
   };
 
   outputs = inputs: {

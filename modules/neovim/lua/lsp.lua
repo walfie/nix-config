@@ -12,6 +12,12 @@ nvim_lsp.rnix.setup({ cmd = { "@rnix_cmd@" } })
 nvim_lsp.terraformls.setup({ cmd = { "@terraformls_cmd@", "serve" } })
 nvim_lsp.tsserver.setup({ cmd = { "@tsserver_cmd@", "--stdio", "--tsserver-path", "@tsserver_path@" } })
 
+-- Assumes we have `starlark` available in `$PATH`.
+-- starlark-rust isn't on nixpkgs, so we need to build it ourselves.
+nvim_lsp.starlark_rust.setup({
+  filetypes = { "bzl", "bazel", "BUILD", "WORKSPACE" },
+})
+
 -- https://github.com/simrat39/rust-tools.nvim/tree/b696e6dee1e79a53159f1c0472289f5486ac31bc#configuration
 require("rust-tools").setup({
   tools = {

@@ -64,7 +64,7 @@ let
 
     rust-tools-nvim
     {
-      plugin = nvim-lspconfig;
+      plugin = pkgs.vimExtraPlugins.nvim-lspconfig;
       type = "lua";
       config = lib.fileContents (pkgs.substituteAll {
         src = ./lua/lsp.lua;

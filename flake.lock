@@ -56,6 +56,22 @@
         "type": "github"
       }
     },
+    "nvim-lspconfig": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1683093864,
+        "narHash": "sha256-OkS6DAXkY40xkR+v1FZEL8ujMWM421ZQdB9My0vG3+Y=",
+        "owner": "neovim",
+        "repo": "nvim-lspconfig",
+        "rev": "3bd4ca412982afa6f88bb7ef890660cee51c3e58",
+        "type": "github"
+      },
+      "original": {
+        "owner": "neovim",
+        "repo": "nvim-lspconfig",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
@@ -133,11 +149,12 @@
     },
     "vim-plugins-overlay": {
       "inputs": {
+        "nvim-lspconfig": "nvim-lspconfig",
         "vim-ctrlsf": "vim-ctrlsf"
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-g/roseCOX23XGC0kB6zPSxfpis+uVlhRXHyETjezTiw=",
+        "narHash": "sha256-xYQ7cp/ZdhxiliALQCx7CfJOW1e2wndZA/D11iDmD7A=",
         "path": "./overlays/vim-plugins",
         "type": "path"
       },

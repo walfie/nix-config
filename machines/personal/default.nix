@@ -26,6 +26,10 @@
         userEmail = "walfington@gmail.com";
       };
 
+      programs.zsh.shellAliases = {
+        bazel = "bazelisk";
+      };
+
       home = {
         stateVersion = "21.05";
         username = "who";

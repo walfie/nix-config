@@ -16,7 +16,22 @@ My personal Nix flake for [home-manager] on macOS.
   `https://releases.nixos.org/nix/nix-2.10.3/install` (this setup has been
   verified to work on at least `2.10.3`).
 
-* Install home-manager and activate the [`personal` config] (while in this directory):
+* If the per-user profile directory doesn't exist for your user at
+  `/nix/var/nix/profiles/per-user/$(whoami)`, create it:
+
+    ```sh
+    sudo install -d --owner $(whoami) /nix/var/nix/profiles/per-user/$(whoami)
+    ```
+
+  (`install` is the same as `mkdir` followed by `chown`)
+
+* `cd` into this repo's directory and run the following:
+
+    ```sh
+    nix flake --extra-experimental-features "nix-command flakes" lock --update-input vim-plugins-overlay
+    ```
+
+* Install home-manager and activate the [`personal` config] while in this directory:
 
     ```sh
     $(
@@ -27,6 +42,9 @@ My personal Nix flake for [home-manager] on macOS.
       ".#homeConfigurations.personal.activationPackage"
     )/activate
     ```
+
+  Note that the `personal` config targets `x86_64-darwin`, so you may need to
+  update `flake.nix` if on a different platform (such as `aarch64-darwin`).
 
 [`personal` config]: ./machines/personal/default.nix
 

@@ -27,8 +27,11 @@ let
       config = ''
         require("bufferline").setup({
           animation = false,
-          icons = "both",
-          closable = false,
+          icons = {
+            buffer_index = true,
+            filetype = { enabled = true },
+            button = false,
+          },
         })
 
         -- Switch between buffers

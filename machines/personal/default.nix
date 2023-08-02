@@ -51,6 +51,7 @@
         pkgs.ncdu
         pkgs.niv
         pkgs.nixpkgs-fmt
+        pkgs.oci-cli # Oracle Cloud
         pkgs.pngcrush
         pkgs.pup
         pkgs.rename

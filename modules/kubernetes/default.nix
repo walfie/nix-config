@@ -28,6 +28,7 @@ in
     sessionVariables = {
       KUBECONFIG = builtins.concatStringsSep ":" [
         "$HOME/.kube/kirakiratter-kubeconfig.yaml"
+        "$HOME/.kube/oci-kubeconfig.yaml"
         "$HOME/.kube/config"
         "$KUBECONFIG"
       ];

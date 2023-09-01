@@ -20,7 +20,7 @@ My personal Nix flake for [home-manager] on macOS.
   `/nix/var/nix/profiles/per-user/$(whoami)`, create it:
 
     ```sh
-    sudo install -d --owner $(whoami) /nix/var/nix/profiles/per-user/$(whoami)
+    sudo install -d -o $(whoami) /nix/var/nix/profiles/per-user/$(whoami)
     ```
 
   (`install` is the same as `mkdir` followed by `chown`)

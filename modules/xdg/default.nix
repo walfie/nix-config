@@ -12,7 +12,6 @@ with config.xdg;
     configFile."npm/npmrc".text = ''
       prefix=${dataHome}/npm
       cache=${cacheHome}/npm
-      tmp=/tmp/npm
       init-module=${configHome}/npm/config/npm-init.js
     '';
   };

@@ -94,6 +94,11 @@ the lock file. You may need to update it with the following command:
 nix flake lock --update-input vim-plugins-overlay
 ```
 
+Some related GitHub issues for context:
+
+* [Allow flakes to refer to other flakes by relative path](https://github.com/NixOS/nix/issues/3978)
+* [More intelligent subflake locking.](https://github.com/NixOS/nix/issues/6352)
+
 ## Garbage collection
 
 There are various levels of cleanup you can do:

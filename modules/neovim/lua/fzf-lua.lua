@@ -1,7 +1,11 @@
 local fzf = require("fzf-lua")
 fzf.setup({
+  -- Note: `@variable@` is replaced in nix via `pkgs.substituteAll`
+  fzf_bin = "@fzf_bin@",
   fzf_opts = {
     ["--layout"] = "default",
+    ["--border"] = false,
+    ["--no-separator"] = false,
   },
   winopts = {
     width = 0.9,

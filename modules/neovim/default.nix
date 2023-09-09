@@ -212,7 +212,10 @@ let
     {
       plugin = fzf-lua;
       type = "lua";
-      config = lib.fileContents ./lua/fzf-lua.lua;
+      config = lib.fileContents (pkgs.substituteAll {
+        src = ./lua/fzf-lua.lua;
+        fzf_bin = "${pkgs.skim}/bin/sk";
+      });
     }
 
     {
@@ -236,7 +239,6 @@ in
 {
   home = {
     packages = [
-      pkgs.fzf
       pkgs.ripgrep
     ];
 

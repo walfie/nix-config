@@ -57,7 +57,7 @@
         pkgs.rename
         pkgs.rlwrap
         pkgs.sqlite
-        pkgs.starlark-rust
+        #pkgs.starlark-rust
         pkgs.tealdeer
         pkgs.tree
         pkgs.trunk

@@ -44,6 +44,7 @@ in
       push = { default = "current"; };
       rebase = { autosquash = true; };
       rerere = { enabled = true; };
+      init = { defaultBranch = "main"; };
       color = {
         branch = "auto";
         diff = "auto";

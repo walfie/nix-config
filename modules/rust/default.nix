@@ -1,14 +1,21 @@
-{ pkgs, config, ... }:
+{ lib, pkgs, config, ... }:
 let
   rust-stable = pkgs.rust-bin.stable."1.69.0".default.override {
     targets = [ "wasm32-unknown-unknown" ];
   };
-  rust-nightly = pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.default);
+
+  rustfmt = pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.rustfmt);
+  rust-nightly = pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.minimal);
+  cargo-nightly = pkgs.writeShellScriptBin "cargo-nightly" ''
+    export PATH=${rust-nightly}/bin:$PATH
+    ${rust-nightly}/bin/cargo $@
+  '';
 in
 {
   home.packages = [
+    (lib.hiPrio rustfmt)
     rust-stable
-    pkgs.cargo-watch
+    cargo-nightly
   ];
 
   home.sessionVariables = {

@@ -1,6 +1,6 @@
 { lib, pkgs, config, ... }:
 let
-  rust-stable = pkgs.rust-bin.stable."1.69.0".default.override {
+  rust-stable = pkgs.rust-bin.stable."1.73.0".default.override {
     targets = [ "wasm32-unknown-unknown" ];
   };
 

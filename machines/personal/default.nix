@@ -38,6 +38,7 @@
 
       home.packages = [
         pkgs.bazelisk
+        pkgs.bazel-buildtools
         pkgs.coreutils # Use GNU versions of `ls`, etc
         pkgs.doctl
         pkgs.fd
@@ -62,6 +63,7 @@
         pkgs.tree
         pkgs.trunk
         pkgs.wget
+        pkgs.rust-bindgen
       ];
     }
   ];

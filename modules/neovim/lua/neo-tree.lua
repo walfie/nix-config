@@ -21,7 +21,9 @@ neotree.setup({
   filesystem = {
     hide_dotfiles = false,
     hide_gitignored = false,
-    follow_current_file = true,
+    follow_current_file = {
+      enabled = true,
+    },
     group_empty_dirs = true,
     filtered_items = {
       visible = true,

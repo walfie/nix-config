@@ -13,7 +13,7 @@
       prev.lib.composeManyExtensions [
         (self: super:
           let
-            mkVimPlugin = name: src: super.vimUtils.buildVimPluginFrom2Nix { inherit name src; };
+            mkVimPlugin = name: src: super.vimUtils.buildVimPlugin { inherit name src; };
           in
           {
             vimExtraPlugins = builtins.mapAttrs mkVimPlugin inputs;

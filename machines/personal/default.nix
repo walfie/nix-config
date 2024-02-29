@@ -49,7 +49,7 @@
         pkgs.imagemagick
         pkgs.inetutils
         pkgs.jq
-        pkgs.ncdu
+        #pkgs.ncdu # Broken. Fixed in https://github.com/NixOS/nixpkgs/issues/290512
         pkgs.niv
         pkgs.nixpkgs-fmt
         pkgs.oci-cli # Oracle Cloud
@@ -64,6 +64,7 @@
         pkgs.trunk
         pkgs.wget
         pkgs.rust-bindgen
+        pkgs.optipng
       ];
     }
   ];

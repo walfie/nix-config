@@ -74,6 +74,7 @@ let
         src = ./lua/lsp.lua;
 
         black_cmd = "${pkgs.black}/bin/black";
+        buildifier_cmd = "${pkgs.bazel-buildtools}/bin/buildifier";
         cssls_cmd = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-css-language-server";
         eslint_cmd = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-eslint-language-server";
         gopls_cmd = "${pkgs.gopls}/bin/gopls";
@@ -81,7 +82,9 @@ let
         jsonls_cmd = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-json-language-server";
         pyright_cmd = "${pkgs.pyright}/bin/pyright-langserver";
         rnix_cmd = "${pkgs.rnix-lsp}/bin/rnix-lsp";
+        nixpkgs_fmt_cmd = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
         rust_analyzer_cmd = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+        starlark_rust_cmd = "${pkgs.starlark-rust}/bin/starlark";
         terraformls_cmd = "${pkgs.terraform-ls}/bin/terraform-ls";
         tsserver_cmd = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
         tsserver_path = "${pkgs.nodePackages.typescript}/lib/node_modules/typescript/lib/";

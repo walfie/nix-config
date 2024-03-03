@@ -66,12 +66,14 @@ let
     }
 
     rust-tools-nvim
+    none-ls-nvim
     {
       plugin = pkgs.vimExtraPlugins.nvim-lspconfig;
       type = "lua";
       config = lib.fileContents (pkgs.substituteAll {
         src = ./lua/lsp.lua;
 
+        black_cmd = "${pkgs.black}/bin/black";
         cssls_cmd = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-css-language-server";
         eslint_cmd = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-eslint-language-server";
         gopls_cmd = "${pkgs.gopls}/bin/gopls";

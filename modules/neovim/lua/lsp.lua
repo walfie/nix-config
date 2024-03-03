@@ -1,6 +1,7 @@
 -- Note: `@variable@` is replaced in nix via `pkgs.substituteAll`
 
 local nvim_lsp = require("lspconfig")
+local null_ls = require("null-ls")
 
 nvim_lsp.cssls.setup({ cmd = { "@cssls_cmd@", "--stdio" } })
 nvim_lsp.eslint.setup({ cmd = { "@eslint_cmd@", "--stdio" } })
@@ -11,6 +12,12 @@ nvim_lsp.pyright.setup({ cmd = { "@pyright_cmd@", "--stdio" } })
 nvim_lsp.rnix.setup({ cmd = { "@rnix_cmd@" } })
 nvim_lsp.terraformls.setup({ cmd = { "@terraformls_cmd@", "serve" } })
 nvim_lsp.tsserver.setup({ cmd = { "@tsserver_cmd@", "--stdio", "--tsserver-path", "@tsserver_path@" } })
+
+null_ls.setup({
+  sources = {
+    null_ls.builtins.formatting.black.with({ command = "@black_cmd@" }),
+  },
+})
 
 -- Assumes we have `starlark` available in `$PATH`.
 -- starlark-rust isn't on nixpkgs, so we need to build it ourselves.

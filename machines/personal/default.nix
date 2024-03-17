@@ -34,6 +34,7 @@
         stateVersion = "21.05";
         username = "who";
         homeDirectory = "/Users/who";
+        sessionPath = [ "$HOME/.local/bin" ];
       };
 
       home.packages = [

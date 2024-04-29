@@ -1,6 +1,9 @@
 { lib, pkgs, config, ... }:
 let
   rust-stable = pkgs.rust-bin.stable."1.76.0".default.override {
+    # Ensure rust-analyzer is aligned with rust version.
+    # rust-src is needed for completion for `std` modules.
+    extensions = [ "rust-analyzer" "rust-src" ];
     targets = [ "wasm32-unknown-unknown" ];
   };
 
@@ -10,8 +13,14 @@ let
     export PATH=${rust-nightly}/bin:$PATH
     ${rust-nightly}/bin/cargo $@
   '';
+
+  overlay = final: prev: {
+    rust-analyzer = rust-stable;
+  };
 in
 {
+  nixpkgs.overlays = [ overlay ];
+
   home.packages = [
     (lib.hiPrio rustfmt)
     rust-stable

@@ -57,6 +57,9 @@ require("rust-tools").setup({
           -- Compile with all features to prevent "code is inactive due to #[cfg] directives" messages
           -- https://users.rust-lang.org/t/can-i-stop-vscode-rust-analyzer-from-shading-out-cfgs/58773/4
           features = "all",
+          -- Use different directory for rust-analyzer to avoid `cargo build` triggering full rebuilds.
+          -- https://github.com/rust-lang/rust-analyzer/pull/15681
+          --targetDir = true,
         },
       },
     }

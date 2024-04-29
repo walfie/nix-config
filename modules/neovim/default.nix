@@ -264,10 +264,6 @@ in
     vimdiffAlias = true;
     withNodeJs = true;
 
-    extraConfig = ''
-      lua << EOF
-      ${ lib.fileContents ./lua/init.lua }
-      EOF
-    '';
+    extraLuaConfig = lib.fileContents ./lua/init.lua;
   };
 }

@@ -14,6 +14,8 @@
     fi
   '';
 
+  # TODO: home-manager has macOS defaults configurable via `targets.darwin.defaults`
+  # https://nix-community.github.io/home-manager/options.xhtml#opt-targets.darwin.defaults
   home.activation.setDefaults =
     lib.hm.dag.entryAfter [ "writeBoundary" ] (lib.fileContents ./set-defaults.sh);
 

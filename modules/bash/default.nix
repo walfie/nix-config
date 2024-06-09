@@ -20,8 +20,6 @@ in
     pkgs.bash-completion
   ];
 
-  programs.zoxide.enable = true;
-
   programs.bash = {
     enable = true;
     historyControl = [ "ignoredups" ];

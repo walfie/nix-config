@@ -10,6 +10,7 @@ let
     };
 
     macos-dock.enable = true;
+    programs.zoxide.enable = true;
 
     programs.git = {
       userName = "Walfie";

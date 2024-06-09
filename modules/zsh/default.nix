@@ -22,8 +22,6 @@ let
   rprompt = "%(?..%F{red}✘ %?%f)";
 in
 {
-  programs.zoxide.enable = true;
-
   programs.zsh = {
     enable = true;
 

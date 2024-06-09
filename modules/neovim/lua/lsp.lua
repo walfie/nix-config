@@ -9,7 +9,7 @@ nvim_lsp.gopls.setup({ cmd = { "@gopls_cmd@" } })
 nvim_lsp.html.setup({ cmd = { "@html_cmd@", "--stdio" } })
 nvim_lsp.jsonls.setup({ cmd = { "@jsonls_cmd@", "--stdio" } })
 nvim_lsp.pyright.setup({ cmd = { "@pyright_cmd@", "--stdio" } })
-nvim_lsp.rnix.setup({ cmd = { "@rnix_cmd@" } })
+nvim_lsp.nixd.setup({ cmd = { "@nixd_cmd@" } })
 nvim_lsp.terraformls.setup({ cmd = { "@terraformls_cmd@", "serve" } })
 nvim_lsp.tsserver.setup({ cmd = { "@tsserver_cmd@", "--stdio", "--tsserver-path", "@tsserver_path@" } })
 nvim_lsp.starlark_rust.setup({

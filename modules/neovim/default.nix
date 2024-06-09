@@ -81,7 +81,7 @@ let
         html_cmd = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-html-language-server";
         jsonls_cmd = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-json-language-server";
         pyright_cmd = "${pkgs.pyright}/bin/pyright-langserver";
-        rnix_cmd = "${pkgs.rnix-lsp}/bin/rnix-lsp";
+        nixd_cmd = "${pkgs.nixd}/bin/nixd";
         nixpkgs_fmt_cmd = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
         rust_analyzer_cmd = "${pkgs.rust-analyzer}/bin/rust-analyzer";
         starlark_rust_cmd = "${pkgs.starlark-rust}/bin/starlark";

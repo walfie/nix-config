@@ -1,4 +1,8 @@
 { pkgs, ... }:
+let
+  username = "who";
+  homeDirectory = "/Users/${username}";
+in
 {
   inherit pkgs;
 
@@ -24,6 +28,12 @@
       programs.git = {
         userName = "Walfie";
         userEmail = "walfington@gmail.com";
+        extraConfig = {
+          url."git@github.com:".insteadOf = "https://github.com";
+          commit.gpgsign = true;
+          gpg.format = "ssh";
+          user.signingkey = "${homeDirectory}/.ssh/id_ed25519.pub";
+        };
       };
 
       programs.zsh.shellAliases = {
@@ -31,9 +41,8 @@
       };
 
       home = {
+        inherit username homeDirectory;
         stateVersion = "21.05";
-        username = "who";
-        homeDirectory = "/Users/who";
         sessionPath = [ "$HOME/.local/bin" ];
       };
 

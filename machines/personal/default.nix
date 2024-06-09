@@ -27,6 +27,26 @@ let
       bazel = "bazelisk";
     };
 
+    programs.ssh = {
+      enable = true;
+      extraOptionOverrides = {
+        IgnoreUnknown = "UseKeychain";
+      };
+
+      matchBlocks = {
+        "github.com" = {
+          user = "git";
+          hostname = "github.com";
+          identityFile = "~/.ssh/id_ed25519";
+          identitiesOnly = true;
+          extraOptions = {
+            UseKeychain = "yes";
+            AddKeysToAgent = "yes";
+          };
+        };
+      };
+    };
+
     home.packages = [
       pkgs.bazelisk
       pkgs.bazel-buildtools

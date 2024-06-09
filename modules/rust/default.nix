@@ -1,4 +1,4 @@
-{ lib, pkgs, config, ... }:
+{ lib, pkgs, ... }:
 let
   rust-stable = pkgs.rust-bin.stable."1.76.0".default.override {
     # Ensure rust-analyzer is aligned with rust version.

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 let
   plugins = with pkgs.vimPlugins; [
     emmet-vim

@@ -50,7 +50,7 @@
         pkgs.imagemagick
         pkgs.inetutils
         pkgs.jq
-        #pkgs.ncdu # Broken. Fixed in https://github.com/NixOS/nixpkgs/issues/290512
+        pkgs.ncdu
         pkgs.niv
         pkgs.nixpkgs-fmt
         pkgs.oci-cli # Oracle Cloud

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   macos-dock.applications = [
     "${pkgs.kitty}/Applications/kitty.app"

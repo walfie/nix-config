@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 let
   # The `\[` and `\]` tell bash that the contents are non-printable
   # https://stackoverflow.com/questions/19092488/custom-bash-prompt-is-overwriting-itself

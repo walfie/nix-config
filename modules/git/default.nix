@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 let
   # Find and delete branches that were squash-merged
   git-delete-squashed =

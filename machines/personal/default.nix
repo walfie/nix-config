@@ -75,6 +75,13 @@ let
       pkgs.wget
       pkgs.rust-bindgen
       pkgs.optipng
+
+      # https://jvns.ca/blog/2022/04/12/a-list-of-new-ish--command-line-tools/
+      pkgs.bat # cat alternative
+      pkgs.choose # Simple cut/awk alternative
+      pkgs.jc # Convert the output of multiple commands to JSON
+      pkgs.jless # JSON pager
+      pkgs.moreutils # sponge: Soak up the input before writing the output file
     ];
   };
 in

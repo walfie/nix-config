@@ -69,6 +69,7 @@ in
     };
 
     shellAliases = {
+      bat = "${pkgs.bat}/bin/bat -p";
       grep = "grep --color -I";
       ips = "${pkgs.inetutils}/bin/ifconfig | awk '\$1 == \"inet\" {print \$3}'";
       ll = "ls -l";

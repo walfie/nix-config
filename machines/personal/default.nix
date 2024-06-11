@@ -12,6 +12,12 @@ let
     macos-dock.enable = true;
     programs.zoxide.enable = true;
 
+    programs.kitty.settings.shell = "${pkgs.fish}/bin/fish";
+    programs.tmux = {
+      shell = "${pkgs.fish}/bin/fish";
+      extraConfig = "set -g default-command ${pkgs.fish}/bin/fish";
+    };
+
     programs.git = {
       userName = "Walfie";
       userEmail = "walfington@gmail.com";
@@ -92,6 +98,7 @@ in
   modules = [
     ../../modules/bash
     ../../modules/direnv
+    ../../modules/fish
     ../../modules/flakes
     ../../modules/git
     ../../modules/home-manager

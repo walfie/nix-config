@@ -16,9 +16,26 @@
         "type": "github"
       }
     },
+    "replay": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1655689996,
+        "narHash": "sha256-bM6+oAd/HXaVgpJMut8bwqO54Le33hwO9qet9paK1kY=",
+        "owner": "jorgebucaran",
+        "repo": "replay.fish",
+        "rev": "bd8e5b89ec78313538e747f0292fcaf631e87bd2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jorgebucaran",
+        "repo": "replay.fish",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
-        "nix-fish": "nix-fish"
+        "nix-fish": "nix-fish",
+        "replay": "replay"
       }
     }
   },

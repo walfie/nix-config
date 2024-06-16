@@ -4,6 +4,8 @@
   inputs = {
     nix-fish.url = "github:kidonng/nix.fish";
     nix-fish.flake = false;
+    replay.url = "github:jorgebucaran/replay.fish";
+    replay.flake = false;
   };
 
   outputs = inputs: {

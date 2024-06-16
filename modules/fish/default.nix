@@ -15,7 +15,10 @@ in
   programs.fish = {
     enable = true;
 
-    plugins = with pkgs.fishExtraPlugins; [ nix-fish ];
+    plugins = with pkgs.fishExtraPlugins; [
+      nix-fish
+      replay
+    ];
 
     functions = {
       fish_greeting = "";

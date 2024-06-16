@@ -116,8 +116,7 @@ Some resources I found useful during setup:
 * [Right way to add a custom package?](https://github.com/LnL7/nix-darwin/issues/16#issuecomment-284262711)
 * [List of configurable macOS settings](https://github.com/mathiasbynens/dotfiles/blob/master/.macos)
 * [Nix Package Versions](https://lazamar.co.uk/nix-versions/)
-* [Pkgs on Nix](https://pkgs.on-nix.com/)
 * [Flakes - NixOS Wiki](https://nixos.wiki/wiki/Flakes)
 * [cprussin/dotfiles](https://github.com/cprussin/dotfiles)
-* [m15a/nixpkgs-vim-extra-plugins](https://github.com/m15a/nixpkgs-vim-extra-plugins)
+* [m15a/flake-awesome-neovim-plugins](https://github.com/m15a/flake-awesome-neovim-plugins)
 

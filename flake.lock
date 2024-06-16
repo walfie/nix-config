@@ -1,5 +1,20 @@
 {
   "nodes": {
+    "call-flake": {
+      "locked": {
+        "lastModified": 1718501761,
+        "narHash": "sha256-ythzL6iO/eE6r1IA6dflpWx0vC4JBGBlHLTK3BpYhrQ=",
+        "owner": "divnix",
+        "repo": "call-flake",
+        "rev": "518b4aef7bc8b4637cf92ecfa66ec45673dd5f55",
+        "type": "github"
+      },
+      "original": {
+        "owner": "divnix",
+        "repo": "call-flake",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -55,28 +70,12 @@
         "type": "github"
       }
     },
-    "nvim-lspconfig": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1717681643,
-        "narHash": "sha256-QlgLZx9Dp5ijSOxeicNcqm4G8YcF5aOZFJSiBclWuIY=",
-        "owner": "neovim",
-        "repo": "nvim-lspconfig",
-        "rev": "92166b89ab4b3d60f24e58170cac53b7141fd032",
-        "type": "github"
-      },
-      "original": {
-        "owner": "neovim",
-        "repo": "nvim-lspconfig",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
+        "call-flake": "call-flake",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
-        "rust-overlay": "rust-overlay",
-        "vim-plugins-overlay": "vim-plugins-overlay"
+        "rust-overlay": "rust-overlay"
       }
     },
     "rust-overlay": {
@@ -113,38 +112,6 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
-      }
-    },
-    "vim-ctrlsf": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1662087703,
-        "narHash": "sha256-td8eE5t1t5xBAxYq19U5fQXMXS1ZIxAzl2Q6nsIRR6Q=",
-        "owner": "dyng",
-        "repo": "ctrlsf.vim",
-        "rev": "32236a8b376d9311dec9b5fe795ca99d32060b13",
-        "type": "github"
-      },
-      "original": {
-        "owner": "dyng",
-        "repo": "ctrlsf.vim",
-        "type": "github"
-      }
-    },
-    "vim-plugins-overlay": {
-      "inputs": {
-        "nvim-lspconfig": "nvim-lspconfig",
-        "vim-ctrlsf": "vim-ctrlsf"
-      },
-      "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-J/UtnW1ZBveoQXic3zUMm/pGyIHF4zIm0zPNYuRjoBc=",
-        "path": "./overlays/vim-plugins",
-        "type": "path"
-      },
-      "original": {
-        "path": "./overlays/vim-plugins",
-        "type": "path"
       }
     }
   },

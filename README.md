@@ -25,12 +25,6 @@ My personal Nix flake for [home-manager] on macOS.
 
   (`install` is the same as `mkdir` followed by `chown`)
 
-* `cd` into this repo's directory and run the following:
-
-    ```sh
-    nix flake --extra-experimental-features "nix-command flakes" lock --update-input vim-plugins-overlay
-    ```
-
 * Install home-manager and activate the [`personal` config] while in this directory:
 
     ```sh
@@ -82,17 +76,6 @@ Dependencies are defined in `flake.nix` and versions are pinned in `flake.lock`.
     ```
 
 ## Errors
-
-If you get the following error when trying to `switch`:
-
-> cannot fetch input 'path:./overlays/vim-plugins?...' because it uses a relative path
-
-It's likely because changes were made to `vim-plugins-overlay` without updating
-the lock file. You may need to update it with the following command:
-
-```sh
-nix flake lock --update-input vim-plugins-overlay
-```
 
 Some related GitHub issues for context:
 

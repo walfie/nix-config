@@ -1,0 +1,44 @@
+{
+  "nodes": {
+    "nvim-lspconfig": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1718421772,
+        "narHash": "sha256-BNU8ihRktpGhSyp2ZYiG5h7uZ+uIf4EdPS/iIuo/NdM=",
+        "owner": "neovim",
+        "repo": "nvim-lspconfig",
+        "rev": "bd7c76375a511994c9ca8d69441f134dc10ae3bd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "neovim",
+        "repo": "nvim-lspconfig",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nvim-lspconfig": "nvim-lspconfig",
+        "vim-ctrlsf": "vim-ctrlsf"
+      }
+    },
+    "vim-ctrlsf": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1662087703,
+        "narHash": "sha256-td8eE5t1t5xBAxYq19U5fQXMXS1ZIxAzl2Q6nsIRR6Q=",
+        "owner": "dyng",
+        "repo": "ctrlsf.vim",
+        "rev": "32236a8b376d9311dec9b5fe795ca99d32060b13",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dyng",
+        "repo": "ctrlsf.vim",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

@@ -7,14 +7,14 @@
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    vim-plugins-overlay.url = "path:./overlays/vim-plugins";
+    call-flake.url = "github:divnix/call-flake";
   };
 
-  outputs = inputs @ { nixpkgs, home-manager, ... }:
+  outputs = inputs @ { nixpkgs, home-manager, call-flake, ... }:
     let
       overlays = [
         inputs.rust-overlay.overlays.default
-        inputs.vim-plugins-overlay.overlays.default
+        (call-flake ./overlays/vim-plugins).overlays.default
         (import ./overlays/packages)
       ];
     in

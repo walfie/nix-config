@@ -10,22 +10,12 @@ let
     "(set_color normal)"
     space
   ];
-
-  nix-fish = {
-    name = "nix.fish";
-    src = pkgs.fetchFromGitHub {
-      owner = "kidonng";
-      repo = "nix.fish";
-      rev = "ad57d970841ae4a24521b5b1a68121cf385ba71e";
-      sha256 = "sha256-GMV0GyORJ8Tt2S9wTCo2lkkLtetYv0rc19aA5KJbo48=";
-    };
-  };
 in
 {
   programs.fish = {
     enable = true;
 
-    plugins = [ nix-fish ];
+    plugins = with pkgs.fishExtraPlugins; [ nix-fish ];
 
     functions = {
       fish_greeting = "";

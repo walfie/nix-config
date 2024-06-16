@@ -15,6 +15,7 @@
       overlays = [
         inputs.rust-overlay.overlays.default
         (call-flake ./overlays/vim-plugins).overlays.default
+        (call-flake ./overlays/fish-plugins).overlays.default
         (import ./overlays/packages)
       ];
     in

@@ -10,17 +10,11 @@
 
   outputs = inputs: {
     overlays.default = final: prev:
-      prev.lib.composeManyExtensions [
-        (self: super:
-          let
-            mkVimPlugin = name: src: super.vimUtils.buildVimPlugin { inherit name src; };
-          in
-          {
-            vimExtraPlugins = builtins.mapAttrs mkVimPlugin inputs;
-          }
-        )
-      ]
-        final
-        prev;
+      let
+        mkVimPlugin = name: src: prev.vimUtils.buildVimPlugin { inherit name src; };
+      in
+      {
+        vimExtraPlugins = builtins.mapAttrs mkVimPlugin inputs;
+      };
   };
 }

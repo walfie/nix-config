@@ -1,0 +1,27 @@
+{
+  "nodes": {
+    "nix-fish": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1688477565,
+        "narHash": "sha256-GMV0GyORJ8Tt2S9wTCo2lkkLtetYv0rc19aA5KJbo48=",
+        "owner": "kidonng",
+        "repo": "nix.fish",
+        "rev": "ad57d970841ae4a24521b5b1a68121cf385ba71e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kidonng",
+        "repo": "nix.fish",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nix-fish": "nix-fish"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

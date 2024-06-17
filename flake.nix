@@ -16,17 +16,14 @@
         inputs.rust-overlay.overlays.default
         (call-flake ./overlays/vim-plugins).overlays.default
         (call-flake ./overlays/fish-plugins).overlays.default
-        (import ./overlays/packages)
       ];
+
+      mkHomeManagerConfig = system: module: home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs { inherit overlays system; };
+        modules = [ module ];
+      };
     in
     {
-      homeConfigurations.personal = home-manager.lib.homeManagerConfiguration (
-        import ./machines/personal {
-          pkgs = import nixpkgs {
-            inherit overlays;
-            system = "x86_64-darwin";
-          };
-        }
-      );
+      homeConfigurations.personal = mkHomeManagerConfig "x86_64-darwin" ./machines/personal;
     };
 }

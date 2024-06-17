@@ -119,4 +119,5 @@ Some resources I found useful during setup:
 * [Flakes - NixOS Wiki](https://nixos.wiki/wiki/Flakes)
 * [cprussin/dotfiles](https://github.com/cprussin/dotfiles)
 * [m15a/flake-awesome-neovim-plugins](https://github.com/m15a/flake-awesome-neovim-plugins)
+* [Misterio77/nix-starter-configs/tree/main](https://github.com/Misterio77/nix-starter-configs/tree/main)
 

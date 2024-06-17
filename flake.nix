@@ -18,12 +18,17 @@
         (call-flake ./overlays/fish-plugins).overlays.default
       ];
 
-      mkHomeManagerConfig = system: module: home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs { inherit overlays system; };
-        modules = [ module ];
+      nixpkgs-module = { nixpkgs.overlays = overlays; };
+
+      mkHomeManagerConfig = { pkgs, module }: home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [ module nixpkgs-module ];
       };
     in
     {
-      homeConfigurations.personal = mkHomeManagerConfig "x86_64-darwin" ./machines/personal;
+      homeConfigurations.personal = mkHomeManagerConfig {
+        pkgs = nixpkgs.legacyPackages.x86_64-darwin;
+        module = ./machines/personal;
+      };
     };
 }

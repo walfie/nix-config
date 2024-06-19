@@ -28,10 +28,18 @@ in
       fish_greeting = "";
       fish_prompt = "string join '' -- ${prompt}";
       fish_right_prompt = ''
-        set -l cmd_status $status
-        if test $cmd_status -ne 0
-            echo -n (set_color red)"✘ $cmd_status"
+        set -l last_status $status
+        set -q last_status_generation; or set -g last_status_generation $status_generation
+        if test $last_status_generation != $status_generation
+          if test $CMD_DURATION -gt 100
+            echo -n (humantime $CMD_DURATION)
+          end
+
+          if test $last_status -ne 0
+              echo -n (set_color red)" ✘ $last_status"
+          end
         end
+        set last_status_generation $status_generation
         set color normal
       '';
     };

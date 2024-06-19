@@ -2,9 +2,9 @@
 {
   nix = {
     package = pkgs.nixFlakes;
-    settings = {
-      experimental-features = "nix-command flakes";
-    };
+    settings.experimental-features = "nix-command flakes";
   };
+
+  home.packages = [ pkgs.nixFlakes ];
 }
 

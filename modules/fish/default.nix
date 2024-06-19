@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   color = code: text: "(set_color --bold ${code})${text}";
   space = "' '";
@@ -10,15 +10,19 @@ let
     "(set_color normal)"
     space
   ];
+
+  mkPlugin = name: { src, ... }: { inherit name src; };
+  mkPlugins = lib.attrsets.mapAttrsToList mkPlugin;
 in
 {
   programs.fish = {
     enable = true;
 
-    plugins = with pkgs.fishExtraPlugins; [
-      nix-fish
-      replay
-    ];
+    plugins = mkPlugins {
+      nix-fish = pkgs.fishExtraPlugins.nix-fish;
+      replay = pkgs.fishExtraPlugins.replay;
+      humantime-fish = pkgs.fishPlugins.humantime-fish;
+    };
 
     functions = {
       fish_greeting = "";

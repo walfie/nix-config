@@ -50,6 +50,9 @@ in
 
       transient_prompt_func = ''
         echo -n (date '+%H:%M:%S') (set_color --bold $color_primary)(pwd | path basename)(set_color $color_accent)"❯ "(set_color normal)
+
+        # If multi-line command, show the command on its own line
+        test (commandline | wc -l) -gt 1 && echo \n
       '';
 
       transient_rprompt_func = ''

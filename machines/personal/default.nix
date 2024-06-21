@@ -31,6 +31,7 @@ in
   macos-dock.enable = true;
   programs.zoxide.enable = true;
 
+  programs.nix-index-database.comma.enable = true;
   programs.kitty.settings.shell = "${pkgs.fish}/bin/fish";
   programs.tmux = {
     shell = "${pkgs.fish}/bin/fish";

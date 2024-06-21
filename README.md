@@ -13,8 +13,8 @@ My personal Nix flake for [home-manager] on macOS.
     ```
 
   You can also replace the install URL with a specific version such as
-  `https://releases.nixos.org/nix/nix-2.10.3/install` (this setup has been
-  verified to work on at least `2.10.3`).
+  `https://releases.nixos.org/nix/nix-2.18.2/install` (this setup has been
+  verified to work on at least `2.18.2`).
 
 * If the per-user profile directory doesn't exist for your user at
   `/nix/var/nix/profiles/per-user/$(whoami)`, create it:
@@ -120,4 +120,5 @@ Some resources I found useful during setup:
 * [cprussin/dotfiles](https://github.com/cprussin/dotfiles)
 * [m15a/flake-awesome-neovim-plugins](https://github.com/m15a/flake-awesome-neovim-plugins)
 * [Misterio77/nix-starter-configs/tree/main](https://github.com/Misterio77/nix-starter-configs/tree/main)
+* [Nix Reference Manual: Upgrading Nix](https://nix.dev/manual/nix/2.22/installation/upgrading)
 

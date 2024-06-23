@@ -31,23 +31,32 @@ let
 
     {
       extraPlugins = [ pkgs.vimPlugins.zenburn ];
+
       colorscheme = "zenburn";
       globals.zenburn_high_Contrast = 1;
-
-      extraConfigVim = ''
-        match TrailingWhitespace /\s\+$/
-        highlight Visual term=reverse cterm=reverse
-        highlight MatchParen cterm=bold ctermbg=none ctermfg=magenta
-        highlight TrailingWhitespace ctermfg=darkgreen
-        highlight LspInlayHint ctermfg=darkgray
-      '';
+      match.TrailingWhitespace = ''/\s\+$/'';
+      highlightOverride = {
+        Visual.reverse = true;
+        MatchParen = { bold = true; ctermbg = "none"; ctermfg = "Magenta"; };
+        TrailingWhitespace.ctermfg = "DarkGreen";
+        LspInlayHint.ctermfg = "DarkGray";
+      };
     }
 
-    {
-      extraPlugins = [ pkgs.vimPlugins.rainbow ];
-      globals.rainbow_active = 1;
-      globals.rainbow_conf.ctermfgs = [ "darkred" "darkgreen" "darkmagenta" "darkcyan" "red" "yellow" "green" "darkyellow" "magenta" "cyan" "darkyellow" ];
-    }
+    (
+      let
+        colors = [ "DarkRed" "DarkGreen" "DarkMagenta" "DarkCyan" "Red" "Yellow" "Green" "DarkYellow" "Magenta" "Cyan" "DarkYellow" ];
+        toName = color: "RainbowDelimiter${color}";
+        toAttrSet = color: { name = toName color; value = { ctermfg = color; }; };
+      in
+      {
+        highlightOverride = builtins.listToAttrs (builtins.map toAttrSet colors);
+        plugins.rainbow-delimiters = {
+          enable = true;
+          highlight = builtins.map toName colors;
+        };
+      }
+    )
   ];
 in
 {
@@ -88,6 +97,7 @@ in
       nvim-autopairs.enable = true;
       sleuth.enable = true;
       surround.enable = true;
+      treesitter.enable = true;
       which-key.enable = true;
     };
   };

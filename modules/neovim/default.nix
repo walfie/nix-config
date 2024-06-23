@@ -30,20 +30,6 @@ let
     }
 
     {
-      extraPlugins = [ pkgs.vimPlugins.lsp_signature-nvim ];
-      autoCmd = [{
-        event = [ "LspAttach" ];
-        callback.__raw = ''function(args)
-          require("lsp_signature").on_attach({
-            bind = true,
-            hint_enable = false, -- Virtual hint not needed since `floating_window` is true
-            always_trigger = true, -- Continue showing even on newline
-          }, args.buf)
-        end'';
-      }];
-    }
-
-    {
       extraPlugins = [ pkgs.vimPlugins.zenburn ];
       colorscheme = "zenburn";
       globals.zenburn_high_Contrast = 1;

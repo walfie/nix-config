@@ -75,6 +75,8 @@ in
   };
 
   home.packages = [
+    pkgs.nixFlakes
+
     pkgs.bazelisk
     pkgs.bazel-buildtools
     pkgs.coreutils # Use GNU versions of `ls`, etc

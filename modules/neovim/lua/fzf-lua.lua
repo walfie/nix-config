@@ -1,19 +1,4 @@
 local fzf = require("fzf-lua")
-fzf.setup({
-  -- Note: `@variable@` is replaced in nix via `pkgs.substituteAll`
-  fzf_bin = "@fzf_bin@",
-  fzf_opts = {
-    ["--layout"] = "default",
-    ["--border"] = false,
-    ["--no-separator"] = false,
-  },
-  winopts = {
-    width = 0.9,
-    preview = {
-      hidden = "hidden",
-    },
-  },
-})
 
 -- Fuzzy autocomplete current line
 vim.keymap.set("i", "<C-x><C-l>", function()

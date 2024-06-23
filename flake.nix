@@ -9,6 +9,9 @@
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim.url = "github:nix-community/nixvim/nixos-24.05";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim.inputs.home-manager.follows = "home-manager";
     call-flake.url = "github:divnix/call-flake";
   };
 
@@ -27,6 +30,7 @@
         modules = [
           module
           nixpkgs-module
+          inputs.nixvim.homeManagerModules.nixvim
           inputs.nix-index-database.hmModules.nix-index
         ];
       };

@@ -13,14 +13,8 @@ let
     export PATH=${rust-nightly}/bin:$PATH
     ${rust-nightly}/bin/cargo $@
   '';
-
-  overlay = final: prev: {
-    rust-analyzer = rust-stable;
-  };
 in
 {
-  nixpkgs.overlays = [ overlay ];
-
   home.packages = [
     (lib.hiPrio rustfmt)
     rust-stable

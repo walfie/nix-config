@@ -90,7 +90,6 @@ in
     pkgs.inetutils
     pkgs.jq
     pkgs.ncdu
-    pkgs.niv
     pkgs.nixpkgs-fmt
     pkgs.oci-cli # Oracle Cloud
     pkgs.pngcrush
@@ -106,6 +105,7 @@ in
     pkgs.optipng
 
     # https://jvns.ca/blog/2022/04/12/a-list-of-new-ish--command-line-tools/
+    pkgs.ripgrep
     pkgs.bat # cat alternative
     pkgs.choose # Simple cut/awk alternative
     pkgs.jc # Convert the output of multiple commands to JSON

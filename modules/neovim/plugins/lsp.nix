@@ -15,16 +15,11 @@
       };
     };
 
-    plugins.rust-tools = {
+    plugins.rustaceanvim = {
       enable = true;
-      inlayHints = {
-        parameterHintsPrefix = "« ";
-        otherHintsPrefix = "» ";
-        highlight = "LspInlayHint";
-      };
 
       # https://github.com/rust-lang/rust-analyzer/blob/6e8a54d0f68702cf7981c8299357838eb0f4d5b2/docs/user/generated_config.adoc
-      extraOptions.server.settings.rust-analyzer = {
+      settings.server.settings = {
         imports = {
           # Auto-imported paths from current crate should prefer `crate::` rather than `super::`
           prefix = "crate";

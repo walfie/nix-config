@@ -18,6 +18,8 @@
     plugins.rustaceanvim = {
       enable = true;
 
+      settings.tools.hover_actions.replace_builtin_hover = false;
+
       # https://github.com/rust-lang/rust-analyzer/blob/6e8a54d0f68702cf7981c8299357838eb0f4d5b2/docs/user/generated_config.adoc
       settings.server.settings = {
         imports = {

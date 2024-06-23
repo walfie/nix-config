@@ -43,20 +43,11 @@ let
       '';
     }
 
-    (
-      let
-        colors = [ "DarkRed" "DarkGreen" "DarkMagenta" "DarkCyan" "Red" "Yellow" "Green" "DarkYellow" "Magenta" "Cyan" "DarkYellow" ];
-        toName = color: "RainbowDelimiter${color}";
-        toAttrSet = color: { name = toName color; value = { ctermfg = color; }; };
-      in
-      {
-        highlight = builtins.listToAttrs (builtins.map toAttrSet colors);
-        plugins.rainbow-delimiters = {
-          enable = true;
-          highlight = builtins.map toName colors;
-        };
-      }
-    )
+    {
+      extraPlugins = [ pkgs.vimPlugins.rainbow ];
+      globals.rainbow_active = 1;
+      globals.rainbow_conf.ctermfgs = [ "darkred" "darkgreen" "darkmagenta" "darkcyan" "red" "yellow" "green" "darkyellow" "magenta" "cyan" "darkyellow" ];
+    }
   ];
 in
 {
@@ -97,7 +88,6 @@ in
       nvim-autopairs.enable = true;
       sleuth.enable = true;
       surround.enable = true;
-      treesitter.enable = true;
       which-key.enable = true;
     };
   };

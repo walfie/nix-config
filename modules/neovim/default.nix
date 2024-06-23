@@ -34,7 +34,7 @@ let
 
       colorscheme = "zenburn";
       globals.zenburn_high_Contrast = 1;
-      match.TrailingWhitespace = ''/\s\+$/'';
+      match.TrailingWhitespace = ''\s\+$'';
       highlightOverride = {
         Visual.reverse = true;
         MatchParen = { bold = true; ctermbg = "none"; ctermfg = "Magenta"; };

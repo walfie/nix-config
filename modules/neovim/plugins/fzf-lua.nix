@@ -17,6 +17,6 @@
       };
     };
 
-    extraConfigLua = lib.fileContents ../lua/fzf-lua.lua;
+    extraConfigLua = lib.fileContents ./fzf-lua.lua;
   };
 }

@@ -4,7 +4,5 @@
     package = pkgs.nixFlakes;
     settings.experimental-features = "nix-command flakes";
   };
-
-  home.packages = [ pkgs.nixFlakes ];
 }
 

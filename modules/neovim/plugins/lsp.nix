@@ -1,0 +1,55 @@
+{
+  programs.nixvim = {
+    plugins.lsp = {
+      enable = true;
+      servers = {
+        cssls.enable = true;
+        eslint.enable = true;
+        gopls.enable = true;
+        html.enable = true;
+        jsonls.enable = true;
+        pyright.enable = true;
+        terraformls.enable = true;
+        tsserver.enable = true;
+        nil-ls.enable = true;
+      };
+    };
+
+    plugins.rust-tools = {
+      enable = true;
+      inlayHints = {
+        parameterHintsPrefix = "« ";
+        otherHintsPrefix = "» ";
+        highlight = "LspInlayHint";
+      };
+
+      # https://github.com/rust-lang/rust-analyzer/blob/6e8a54d0f68702cf7981c8299357838eb0f4d5b2/docs/user/generated_config.adoc
+      extraOptions.server.settings.rust-analyzer = {
+        imports = {
+          # Auto-imported paths from current crate should prefer `crate::` rather than `super::`
+          prefix = "crate";
+          # Prefer grouping imports by module rather than crate.
+          # E.g., avoid `use a::{b::c, d::{e, f}};`
+          granularity.group = "module";
+        };
+
+        # Compile with all features to prevent "code is inactive due to #[cfg] directives" messages
+        # https://users.rust-lang.org/t/can-i-stop-vscode-rust-analyzer-from-shading-out-cfgs/58773/4
+        cargo.features = "all";
+
+        # Use different directory for rust-analyzer to avoid `cargo build` triggering full rebuilds.
+        # https://github.com/rust-lang/rust-analyzer/pull/15681
+        #cargo.targetDir = true;
+      };
+    };
+
+    plugins.none-ls = {
+      enable = true;
+      sources.formatting = {
+        black.enable = true;
+        buildifier.enable = true;
+        nixpkgs_fmt.enable = true;
+      };
+    };
+  };
+}

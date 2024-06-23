@@ -1,269 +1,190 @@
 { pkgs, lib, ... }:
 let
-  plugins = with pkgs.vimPlugins; [
-    emmet-vim
-    nerdcommenter
-    nvim-web-devicons
-    traces-vim
-    vim-abolish
-    vim-eunuch
-    vim-fugitive
-    vim-repeat
-    vim-scala
-    vim-sleuth
-    vim-surround
-    vim-visual-increment
-
-    # Used by nvim-cmp
-    luasnip
-    cmp-buffer
-    cmp-nvim-lsp
-    cmp-nvim-lua
-    cmp-path
-
+  mkPlugin = value: { programs.nixvim = value; };
+  plugins = map mkPlugin [
     {
-      plugin = barbar-nvim;
-      type = "lua";
-      config = ''
-        require("bufferline").setup({
-          animation = false,
-          icons = {
-            buffer_index = true,
-            filetype = { enabled = true },
-            button = false,
-          },
-        })
+      extraPlugins = [ pkgs.vimPlugins.camelcasemotion ];
+      globals.camelcasemotion_key = ",";
 
-        -- Switch between buffers
-        vim.keymap.set("n", "<C-h>", "<Cmd>BufferPrevious<CR>", { silent = true })
-        vim.keymap.set("n", "<C-l>", "<Cmd>BufferNext<CR>", { silent = true })
-
-        local bufferline_api = require("bufferline.api")
-        vim.api.nvim_create_user_command(
-          "B",
-          bufferline_api.pick_buffer,
-          { desc = "Pick a buffer" }
-        )
-
-        for index = 1,9 do
-          vim.api.nvim_create_user_command("B" .. index, function()
-            bufferline_api.goto_buffer(index)
-          end, { desc = "Go to buffer " .. index })
-        end
-
-        -- Delete buffer
-        vim.keymap.set("n", "<Leader>q", "<Cmd>BufferClose<CR>")
-        vim.keymap.set("n", "<Leader>Q", "<Cmd>BufferClose!<CR>")
-      '';
+      # Adding some `nmap` calls to avoid deleting trailing underscore
+      # https://github.com/bkad/CamelCaseMotion/issues/10#issuecomment-8704702
+      keymaps = [
+        { key = "c,w"; action = "c,e"; mode = "n"; }
+        { key = "ci,w"; action = "ci,e"; mode = "n"; }
+      ];
     }
 
     {
-      plugin = which-key-nvim;
-      type = "lua";
-      config = ''
-        require("which-key").setup({})
-      '';
-    }
-
-    rust-tools-nvim
-    none-ls-nvim
-    {
-      plugin = pkgs.vimExtraPlugins.nvim-lspconfig;
-      type = "lua";
-      config = lib.fileContents (pkgs.substituteAll {
-        src = ./lua/lsp.lua;
-
-        black_cmd = "${pkgs.black}/bin/black";
-        buildifier_cmd = "${pkgs.bazel-buildtools}/bin/buildifier";
-        cssls_cmd = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-css-language-server";
-        eslint_cmd = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-eslint-language-server";
-        gopls_cmd = "${pkgs.gopls}/bin/gopls";
-        html_cmd = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-html-language-server";
-        jsonls_cmd = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-json-language-server";
-        pyright_cmd = "${pkgs.pyright}/bin/pyright-langserver";
-        nixd_cmd = "${pkgs.nixd}/bin/nixd";
-        nixpkgs_fmt_cmd = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
-        rust_analyzer_cmd = "${pkgs.rust-analyzer}/bin/rust-analyzer";
-        starlark_rust_cmd = "${pkgs.starlark-rust}/bin/starlark";
-        terraformls_cmd = "${pkgs.terraform-ls}/bin/terraform-ls";
-        tsserver_cmd = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
-        tsserver_path = "${pkgs.nodePackages.typescript}/lib/node_modules/typescript/lib/";
-      });
+      extraPlugins = [ pkgs.vimPlugins.vim-argwrap ];
+      keymaps = [{ key = "<Leader>w"; action = ":ArgWrap<CR>"; mode = "n"; }];
     }
 
     {
-      plugin = lsp_signature-nvim;
-      type = "lua";
-      config = ''
-        require("lsp_signature").setup({
-          hint_enable = false, -- Virtual hint not needed since `floating_window` is true
-          always_trigger = true, -- Continue showing even on newline
-        })
-      '';
-    }
-
-    # https://github.com/hrsh7th/nvim-cmp/tree/058100d81316239f3874064064f0f0c5d43c2103#recommended-configuration
-    {
-      plugin = nvim-cmp;
-      type = "lua";
-      config = ''
-        local cmp = require("cmp")
-        cmp.setup({
-          snippet = {
-            expand = function(args)
-              require("luasnip").lsp_expand(args.body)
-            end,
-          },
-          preselect = cmp.PreselectMode.None,
-          mapping = {
-            ["<C-p>"] = cmp.mapping.select_prev_item(),
-            ["<C-n>"] = cmp.mapping.select_next_item(),
-            ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-            ["<Tab>"] = cmp.mapping.select_next_item(),
-            ["<CR>"] = cmp.mapping.confirm(),
-          },
-          -- Installed sources
-          sources = {
-            { name = "nvim_lsp" },
-            { name = "nvim_lua" },
-            { name = "luasnip" },
-            { name = "buffer" },
-            { name = "path" },
-          },
-        })
-      '';
+      plugins.trouble.enable = true;
+      keymaps = [{ key = "<Leader>x"; action = "<Cmd>TroubleToggle<CR>"; mode = "n"; }];
     }
 
     {
-      plugin = nvim-autopairs;
-      type = "lua";
-      config = ''
-        local autopairs = require("nvim-autopairs")
-        autopairs.setup({})
-        autopairs.remove_rule("'") -- Single quote is often used on its own in Rust
-
-        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-        require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-      '';
+      extraPlugins = [ pkgs.vimExtraPlugins.vim-ctrlsf ];
+      keymaps = [{ key = "<Leader>f"; action = "<Plug>CtrlSFPrompt"; mode = "n"; }];
     }
 
     {
-      plugin = neo-tree-nvim;
-      type = "lua";
-      config = lib.fileContents ./lua/neo-tree.lua;
+      extraPlugins = [ pkgs.vimPlugins.zenburn ];
+
+      colorscheme = "zenburn";
+      globals.zenburn_high_Contrast = 1;
+      match.TrailingWhitespace = ''\s\+$'';
+      highlightOverride = {
+        Visual.reverse = true;
+        MatchParen = { bold = true; ctermbg = "none"; ctermfg = "Magenta"; };
+        TrailingWhitespace.ctermfg = "DarkGreen";
+        LspInlayHint.ctermfg = "DarkGray";
+      };
     }
 
-    {
-      plugin = camelcasemotion;
-      type = "lua";
-      config = ''
-        -- Adding some `nmap` calls to avoid deleting trailing underscore
-        -- https://github.com/bkad/CamelCaseMotion/issues/10#issuecomment-8704702
-        vim.g.camelcasemotion_key = ","
-        vim.keymap.set("n", "c,w", "c,e", { remap = true })
-        vim.keymap.set("n", "ci,w", "ci,e", { remap = true })
-      '';
-    }
-
-    {
-      plugin = rainbow;
-      type = "lua";
-      config = ''
-        vim.g.rainbow_active = 1
-        vim.g.rainbow_conf = {
-          ctermfgs = {
-            "darkred", "darkgreen", "darkmagenta", "darkcyan", "red",
-            "yellow", "green", "darkyellow", "magenta", "cyan", "darkyellow",
-          }
-        }
-      '';
-    }
-
-    {
-      plugin = vim-argwrap;
-      type = "lua";
-      config = ''
-        vim.keymap.set("n", "<Leader>w", ":ArgWrap<CR>", { silent = true })
-      '';
-    }
-
-    {
-      plugin = vim-polyglot;
-      type = "lua";
-      config = ''
-        -- Use vim-scala for scala
-        vim.g.polyglot_disabled = { "scala" }
-
-        -- JSON conceal off
-        vim.g.vim_json_syntax_conceal = 0
-      '';
-    }
-
-    {
-      plugin = trouble-nvim;
-      type = "lua";
-      config = ''
-        local trouble = require("trouble")
-        trouble.setup({})
-        vim.keymap.set("n", "<Leader>x", "<Cmd>TroubleToggle<CR>")
-      '';
-    }
-
-    {
-      plugin = pkgs.vimExtraPlugins.vim-ctrlsf;
-      type = "lua";
-      config = ''
-        vim.keymap.set("n", "<Leader>f", "<Plug>CtrlSFPrompt")
-      '';
-    }
-
-    {
-      plugin = fzf-lua;
-      type = "lua";
-      config = lib.fileContents (pkgs.substituteAll {
-        src = ./lua/fzf-lua.lua;
-        fzf_bin = "${pkgs.skim}/bin/sk";
-      });
-    }
-
-    {
-      # Color scheme
-      plugin = zenburn;
-      config = ''
-        let g:zenburn_high_Contrast=1
-        colorscheme zenburn
-
-        match TrailingWhitespace /\s\+$/
-        highlight Visual term=reverse cterm=reverse
-        highlight MatchParen cterm=bold ctermbg=none ctermfg=magenta
-        highlight TrailingWhitespace ctermfg=darkgreen
-        highlight LspInlayHint ctermfg=darkgray
-      '';
-    }
-
+    (
+      let
+        colors = [ "DarkRed" "DarkGreen" "DarkMagenta" "DarkCyan" "Red" "Yellow" "Green" "DarkYellow" "Magenta" "Cyan" "DarkYellow" ];
+        toName = color: "RainbowDelimiter${color}";
+        toAttrSet = color: { name = toName color; value = { ctermfg = color; }; };
+      in
+      {
+        highlightOverride = builtins.listToAttrs (builtins.map toAttrSet colors);
+        plugins.rainbow-delimiters = {
+          enable = true;
+          highlight = builtins.map toName colors;
+        };
+      }
+    )
   ];
-
 in
 {
-  home = {
-    packages = [
-      pkgs.ripgrep
-    ];
+  imports = [
+    ./plugins/barbar.nix
+    ./plugins/cmp.nix
+    ./plugins/fzf-lua.nix
+    ./plugins/lsp.nix
+    ./plugins/neo-tree.nix
+  ] ++ plugins;
 
-    sessionVariables = {
-      EDITOR = "nvim";
-    };
-  };
-
-  programs.neovim = {
-    inherit plugins;
-
+  programs.nixvim = {
     enable = true;
+    defaultEditor = true;
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
     withNodeJs = true;
 
-    extraLuaConfig = lib.fileContents ./lua/init.lua;
+    extraPlugins = with pkgs.vimPlugins; [
+      camelcasemotion
+      nerdcommenter
+      nvim-web-devicons
+      traces-vim
+      vim-abolish
+      vim-eunuch
+      vim-repeat
+      vim-scala
+      vim-visual-increment
+    ];
+
+    plugins = {
+      emmet.enable = true;
+      fugitive.enable = true;
+      neo-tree.enable = true;
+      nvim-autopairs.enable = true;
+      sleuth.enable = true;
+      surround.enable = true;
+      treesitter.enable = true;
+      which-key.enable = true;
+    };
+
+    opts = {
+      mouse = ""; # Disable mouse
+      expandtab = true; # Insert spaces instead of tabs
+      incsearch = false; # Disable incremental search (only scroll on submitting the search)
+      lazyredraw = true; # Don't redraw screen while executing macros
+      linebreak = true; # Wrap long lines on word boundaries
+      list = true; # Show listchars
+      listchars = { tab = "> "; trail = "."; nbsp = "+"; }; # Display characters for whitespace
+      modeline = false; # Ignore modelines (vim-specific comments in files)
+      number = true; # Show line numbers
+      sessionoptions = [ "buffers" ]; # Only store buffer info in `:mksession`
+      shiftwidth = 2; # 2-space indentation by default
+      synmaxcol = 2048; # Stop syntax highlighting on long lines
+      undofile = true; # Keep undo history after closing nvim
+      virtualedit = [ "block" ]; # Allow placing cursor anywhere in virtual select mode
+      visualbell = true; # Disable error sounds
+
+      # Always show the signcolumn, otherwise it would shift the text each time
+      # diagnostics appear/become resolved.
+      signcolumn = "number";
+
+      # Searching
+      ignorecase = true; # Case-insensitive search by default
+      smartcase = true; # If search pattern has uppercase, use case-sensitive match
+
+      # Highlight right margin
+      colorcolumn = [ 72 80 90 100 ];
+
+      # Status line
+      statusline = lib.strings.concatStrings [
+        "%F" # Full path to file
+        "%=" # Add spaces to right-justify the rest of the line
+        "%l/%L,%v" # Line number / Total number of lines, Virtual column
+        " %p%%" # Percentage through file (lines)
+      ];
+    };
+
+    # Highlight right margin
+    highlightOverride.ColorColumn.ctermbg.__raw = "235";
+
+    # Disable slow SQL dynamic completion
+    globals.omni_sql_no_default_maps = 1;
+
+    # Remove trailing whitespace with `:Clean`
+    userCommands.Clean.command = ":%s/\s\+$//e";
+
+    keymaps = [
+      # Copy to clipboard
+      # https://www.reddit.com/r/neovim/comments/3fricd/easiest_way_to_copy_from_neovim_to_system/ctrru3b/
+      { key = "<Leader>y"; action = ''"+y''; mode = [ "n" "v" ]; }
+      { key = "<Leader>Y"; action = ''"+yg_''; mode = [ "n" "v" ]; }
+
+      # Paste from clipboard
+      { key = "<Leader>p"; action = ''"+p''; mode = [ "n" "v" ]; }
+      { key = "<Leader>P"; action = ''"+P''; mode = [ "n" "v" ]; }
+
+      # Create new buffer
+      { key = "<C-t>"; action = ":enew<CR>"; mode = "n"; options.silent = true; }
+
+      # Clear highlighed search
+      { key = "<CR>"; action = ":nohlsearch<CR><CR>"; mode = "n"; options.silent = true; }
+    ];
+
+    autoCmd = [
+      # Stop automatically inserting comments when inserting a new line
+      # https://vim.fandom.com/wiki/Disable_automatic_comment_insertion#Disabling_in_general
+      {
+        event = [ "FileType" ];
+        pattern = "*";
+        callback.__raw = ''function()
+          vim.opt.formatoptions:remove('c')
+          vim.opt.formatoptions:remove('r')
+          vim.opt.formatoptions:remove('o')
+        end'';
+      }
+
+      # When editing crontab, disable backups to avoid the 'temp file must be edited in place' error
+      # https://vim.fandom.com/wiki/Editing_crontab
+      {
+        event = [ "FileType" ];
+        pattern = "crontab";
+        callback.__raw = ''function()
+          vim.opt_local.backup = false
+          vim.opt_local.writebackup = false
+        end'';
+      }
+    ];
   };
 }

@@ -15,7 +15,7 @@
     call-flake.url = "github:divnix/call-flake";
   };
 
-  outputs = inputs @ { nixpkgs, home-manager, call-flake, ... }:
+  outputs = inputs @ { nixpkgs, home-manager, call-flake, nixvim, ... }:
     let
       overlays = [
         inputs.rust-overlay.overlays.default
@@ -23,22 +23,27 @@
         (call-flake ./flakes/fish-plugins).overlays.default
       ];
 
-      nixpkgs-module = { nixpkgs.overlays = overlays; };
-
-      mkHomeManagerConfig = { pkgs, module }: home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          module
-          nixpkgs-module
-          inputs.nixvim.homeManagerModules.nixvim
-          inputs.nix-index-database.hmModules.nix-index
-        ];
-      };
+      mkHomeManagerConfig = { hmModule, system }:
+        let
+          nvim = (call-flake ./flakes/nixvim-config).packages.${system}.default;
+          nixvim-overlay = final: prev: { nixvim.nvim = nvim; };
+          nixpkgs-module = { nixpkgs.overlays = overlays ++ [ nixvim-overlay ]; };
+        in
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+          modules = [
+            hmModule
+            nixpkgs-module
+            inputs.nix-index-database.hmModules.nix-index
+          ];
+        };
     in
     {
+      inherit nixpkgs overlays nixvim;
+
       homeConfigurations.personal = mkHomeManagerConfig {
-        pkgs = nixpkgs.legacyPackages.x86_64-darwin;
-        module = ./machines/personal;
+        system = "x86_64-darwin";
+        hmModule = ./machines/personal;
       };
     };
 }

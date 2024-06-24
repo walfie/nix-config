@@ -19,7 +19,6 @@
     let
       overlays = [
         inputs.rust-overlay.overlays.default
-        (call-flake ./flakes/vim-plugins).overlays.default
         (call-flake ./flakes/fish-plugins).overlays.default
       ];
 

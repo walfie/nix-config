@@ -8,12 +8,12 @@
 
   outputs = inputs @ { flake-parts, call-flake, ... }:
     let
-      parent-flake = call-flake ../../.;
+      root-flake = call-flake ../..;
       vim-plugins-flake = call-flake ../vim-plugins;
 
-      nixvim = parent-flake.nixvim;
-      nixpkgs = parent-flake.nixpkgs;
-      overlays = parent-flake.overlays ++ [ vim-plugins-flake.overlays.default ];
+      nixvim = root-flake.nixvim;
+      nixpkgs = root-flake.nixpkgs;
+      overlays = root-flake.overlays ++ [ vim-plugins-flake.overlays.default ];
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];

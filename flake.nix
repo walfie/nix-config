@@ -19,8 +19,8 @@
     let
       overlays = [
         inputs.rust-overlay.overlays.default
-        (call-flake ./overlays/vim-plugins).overlays.default
-        (call-flake ./overlays/fish-plugins).overlays.default
+        (call-flake ./flakes/vim-plugins).overlays.default
+        (call-flake ./flakes/fish-plugins).overlays.default
       ];
 
       nixpkgs-module = { nixpkgs.overlays = overlays; };

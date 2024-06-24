@@ -8,7 +8,7 @@
     ./plugins/neo-tree.nix
   ];
 
-  programs.nixvim = {
+  config = {
     enable = true;
     defaultEditor = true;
     viAlias = true;

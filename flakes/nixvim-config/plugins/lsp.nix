@@ -1,5 +1,5 @@
 {
-  programs.nixvim = {
+  config = {
     plugins.lsp = {
       enable = true;
       servers = {

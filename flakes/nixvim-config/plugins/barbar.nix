@@ -1,5 +1,5 @@
 {
-  programs.nixvim = {
+  config = {
     plugins.barbar = {
       enable = true;
       settings = {

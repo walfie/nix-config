@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 {
-  programs.nixvim = {
+  config = {
     plugins.fzf-lua = {
       enable = true;
       settings = {

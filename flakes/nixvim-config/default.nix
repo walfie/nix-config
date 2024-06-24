@@ -127,7 +127,7 @@ in
     globals.omni_sql_no_default_maps = 1;
 
     # Remove trailing whitespace with `:Clean`
-    userCommands.Clean.command = ":%s/\s\+$//e";
+    userCommands.Clean.command = '':%s/\s\+$//e'';
 
     keymaps = [
       # Copy to clipboard

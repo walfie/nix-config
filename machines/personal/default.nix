@@ -102,7 +102,7 @@ in
     pkgs.trunk
     pkgs.wget
     pkgs.rust-bindgen
-    pkgs.optipng
+    pkgs.pngquant
 
     # https://jvns.ca/blog/2022/04/12/a-list-of-new-ish--command-line-tools/
     pkgs.ripgrep

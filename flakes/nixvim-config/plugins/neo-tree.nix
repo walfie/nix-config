@@ -19,7 +19,6 @@
         width = 30;
         mappings = {
           "/" = "none";
-          #b = { command = "buffers"; };
           A = { command = "add_directory"; config.show_path = "absolute"; };
           a = { command = "add"; config.show_path = "absolute"; };
           c = { command = "copy"; config.show_path = "absolute"; };
@@ -53,7 +52,6 @@
       buffers = {
         window.mappings = {
           d = "buffer_delete";
-          #b = "filesystem";
           bd = "none";
         };
       };

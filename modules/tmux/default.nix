@@ -35,6 +35,12 @@
           set -g @continuum-save-interval '20' # minutes
         '';
       }
+      {
+        plugin = tmuxPlugins.extrakto;
+        extraConfig = ''
+          set -g @extrakto_grab_area "window recent"
+        '';
+      }
     ];
 
     extraConfig = lib.fileContents ./tmux.conf;

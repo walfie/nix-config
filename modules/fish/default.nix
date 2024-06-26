@@ -12,6 +12,7 @@ in
       replay = pkgs.fishExtraPlugins.replay;
       humantime-fish = pkgs.fishPlugins.humantime-fish;
       transient-fish = pkgs.fishPlugins.transient-fish;
+      fish-ssh-agent = pkgs.fishExtraPlugins.fish-ssh-agent;
     };
 
     shellAliases = {

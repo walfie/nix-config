@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "fish-ssh-agent": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1605087262,
+        "narHash": "sha256-e94Sd1GSUAxwLVVo5yR6msq0jZLOn2m+JZJ6mvwQdLs=",
+        "owner": "danhper",
+        "repo": "fish-ssh-agent",
+        "rev": "fd70a2afdd03caf9bf609746bf6b993b9e83be57",
+        "type": "github"
+      },
+      "original": {
+        "owner": "danhper",
+        "repo": "fish-ssh-agent",
+        "type": "github"
+      }
+    },
     "nix-fish": {
       "flake": false,
       "locked": {
@@ -34,6 +50,7 @@
     },
     "root": {
       "inputs": {
+        "fish-ssh-agent": "fish-ssh-agent",
         "nix-fish": "nix-fish",
         "replay": "replay"
       }

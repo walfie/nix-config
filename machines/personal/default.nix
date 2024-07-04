@@ -74,6 +74,15 @@ in
     };
   };
 
+  programs.atuin = {
+    enable = true;
+    flags = [ "--disable-up-arrow" ];
+    settings = {
+      update_check = false;
+      enter_accept = false;
+    };
+  };
+
   home.packages = [
     pkgs.nixFlakes
 

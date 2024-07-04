@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 {
   programs.tmux = {
     enable = true;
@@ -35,6 +35,13 @@
         plugin = tmuxPlugins.extrakto;
         extraConfig = ''
           set -g @extrakto_grab_area "window recent"
+        '';
+      }
+      {
+        plugin = tmuxPlugins.tmux-thumbs;
+        extraConfig = lib.mkIf pkgs.stdenv.isDarwin ''
+          # Copy to system clipboard on macOS
+          set -g @thumbs-command 'echo -n {} | pbcopy'
         '';
       }
     ];

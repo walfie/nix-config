@@ -80,6 +80,7 @@ in
     settings = {
       update_check = false;
       enter_accept = false;
+      prefers_reduced_motion = true; # Auto-updating timestamps are distracting
     };
   };
 

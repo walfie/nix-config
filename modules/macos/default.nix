@@ -3,6 +3,7 @@
   imports = [
     ./dock
     ./applescript
+    ./plists.nix
   ];
 
   # When applying macOS upgrades, `/etc/zshrc` changes that were made by the
@@ -13,9 +14,6 @@
       . "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
     fi
   '';
-
-  home.activation.setDefaults =
-    lib.hm.dag.entryAfter [ "writeBoundary" ] (lib.fileContents ./set-defaults.sh);
 
   home.sessionVariables = {
     BASH_SILENCE_DEPRECATION_WARNING = "1";
@@ -106,5 +104,32 @@
       { enabled = 0; name = "TIPS"; }
       { enabled = 0; name = "BOOKMARKS"; }
     ];
+  };
+
+  targets.darwin.plists = {
+    "Library/Preferences/com.apple.finder.plist" = {
+      # Show item info near icons on the desktop and in other icon views
+      "DesktopViewSettings:IconViewSettings:showItemInfo" = true;
+      "FK_StandardViewSettings:IconViewSettings:showItemInfo" = true;
+      "StandardViewSettings:IconViewSettings:showItemInfo" = true;
+
+      # Show item info to the right of the icons on the desktop
+      "DesktopViewSettings:IconViewSettings:labelOnBottom" = false;
+
+      # Enable snap-to-grid for icons on the desktop and in other icon views
+      "DesktopViewSettings:IconViewSettings:arrangeBy" = "grid";
+      "FK_StandardViewSettings:IconViewSettings:arrangeBy" = "grid";
+      "StandardViewSettings:IconViewSettings:arrangeBy" = "grid";
+
+      # Increase grid spacing for icons on the desktop and in other icon views
+      "DesktopViewSettings:IconViewSettings:gridSpacing" = 85;
+      "FK_StandardViewSettings:IconViewSettings:gridSpacing" = 85;
+      "StandardViewSettings:IconViewSettings:gridSpacing" = 85;
+
+      # Increase the size of icons on the desktop and in other icon views
+      "DesktopViewSettings:IconViewSettings:iconSize" = 75;
+      "FK_StandardViewSettings:IconViewSettings:iconSize" = 75;
+      "StandardViewSettings:IconViewSettings:iconSize" = 75;
+    };
   };
 }

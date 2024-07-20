@@ -32,6 +32,14 @@ in
   programs.zoxide.enable = true;
 
   programs.nix-index-database.comma.enable = true;
+  programs.nix-index = {
+    # nix-index-database enables `command-not-found` integrations which I don't want
+    # https://github.com/nix-community/nix-index-database/issues/80
+    enableBashIntegration = false;
+    enableZshIntegration = false;
+    enableFishIntegration = false;
+  };
+
   programs.kitty.settings.shell = "${pkgs.fish}/bin/fish";
   programs.tmux = {
     shell = "${pkgs.fish}/bin/fish";

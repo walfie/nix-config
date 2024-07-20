@@ -58,15 +58,11 @@ in
     };
   };
 
-  programs.zsh.shellAliases = {
-    bazel = "bazelisk";
-  };
+  home.shellAliases.bazel = "bazelisk";
 
   programs.ssh = {
     enable = true;
-    extraOptionOverrides = {
-      IgnoreUnknown = "UseKeychain";
-    };
+    extraOptionOverrides.IgnoreUnknown = "UseKeychain";
 
     matchBlocks = {
       "github.com" = {

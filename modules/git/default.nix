@@ -7,9 +7,7 @@ let
   mkGitScript = script: "!f() { ${script} }; f";
 in
 {
-  home.packages = [
-    git-delete-squashed
-  ];
+  home.packages = [ git-delete-squashed ];
 
   programs.git = {
     enable = true;
@@ -39,12 +37,12 @@ in
     };
 
     extraConfig = {
-      core = { pager = "less -+F"; };
-      pull = { rebase = false; };
-      push = { default = "current"; };
-      rebase = { autosquash = true; };
-      rerere = { enabled = true; };
-      init = { defaultBranch = "main"; };
+      core.pager = "less -+F";
+      pull.rebase = false;
+      push.default = "current";
+      rebase.autosquash = true;
+      rerere.enabled = true;
+      init.defaultBranch = "main";
       color = {
         branch = "auto";
         diff = "auto";

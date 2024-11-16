@@ -37,8 +37,8 @@ My personal Nix flake for [home-manager] on macOS.
     )/activate
     ```
 
-  Note that the `personal` config targets `x86_64-darwin`, so you may need to
-  update `flake.nix` if on a different platform (such as `aarch64-darwin`).
+  Note that the `personal` config targets `aarch64-darwin`, so you may need to
+  update `flake.nix` if on a different platform (such as `x86_64-darwin`).
 
 [`personal` config]: ./machines/personal/default.nix
 

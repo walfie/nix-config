@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-24.05-darwin";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     rust-overlay.url = "github:oxalica/rust-overlay";
@@ -15,7 +16,7 @@
     call-flake.url = "github:divnix/call-flake";
   };
 
-  outputs = inputs @ { nixpkgs, home-manager, call-flake, nixvim, ... }:
+  outputs = inputs @ { nixpkgs, nixpkgs-unstable, call-flake, nixvim, ... }:
     let
       overlays = [
         inputs.rust-overlay.overlays.default
@@ -26,10 +27,12 @@
         let
           nvim = (call-flake ./flakes/nixvim-config).packages.${system}.default;
           nixvim-overlay = final: prev: { nixvim.nvim = nvim; };
-          nixpkgs-module = { nixpkgs.overlays = overlays ++ [ nixvim-overlay ]; };
+          unstable-overlay = final: prev: { unstable = nixpkgs-unstable.legacyPackages.${system}; };
+          nixpkgs-module = { nixpkgs.overlays = overlays ++ [ nixvim-overlay unstable-overlay ]; };
         in
-        home-manager.lib.homeManagerConfiguration {
+        inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};
+
           modules = [
             hmModule
             nixpkgs-module

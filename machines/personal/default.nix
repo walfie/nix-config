@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  username = "who";
+  username = "walfie";
   homeDirectory = "/Users/${username}";
 in
 {
@@ -25,10 +25,9 @@ in
   home = {
     inherit username homeDirectory;
     stateVersion = "21.05";
-    sessionPath = [ "$HOME/.local/bin" ];
+    sessionPath = [ "$HOME/.local/bin" "/opt/homebrew/bin" ];
   };
 
-  macos-dock.enable = true;
   programs.zoxide.enable = true;
 
   programs.nix-index-database.comma.enable = true;

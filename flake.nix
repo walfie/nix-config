@@ -41,7 +41,7 @@
       inherit nixpkgs overlays nixvim;
 
       homeConfigurations.personal = mkHomeManagerConfig {
-        system = "x86_64-darwin";
+        system = "aarch64-darwin";
         hmModule = ./machines/personal;
       };
     };

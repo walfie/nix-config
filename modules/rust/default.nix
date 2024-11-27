@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 let
-  rust-stable = pkgs.rust-bin.stable."1.76.0".default.override {
+  rust-stable = pkgs.rust-bin.stable."1.82.0".default.override {
     # Ensure rust-analyzer is aligned with rust version.
     # rust-src is needed for completion for `std` modules.
     extensions = [ "rust-analyzer" "rust-src" ];

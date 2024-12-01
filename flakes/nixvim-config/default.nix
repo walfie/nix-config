@@ -32,6 +32,7 @@ let
       extraPlugins = [ pkgs.vimPlugins.zenburn ];
 
       colorscheme = "zenburn";
+      opts.termguicolors = false;
       globals.zenburn_high_Contrast = 1;
       match.TrailingWhitespace = ''\s\+$'';
       highlightOverride = {
@@ -42,14 +43,6 @@ let
 
         # For some reason this is necessary in nixvim 24.11, despite being
         # specified in zenburn itself. Maybe being overridden by something else?
-        StatusLine = {
-          bold = true;
-          reverse = true;
-          ctermfg.__raw = "236";
-          ctermbg.__raw = "186";
-          fg = "#313633";
-          bg = "#ccdc90";
-        };
         StatusLineNC = {
           reverse = true;
           ctermfg.__raw = "235";

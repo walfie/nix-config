@@ -10,8 +10,8 @@
         jsonls.enable = true;
         pyright.enable = true;
         terraformls.enable = true;
-        tsserver.enable = true;
-        nil-ls.enable = true;
+        ts_ls.enable = true;
+        nil_ls.enable = true;
       };
     };
 
@@ -21,7 +21,7 @@
       settings.tools.hover_actions.replace_builtin_hover = false;
 
       # https://github.com/rust-lang/rust-analyzer/blob/6e8a54d0f68702cf7981c8299357838eb0f4d5b2/docs/user/generated_config.adoc
-      settings.server.settings = {
+      settings.server.default_settings.rust-analyzer = {
         imports = {
           # Auto-imported paths from current crate should prefer `crate::` rather than `super::`
           prefix = "crate";

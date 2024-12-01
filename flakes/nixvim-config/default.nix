@@ -64,7 +64,6 @@ in
     extraPlugins = with pkgs.vimPlugins; [
       camelcasemotion
       nerdcommenter
-      nvim-web-devicons
       traces-vim
       vim-abolish
       vim-eunuch
@@ -78,8 +77,9 @@ in
       fugitive.enable = true;
       neo-tree.enable = true;
       nvim-autopairs.enable = true;
+      web-devicons.enable = true;
       sleuth.enable = true;
-      surround.enable = true;
+      vim-surround.enable = true;
       which-key.enable = true;
     };
 

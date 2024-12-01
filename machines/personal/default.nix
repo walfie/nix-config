@@ -88,8 +88,6 @@ in
   };
 
   home.packages = [
-    pkgs.nixFlakes
-
     pkgs.bazelisk
     pkgs.bazel-buildtools
     pkgs.coreutils # Use GNU versions of `ls`, etc
@@ -116,7 +114,7 @@ in
     pkgs.wget
     pkgs.rust-bindgen
     pkgs.pngquant
-    pkgs.unstable.uv
+    pkgs.uv
 
     # https://jvns.ca/blog/2022/04/12/a-list-of-new-ish--command-line-tools/
     pkgs.ripgrep

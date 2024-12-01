@@ -39,6 +39,24 @@ let
         MatchParen = { bold = true; ctermbg = "none"; ctermfg = "Magenta"; };
         TrailingWhitespace.ctermfg = "DarkGreen";
         LspInlayHint.ctermfg = "DarkGray";
+
+        # For some reason this is necessary in nixvim 24.11, despite being
+        # specified in zenburn itself. Maybe being overridden by something else?
+        StatusLine = {
+          bold = true;
+          reverse = true;
+          ctermfg.__raw = "236";
+          ctermbg.__raw = "186";
+          fg = "#313633";
+          bg = "#ccdc90";
+        };
+        StatusLineNC = {
+          reverse = true;
+          ctermfg.__raw = "235";
+          ctermbg.__raw = "108";
+          fg = "#2e3330";
+          bg = "#88b090";
+        };
       };
     }
 

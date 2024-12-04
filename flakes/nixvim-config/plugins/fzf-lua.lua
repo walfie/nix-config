@@ -58,6 +58,10 @@ do
     vim.lsp.buf.format { async = true }
   end
 
+  local function toggle_inlay_hints()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+  end
+
   local actions = {
     { desc = "Code actions", fn = fzf.lsp_code_actions, nmap = "<Space>ca" },
     { desc = "Declarations", fn = preview(fzf.lsp_declarations), nmap = "gD" },
@@ -72,6 +76,7 @@ do
     { desc = "References", fn = preview(fzf.lsp_references), nmap = "gr" },
     { desc = "Rename", fn = vim.lsp.buf.rename, nmap = "<Space>rn" },
     { desc = "Signature help", fn = vim.lsp.buf.signature_help, nmap = "<C-k>" },
+    { desc = "Toggle inlay hints", fn = toggle_inlay_hints },
     { desc = "Type definitions", fn = preview(fzf.lsp_typedefs), nmap = "<Space>D" },
     { desc = "Workplace diagnostics", fn = fzf.diagnostics_workspace },
     { desc = "Workplace symbols", fn = fzf.lsp_workplace_symbols },

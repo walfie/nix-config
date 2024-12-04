@@ -115,6 +115,7 @@ in
     pkgs.rust-bindgen
     pkgs.pngquant
     pkgs.uv
+    pkgs.yt-dlp
 
     # https://jvns.ca/blog/2022/04/12/a-list-of-new-ish--command-line-tools/
     pkgs.ripgrep

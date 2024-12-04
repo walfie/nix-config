@@ -3,15 +3,15 @@
     plugins.lsp = {
       enable = true;
       servers = {
+        basedpyright.enable = true;
         cssls.enable = true;
         eslint.enable = true;
         gopls.enable = true;
         html.enable = true;
         jsonls.enable = true;
-        pyright.enable = true;
+        nil_ls.enable = true;
         terraformls.enable = true;
         ts_ls.enable = true;
-        nil_ls.enable = true;
       };
     };
 

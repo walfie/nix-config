@@ -3,7 +3,6 @@
 
   inputs = {
     vim-ctrlsf = { url = "github:dyng/ctrlsf.vim"; flake = false; };
-    nvim-lspconfig = { url = "github:neovim/nvim-lspconfig"; flake = false; };
   };
 
   outputs = inputs: {

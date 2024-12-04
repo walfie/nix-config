@@ -41,15 +41,20 @@ let
         TrailingWhitespace.ctermfg = "DarkGreen";
         LspInlayHint.ctermfg = "DarkGray";
 
-        # For some reason this is necessary in nixvim 24.11, despite being
-        # specified in zenburn itself. Maybe being overridden by something else?
-        StatusLineNC = {
-          reverse = true;
-          ctermfg.__raw = "235";
-          ctermbg.__raw = "108";
-          fg = "#2e3330";
-          bg = "#88b090";
+        # Neovim 0.10 breaks legacy color schemes, so some overrides are needed
+        # https://neovim.io/doc/user/news-0.10.html#_breaking-changes
+        Pmenu = {
+          ctermfg.__raw = "251";
+          ctermbg.__raw = "235";
+          fg = "#ccccbc";
+          bg = "#242424";
         };
+
+        NormalFloat.link = "Pmenu";
+        WinbarNC.link = "Winbar";
+        NormalNC.link = "Normal";
+        StatusLineNC.link = "StatusLine";
+        StatusLineTermNC.link = "StatusLineTerm";
       };
     }
 

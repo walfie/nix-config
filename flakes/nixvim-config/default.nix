@@ -20,7 +20,10 @@ let
 
     {
       plugins.trouble.enable = true;
-      keymaps = [{ key = "<Leader>x"; action = "<Cmd>TroubleToggle<CR>"; mode = "n"; }];
+      keymaps = [
+        { key = "<Leader>x"; action = "<Cmd>Trouble diagnostics toggle<CR>"; mode = "n"; }
+        { key = "<Leader>X"; action = "<Cmd>Trouble diagnostics toggle.buf=0<CR>"; mode = "n"; }
+      ];
     }
 
     {

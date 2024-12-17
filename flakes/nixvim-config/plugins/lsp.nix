@@ -1,12 +1,5 @@
 {
   config = {
-    extraConfigLua = ''
-      -- Enabling inlay hints globally here, rather than using nixvim's
-      -- `config.plugins.lsp.inlayHints` which enables it on a per-buffer
-      -- basis during LSP attach.
-      vim.lsp.inlay_hint.enable(true)
-    '';
-
     plugins.lsp = {
       enable = true;
       servers = {

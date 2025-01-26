@@ -25,10 +25,12 @@
 
       mkHomeManagerConfig = { hmModule, system }:
         let
-          nvim = (call-flake ./flakes/nixvim-config).packages.${system}.default;
-          nixvim-overlay = final: prev: { nixvim.nvim = nvim; };
-          unstable-overlay = final: prev: { unstable = nixpkgs-unstable.legacyPackages.${system}; };
-          nixpkgs-module = { nixpkgs.overlays = overlays ++ [ nixvim-overlay unstable-overlay ]; };
+          system-specific-overlay = final: prev: {
+            unstable = nixpkgs-unstable.legacyPackages.${system};
+            nixvim.nvim = (call-flake ./flakes/nixvim-config).packages.${system}.default;
+            pico8-ls = (call-flake ./flakes/pico8-ls).packages.${system}.default;
+          };
+          nixpkgs-module = { nixpkgs.overlays = overlays ++ [ system-specific-overlay ]; };
         in
         inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};

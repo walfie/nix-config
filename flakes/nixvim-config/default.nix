@@ -89,6 +89,7 @@ in
       vim-repeat
       vim-scala
       vim-visual-increment
+      pkgs.vimExtraPlugins.pico8-vim
     ];
 
     plugins = {
@@ -101,6 +102,8 @@ in
       vim-surround.enable = true;
       which-key.enable = true;
     };
+
+    filetype.extension.p8 = "pico8";
 
     opts = {
       mouse = ""; # Disable mouse

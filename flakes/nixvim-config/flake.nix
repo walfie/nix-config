@@ -10,10 +10,9 @@
     let
       root-flake = call-flake ../..;
       vim-plugins-flake = call-flake ../vim-plugins;
-
       nixvim = root-flake.nixvim;
       nixpkgs = root-flake.nixpkgs;
-      overlays = root-flake.overlays ++ [ vim-plugins-flake.overlays.default ];
+      pico8-ls = call-flake ../pico8-ls;
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
@@ -21,11 +20,19 @@
         let
           nixvimLib = nixvim.lib.${system};
           nixvimModule = { inherit pkgs; module = import ./default.nix; };
-          nixvimForSystem = nixvim.legacyPackages.${system};
-          nvim = nixvimForSystem.makeNixvimWithModule nixvimModule;
+          nvim = nixvim.legacyPackages.${system}.makeNixvimWithModule nixvimModule;
+          packages-overlay = final: prev: {
+            pico8-ls = pico8-ls.${system}.default;
+          };
         in
         {
-          _module.args.pkgs = import nixpkgs { inherit system overlays; };
+          _module.args.pkgs = import nixpkgs {
+            inherit system;
+            overlays = root-flake.overlays ++ [
+              vim-plugins-flake.overlays.default
+              packages-overlay
+            ];
+          };
 
           # Run `nix flake check .` to verify that your config is not broken
           checks.default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;

@@ -12,6 +12,12 @@
         nil_ls.enable = true;
         terraformls.enable = true;
         ts_ls.enable = true;
+
+        pico8_ls = {
+          enable = true;
+          package = null;
+          filetypes = [ "p8" "pico8" "lua" ];
+        };
       };
     };
 

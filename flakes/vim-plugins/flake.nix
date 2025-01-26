@@ -3,6 +3,7 @@
 
   inputs = {
     vim-ctrlsf = { url = "github:dyng/ctrlsf.vim"; flake = false; };
+    pico8-vim = { url = "github:Bakudankun/PICO-8.vim"; flake = false; };
   };
 
   outputs = inputs: {

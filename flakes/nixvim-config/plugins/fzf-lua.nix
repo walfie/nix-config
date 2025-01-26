@@ -4,7 +4,6 @@
     plugins.fzf-lua = {
       enable = true;
       settings = {
-        fzf_bin = "${pkgs.skim}/bin/sk";
         fzf_opts = {
           "--layout" = "default";
           "--border" = false;

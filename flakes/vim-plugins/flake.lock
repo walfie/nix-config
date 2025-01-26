@@ -1,7 +1,24 @@
 {
   "nodes": {
+    "pico8-vim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1668925966,
+        "narHash": "sha256-XqPXzv7NXVBw9/KvCoUIMRQqCEVE8m70BmyQta8zr40=",
+        "owner": "Bakudankun",
+        "repo": "PICO-8.vim",
+        "rev": "34f8442d29ccf7f42fc500a78348eb38cec1f2ce",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Bakudankun",
+        "repo": "PICO-8.vim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
+        "pico8-vim": "pico8-vim",
         "vim-ctrlsf": "vim-ctrlsf"
       }
     },

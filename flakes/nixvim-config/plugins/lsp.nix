@@ -1,3 +1,5 @@
+# Special args are passed via `extraSpecialArgs` in nixvim-config's `flake.nix`
+{ pico-api, ... }:
 {
   config = {
     plugins.lsp = {
@@ -13,10 +15,9 @@
         terraformls.enable = true;
         ts_ls.enable = true;
 
-        pico8_ls = {
+        lua_ls = {
           enable = true;
-          package = null;
-          filetypes = [ "p8" "pico8" "lua" ];
+          settings.workspace.library = [ "${pico-api}/pico8" ];
         };
       };
     };

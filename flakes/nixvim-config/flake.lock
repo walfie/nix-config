@@ -45,10 +45,27 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/cc2f28000298e1269cea6612cd06ec9979dd5d7f.tar.gz"
       }
     },
+    "pico-api": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1737417958,
+        "narHash": "sha256-M2XefvLQwgRae1ists/SOt4dEAGkbP3tE0pNDSvftqw=",
+        "owner": "ahai64",
+        "repo": "pico-api",
+        "rev": "2f8388d0125d4f5fc06a40bb42922ac6c1e89f3e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ahai64",
+        "repo": "pico-api",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "call-flake": "call-flake",
-        "flake-parts": "flake-parts"
+        "flake-parts": "flake-parts",
+        "pico-api": "pico-api"
       }
     }
   },

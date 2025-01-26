@@ -4,9 +4,10 @@
   inputs = {
     call-flake.url = "github:divnix/call-flake";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    pico-api = { url = "github:ahai64/pico-api"; flake = false; };
   };
 
-  outputs = inputs @ { flake-parts, call-flake, ... }:
+  outputs = inputs @ { flake-parts, call-flake, pico-api, ... }:
     let
       root-flake = call-flake ../..;
       vim-plugins-flake = call-flake ../vim-plugins;
@@ -19,20 +20,16 @@
       perSystem = { pkgs, system, ... }:
         let
           nixvimLib = nixvim.lib.${system};
-          nixvimModule = { inherit pkgs; module = import ./default.nix; };
-          nvim = nixvim.legacyPackages.${system}.makeNixvimWithModule nixvimModule;
-          packages-overlay = final: prev: {
-            pico8-ls = pico8-ls.${system}.default;
+          nixvimModule = {
+            inherit pkgs;
+            module = import ./default.nix;
+            extraSpecialArgs = { inherit pico-api pico8-ls; };
           };
+          nvim = nixvim.legacyPackages.${system}.makeNixvimWithModule nixvimModule;
+          overlays = root-flake.overlays ++ [ vim-plugins-flake.overlays.default ];
         in
         {
-          _module.args.pkgs = import nixpkgs {
-            inherit system;
-            overlays = root-flake.overlays ++ [
-              vim-plugins-flake.overlays.default
-              packages-overlay
-            ];
-          };
+          _module.args.pkgs = import nixpkgs { inherit system overlays; };
 
           # Run `nix flake check .` to verify that your config is not broken
           checks.default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;

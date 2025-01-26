@@ -11,22 +11,20 @@
     let
       root-flake = call-flake ../..;
       vim-plugins-flake = call-flake ../vim-plugins;
-      nixvim = root-flake.nixvim;
       nixpkgs = root-flake.nixpkgs;
-      pico8-ls = call-flake ../pico8-ls;
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
       perSystem = { pkgs, system, ... }:
         let
-          nixvimLib = nixvim.lib.${system};
+          overlays = root-flake.overlays ++ [ vim-plugins-flake.overlays.default ];
+          nixvimLib = root-flake.nixvim.lib.${system};
           nixvimModule = {
             inherit pkgs;
             module = import ./default.nix;
-            extraSpecialArgs = { inherit pico-api pico8-ls; };
+            extraSpecialArgs = { inherit pico-api; };
           };
-          nvim = nixvim.legacyPackages.${system}.makeNixvimWithModule nixvimModule;
-          overlays = root-flake.overlays ++ [ vim-plugins-flake.overlays.default ];
+          nvim = root-flake.nixvim.legacyPackages.${system}.makeNixvimWithModule nixvimModule;
         in
         {
           _module.args.pkgs = import nixpkgs { inherit system overlays; };

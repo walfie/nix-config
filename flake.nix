@@ -28,7 +28,6 @@
           system-specific-overlay = final: prev: {
             unstable = nixpkgs-unstable.legacyPackages.${system};
             nixvim.nvim = (call-flake ./flakes/nixvim-config).packages.${system}.default;
-            pico8-ls = (call-flake ./flakes/pico8-ls).packages.${system}.default;
           };
           nixpkgs-module = { nixpkgs.overlays = overlays ++ [ system-specific-overlay ]; };
         in

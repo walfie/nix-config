@@ -48,5 +48,10 @@
         system = "aarch64-darwin";
         hmModule = ./machines/personal;
       };
+
+      homeConfigurations.wsl = mkHomeManagerConfig {
+        system = "x86_64-linux";
+        hmModule = ./machines/personal/wsl.nix;
+      };
     };
 }

@@ -60,73 +60,74 @@ in
   home.shellAliases = {
     bazel = "bazelisk";
     pico8 = "/Applications/PICO-8.app/Contents/MacOS/pico8";
-  };
+    nvim-godot = "nvim --listen /tmp/godot.pipe"
+      };
 
-  programs.ssh = {
-    enable = true;
-    extraOptionOverrides.IgnoreUnknown = "UseKeychain";
+    programs.ssh = {
+      enable = true;
+      extraOptionOverrides.IgnoreUnknown = "UseKeychain";
 
-    matchBlocks = {
-      "github.com" = {
-        user = "git";
-        hostname = "github.com";
-        identityFile = "~/.ssh/id_ed25519";
-        identitiesOnly = true;
-        extraOptions = {
-          UseKeychain = "yes";
-          AddKeysToAgent = "yes";
+      matchBlocks = {
+        "github.com" = {
+          user = "git";
+          hostname = "github.com";
+          identityFile = "~/.ssh/id_ed25519";
+          identitiesOnly = true;
+          extraOptions = {
+            UseKeychain = "yes";
+            AddKeysToAgent = "yes";
+          };
         };
       };
     };
-  };
 
-  programs.atuin = {
-    enable = true;
-    flags = [ "--disable-up-arrow" ];
-    settings = {
-      update_check = false;
-      enter_accept = false;
-      prefers_reduced_motion = true; # Auto-updating timestamps are distracting
+    programs.atuin = {
+      enable = true;
+      flags = [ "--disable-up-arrow" ];
+      settings = {
+        update_check = false;
+        enter_accept = false;
+        prefers_reduced_motion = true; # Auto-updating timestamps are distracting
+      };
     };
-  };
 
-  home.packages = [
-    pkgs.bazelisk
-    pkgs.bazel-buildtools
-    pkgs.coreutils # Use GNU versions of `ls`, etc
-    pkgs.doctl
-    pkgs.fd
-    pkgs.ffmpeg
-    pkgs.gnused
-    pkgs.gron
-    pkgs.htop
-    pkgs.imagemagick
-    pkgs.inetutils
-    pkgs.jq
-    pkgs.ncdu
-    pkgs.nixpkgs-fmt
-    pkgs.oci-cli # Oracle Cloud
-    pkgs.pngcrush
-    pkgs.pup
-    pkgs.rename
-    pkgs.rlwrap
-    pkgs.sqlite
-    pkgs.tealdeer
-    pkgs.tree
-    pkgs.trunk
-    pkgs.wget
-    pkgs.rust-bindgen
-    pkgs.pngquant
-    pkgs.uv
-    pkgs.yt-dlp
-    pkgs.lua5_3
+    home.packages = [
+      pkgs.bazelisk
+      pkgs.bazel-buildtools
+      pkgs.coreutils # Use GNU versions of `ls`, etc
+      pkgs.doctl
+      pkgs.fd
+      pkgs.ffmpeg
+      pkgs.gnused
+      pkgs.gron
+      pkgs.htop
+      pkgs.imagemagick
+      pkgs.inetutils
+      pkgs.jq
+      pkgs.ncdu
+      pkgs.nixpkgs-fmt
+      pkgs.oci-cli # Oracle Cloud
+      pkgs.pngcrush
+      pkgs.pup
+      pkgs.rename
+      pkgs.rlwrap
+      pkgs.sqlite
+      pkgs.tealdeer
+      pkgs.tree
+      pkgs.trunk
+      pkgs.wget
+      pkgs.rust-bindgen
+      pkgs.pngquant
+      pkgs.uv
+      pkgs.yt-dlp
+      pkgs.lua5_3
 
-    # https://jvns.ca/blog/2022/04/12/a-list-of-new-ish--command-line-tools/
-    pkgs.ripgrep
-    pkgs.bat # cat alternative
-    pkgs.choose # Simple cut/awk alternative
-    pkgs.jc # Convert the output of multiple commands to JSON
-    pkgs.jless # JSON pager
-    pkgs.moreutils # sponge: Soak up the input before writing the output file
-  ];
-}
+      # https://jvns.ca/blog/2022/04/12/a-list-of-new-ish--command-line-tools/
+      pkgs.ripgrep
+      pkgs.bat # cat alternative
+      pkgs.choose # Simple cut/awk alternative
+      pkgs.jc # Convert the output of multiple commands to JSON
+      pkgs.jless # JSON pager
+      pkgs.moreutils # sponge: Soak up the input before writing the output file
+    ];
+  }

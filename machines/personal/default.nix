@@ -57,7 +57,10 @@ in
     };
   };
 
-  home.shellAliases.bazel = "bazelisk";
+  home.shellAliases = {
+    bazel = "bazelisk";
+    pico8 = "/Applications/PICO-8.app/Contents/MacOS/pico8";
+  };
 
   programs.ssh = {
     enable = true;
@@ -116,6 +119,7 @@ in
     pkgs.pngquant
     pkgs.uv
     pkgs.yt-dlp
+    pkgs.lua5_3
 
     # https://jvns.ca/blog/2022/04/12/a-list-of-new-ish--command-line-tools/
     pkgs.ripgrep

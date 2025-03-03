@@ -19,6 +19,21 @@
           enable = true;
           settings.workspace.library = [ "${pico-api}/pico8" ];
         };
+
+        # To open file in Neovim when clicked in Godot app, configure settings in
+        # Editor Settings -> Text Editor -> External
+        #
+        # * Exec Path: /Users/walfie/.nix-profile/bin/nvim
+        # * Exec Flags: --server /tmp/godot.pipe --remote-send "<esc>:n {file}<CR>:call cursor({line},{col})<CR>"
+        #
+        # Then run Neovim with `nvim --listen /tmp/godot.pipe`
+        #
+        # https://www.reddit.com/r/neovim/comments/1c2bhcs/godotgdscript_in_neovim_with_lsp_and_debugging_in/
+        gdscript = {
+          enable = true;
+          package = null;
+          settings.cmd.__raw = "vim.lsp.rpc.connect('127.0.0.1', '6005')";
+        };
       };
     };
 

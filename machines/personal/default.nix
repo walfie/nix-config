@@ -60,6 +60,7 @@ in
   home.shellAliases = {
     bazel = "bazelisk";
     pico8 = "/Applications/PICO-8.app/Contents/MacOS/pico8";
+    nvim-godot = "nvim --listen /tmp/godot.pipe";
   };
 
   programs.ssh = {

@@ -67,6 +67,7 @@
       sources.formatting = {
         black.enable = true;
         buildifier.enable = true;
+        gdformat.enable = true;
         nixpkgs_fmt.enable = true;
       };
     };

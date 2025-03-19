@@ -46,6 +46,11 @@
           visible = true;
           hideDotfiles = false;
           hideGitignored = false;
+          hideByPattern = [
+            # Godot UID files
+            "*.gd.uid"
+            "*.gdshader.uid"
+          ];
         };
       };
 

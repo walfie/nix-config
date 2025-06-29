@@ -7,7 +7,7 @@
   programs.kitty = {
     enable = true;
     font = {
-      package = pkgs.inconsolata-nerdfont;
+      package = pkgs.nerd-fonts.inconsolata;
       name = "Inconsolata";
     };
 

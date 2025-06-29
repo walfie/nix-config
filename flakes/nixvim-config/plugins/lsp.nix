@@ -32,7 +32,7 @@
         gdscript = {
           enable = true;
           package = null;
-          settings.cmd.__raw = "vim.lsp.rpc.connect('127.0.0.1', '6005')";
+          settings.cmd.__raw = "vim.lsp.rpc.connect('127.0.0.1', 6005)";
         };
       };
     };

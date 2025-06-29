@@ -108,6 +108,7 @@ in
     opts = {
       mouse = ""; # Disable mouse
       expandtab = true; # Insert spaces instead of tabs
+      fixendofline = false; # Don't automatically insert newline at end of file
       incsearch = false; # Disable incremental search (only scroll on submitting the search)
       lazyredraw = true; # Don't redraw screen while executing macros
       linebreak = true; # Wrap long lines on word boundaries

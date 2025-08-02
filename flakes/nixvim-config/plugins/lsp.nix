@@ -18,6 +18,18 @@
         lua_ls = {
           enable = true;
           settings.workspace.library = [ "${pico-api}/pico8" ];
+          settings.runtime.nonstandardSymbol = [
+            "+="
+            "-="
+            "*="
+            "/="
+            "%="
+            "^="
+            "|="
+            "&="
+            "<<="
+            ">>="
+          ];
         };
 
         # To open file in Neovim when clicked in Godot app, configure settings in

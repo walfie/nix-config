@@ -11,6 +11,7 @@ in
     ../../modules/flakes
     ../../modules/git
     ../../modules/home-manager
+    ../../modules/javascript
     ../../modules/neovim
     ../../modules/rust
     ../../modules/tmux
@@ -101,6 +102,7 @@ in
     pkgs.tealdeer
     pkgs.wget
     pkgs.uv
+    pkgs.yarn
 
     # https://jvns.ca/blog/2022/04/12/a-list-of-new-ish--command-line-tools/
     pkgs.ripgrep

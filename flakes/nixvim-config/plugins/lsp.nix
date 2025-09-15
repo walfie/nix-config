@@ -18,6 +18,18 @@
         lua_ls = {
           enable = true;
           settings.workspace.library = [ "${pico-api}/pico8" ];
+          settings.runtime.nonstandardSymbol = [
+            "+="
+            "-="
+            "*="
+            "/="
+            "%="
+            "^="
+            "|="
+            "&="
+            "<<="
+            ">>="
+          ];
         };
 
         # To open file in Neovim when clicked in Godot app, configure settings in
@@ -32,7 +44,7 @@
         gdscript = {
           enable = true;
           package = null;
-          settings.cmd.__raw = "vim.lsp.rpc.connect('127.0.0.1', '6005')";
+          settings.cmd.__raw = "vim.lsp.rpc.connect('127.0.0.1', 6005)";
         };
       };
     };

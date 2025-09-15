@@ -29,6 +29,7 @@ in
   };
 
   programs.zoxide.enable = true;
+  programs.java = { enable = true; package = pkgs.jdk11; };
 
   programs.nix-index-database.comma.enable = true;
   programs.nix-index = {

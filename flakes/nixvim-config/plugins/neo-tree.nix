@@ -46,6 +46,13 @@
           visible = true;
           hideDotfiles = false;
           hideGitignored = false;
+          hideByPattern = [
+            "*.bak" # Used by GB Studio
+
+            # Godot UID files
+            "*.gd.uid"
+            "*.gdshader.uid"
+          ];
         };
       };
 

@@ -6,6 +6,7 @@
       enable = true;
       servers = {
         basedpyright.enable = true;
+        clangd.enable = true;
         cssls.enable = true;
         eslint.enable = true;
         gopls.enable = true;

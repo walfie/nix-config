@@ -26,6 +26,13 @@ in
     inherit username homeDirectory;
     stateVersion = "21.05";
     sessionPath = [ "$HOME/.local/bin" "/opt/homebrew/bin" ];
+    sessionVariables = {
+      # Font config is needed to avoid "Cannot load default config file"
+      # error for imagemagick
+      FONTCONFIG_FILE = pkgs.makeFontsConf {
+        fontDirectories = [ pkgs.freefont_ttf ];
+      };
+    };
   };
 
   programs.zoxide.enable = true;

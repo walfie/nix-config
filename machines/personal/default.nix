@@ -37,6 +37,10 @@ in
 
   programs.zoxide.enable = true;
   programs.java = { enable = true; package = pkgs.jdk11; };
+  programs.go = {
+    enable = true;
+    telemetry.mode = "off";
+  };
 
   programs.nix-index-database.comma.enable = true;
   programs.nix-index = {

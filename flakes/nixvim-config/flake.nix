@@ -27,7 +27,10 @@
           nvim = root-flake.nixvim.legacyPackages.${system}.makeNixvimWithModule nixvimModule;
         in
         {
-          _module.args.pkgs = import nixpkgs { inherit system overlays; };
+          _module.args.pkgs = import nixpkgs {
+            inherit system overlays;
+            config.allowUnfree = true;
+          };
 
           # Run `nix flake check .` to verify that your config is not broken
           checks.default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;

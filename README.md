@@ -72,7 +72,7 @@ Dependencies are defined in `flake.nix` and versions are pinned in `flake.lock`.
 * To update a specific depedency (such as `nixpkgs`):
 
     ```sh
-    nix flake lock --update-input nixpkgs
+    nix flake update nixpkgs
     ```
 
 ## Errors

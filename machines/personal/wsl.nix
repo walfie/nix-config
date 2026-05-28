@@ -22,7 +22,10 @@ in
   home = {
     inherit username homeDirectory;
     stateVersion = "21.05";
-    sessionPath = [ "$HOME/.local/bin" "$HOME/.nix-profile/bin" ];
+    sessionPath = [
+      "$HOME/.local/bin"
+      "$HOME/.nix-profile/bin"
+    ];
   };
 
   programs.zoxide.enable = true;
@@ -41,15 +44,14 @@ in
     extraConfig = "set -g default-command ${pkgs.fish}/bin/fish";
   };
 
-  programs.git = {
-    userName = "Walfie";
-    userEmail = "walfington@gmail.com";
-
-    extraConfig = {
-      url."git@github.com:".insteadOf = "https://github.com";
-      commit.gpgsign = true;
-      gpg.format = "ssh";
-      user.signingkey = "${homeDirectory}/.ssh/id_ed25519.pub";
+  programs.git.settings = {
+    url."git@github.com:".insteadOf = "https://github.com";
+    commit.gpgsign = true;
+    gpg.format = "ssh";
+    user = {
+      name = "Walfie";
+      email = "walfington@gmail.com";
+      signingkey = "${homeDirectory}/.ssh/id_ed25519.pub";
     };
   };
 
@@ -60,18 +62,17 @@ in
 
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
     extraOptionOverrides.IgnoreUnknown = "UseKeychain";
 
-    matchBlocks = {
+    settings = {
       "github.com" = {
         user = "git";
         hostname = "github.com";
         identityFile = "~/.ssh/id_ed25519";
         identitiesOnly = true;
-        extraOptions = {
-          UseKeychain = "yes";
-          AddKeysToAgent = "yes";
-        };
+        UseKeychain = "yes";
+        AddKeysToAgent = "yes";
       };
     };
   };

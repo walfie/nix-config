@@ -19,13 +19,15 @@ in
     ../../modules/rust
     ../../modules/tmux
     ../../modules/xdg
-    ../../modules/zsh
   ];
 
   home = {
     inherit username homeDirectory;
     stateVersion = "21.05";
-    sessionPath = [ "$HOME/.local/bin" "/opt/homebrew/bin" ];
+    sessionPath = [
+      "$HOME/.local/bin"
+      "/opt/homebrew/bin"
+    ];
     sessionVariables = {
       # Font config is needed to avoid "Cannot load default config file"
       # error for imagemagick
@@ -36,7 +38,10 @@ in
   };
 
   programs.zoxide.enable = true;
-  programs.java = { enable = true; package = pkgs.jdk11; };
+  programs.java = {
+    enable = true;
+    package = pkgs.jdk11;
+  };
   programs.go = {
     enable = true;
     telemetry.mode = "off";
@@ -57,15 +62,14 @@ in
     extraConfig = "set -g default-command ${pkgs.fish}/bin/fish";
   };
 
-  programs.git = {
-    userName = "Walfie";
-    userEmail = "walfington@gmail.com";
-
-    extraConfig = {
-      url."git@github.com:".insteadOf = "https://github.com";
-      commit.gpgsign = true;
-      gpg.format = "ssh";
-      user.signingkey = "${homeDirectory}/.ssh/id_ed25519.pub";
+  programs.git.settings = {
+    url."git@github.com:".insteadOf = "https://github.com";
+    commit.gpgsign = true;
+    gpg.format = "ssh";
+    user = {
+      name = "Walfie";
+      email = "walfington@gmail.com";
+      signingkey = "${homeDirectory}/.ssh/id_ed25519.pub";
     };
   };
 
@@ -77,18 +81,17 @@ in
 
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
     extraOptionOverrides.IgnoreUnknown = "UseKeychain";
 
-    matchBlocks = {
+    settings = {
       "github.com" = {
         user = "git";
         hostname = "github.com";
         identityFile = "~/.ssh/id_ed25519";
         identitiesOnly = true;
-        extraOptions = {
-          UseKeychain = "yes";
-          AddKeysToAgent = "yes";
-        };
+        UseKeychain = "yes";
+        AddKeysToAgent = "yes";
       };
     };
   };

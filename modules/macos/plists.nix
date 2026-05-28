@@ -12,7 +12,7 @@ in
     default = { };
   };
 
-  config = mkIf (pkgs.hostPlatform.isDarwin && cfg != { }) {
+  config = mkIf (pkgs.stdenv.hostPlatform.isDarwin && cfg != { }) {
     home.activation.setDarwinPlists =
       let
         enquote = str: "'" + lib.strings.removeSuffix "'" (lib.strings.removePrefix "'" str) + "'";

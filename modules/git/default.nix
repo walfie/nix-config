@@ -12,31 +12,7 @@ in
   programs.git = {
     enable = true;
 
-    aliases = {
-      # Squash changes into the previous commit
-      fixup = "!git add -u && git commit --fixup=HEAD && git rebase -i --autosquash HEAD~2";
-
-      # Get default branch name (either `main` or `master`)
-      default-branch = "!git branch --format='%(refname:short)' | grep -m1 -E '^main|master$'";
-
-      # Get upstream name
-      upstream = "!git remote show | grep -m1 -E '^upstream|origin|walfie$'";
-
-      # Pull upstream/master branch
-      up = mkGitScript ''
-        local branch=$(git default-branch)
-        git checkout $branch && git pull $(git upstream) $branch
-      '';
-
-      # git checkout (with fzf)
-      cof = mkGitScript ''
-        git branch --format='%(refname:short)' |
-        ${pkgs.fzf}/bin/fzf |
-        xargs git checkout
-      '';
-    };
-
-    extraConfig = {
+    settings = {
       core.pager = "less -+F";
       pull.rebase = false;
       push.default = "current";
@@ -49,6 +25,31 @@ in
         interactive = "auto";
         status = "auto";
       };
+
+      aliases = {
+        # Squash changes into the previous commit
+        fixup = "!git add -u && git commit --fixup=HEAD && git rebase -i --autosquash HEAD~2";
+
+        # Get default branch name (either `main` or `master`)
+        default-branch = "!git branch --format='%(refname:short)' | grep -m1 -E '^main|master$'";
+
+        # Get upstream name
+        upstream = "!git remote show | grep -m1 -E '^upstream|origin|walfie$'";
+
+        # Pull upstream/master branch
+        up = mkGitScript ''
+          local branch=$(git default-branch)
+          git checkout $branch && git pull $(git upstream) $branch
+        '';
+
+        # git checkout (with fzf)
+        cof = mkGitScript ''
+          git branch --format='%(refname:short)' |
+          ${pkgs.fzf}/bin/fzf |
+          xargs git checkout
+        '';
+      };
+
     };
 
     ignores = [

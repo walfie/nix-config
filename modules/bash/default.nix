@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
   # The `\[` and `\]` tell bash that the contents are non-printable
   # https://stackoverflow.com/questions/19092488/custom-bash-prompt-is-overwriting-itself
@@ -51,7 +51,7 @@ in
     shellAliases = {
       ".." = "cd ..";
       grep = "grep --color -I";
-      ips = "${pkgs.inetutils}/bin/ifconfig | awk '\$1 == \"inet\" {print \$3}'";
+      ips = "${lib.getExe' pkgs.inetutils "ifconfig"} | awk '\$1 == \"inet\" {print \$3}'";
       ll = "ls -l";
       ls = "ls --color -h";
       path = ''echo -e ''${PATH//:/\\n}'';

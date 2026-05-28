@@ -1,6 +1,11 @@
 { pkgs, lib, ... }:
 let
-  mkPlugin = name: { src, ... }: { inherit name src; };
+  mkPlugin =
+    name:
+    { src, ... }:
+    {
+      inherit name src;
+    };
   mkPlugins = lib.attrsets.mapAttrsToList mkPlugin;
 in
 {
@@ -16,13 +21,13 @@ in
     };
 
     shellAliases = {
-      bat = "${pkgs.bat}/bin/bat -p";
+      bat = "${lib.getExe pkgs.bat} -p";
       grep = "grep --color -I";
-      ips = "${pkgs.inetutils}/bin/ifconfig | awk '\$1 == \"inet\" {print \$3}'";
+      ips = "${lib.getExe' pkgs.inetutils "ifconfig"} | awk '\$1 == \"inet\" {print \$3}'";
       ll = "ls -l";
-      ls = "${pkgs.coreutils}/bin/ls --color -h";
-      man = "${pkgs.bat-extras.batman}/bin/batman";
-      sed = "${pkgs.coreutils}/bin/sed";
+      ls = "${lib.getExe' pkgs.coreutils "ls"} --color -h";
+      man = lib.getExe pkgs.bat-extras.batman;
+      sed = lib.getExe' pkgs.coreutils "sed";
     };
 
     interactiveShellInit = ''

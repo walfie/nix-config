@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   username = "walfie";
   homeDirectory = "/Users/${username}";
@@ -19,6 +19,7 @@ in
     ../../modules/rust
     ../../modules/tmux
     ../../modules/xdg
+    ../../modules/zsh
   ];
 
   home = {
@@ -56,10 +57,10 @@ in
     enableFishIntegration = false;
   };
 
-  programs.kitty.settings.shell = "${pkgs.fish}/bin/fish";
+  programs.kitty.settings.shell = lib.getExe pkgs.fish;
   programs.tmux = {
-    shell = "${pkgs.fish}/bin/fish";
-    extraConfig = "set -g default-command ${pkgs.fish}/bin/fish";
+    shell = lib.getExe pkgs.fish;
+    extraConfig = "set -g default-command ${lib.getExe pkgs.fish}";
   };
 
   programs.git.settings = {

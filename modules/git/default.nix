@@ -45,7 +45,7 @@ in
         # git checkout (with fzf)
         cof = mkGitScript ''
           git branch --format='%(refname:short)' |
-          ${pkgs.fzf}/bin/fzf |
+          ${lib.getExe pkgs.fzf} |
           xargs git checkout
         '';
       };

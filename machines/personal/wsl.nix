@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   username = "walfie";
   homeDirectory = "/home/${username}";
@@ -40,8 +40,8 @@ in
   };
 
   programs.tmux = {
-    shell = "${pkgs.fish}/bin/fish";
-    extraConfig = "set -g default-command ${pkgs.fish}/bin/fish";
+    shell = lib.getExe pkgs.fish;
+    extraConfig = "set -g default-command ${lib.getExe pkgs.fish}";
   };
 
   programs.git.settings = {

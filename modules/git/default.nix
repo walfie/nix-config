@@ -26,7 +26,7 @@ in
         status = "auto";
       };
 
-      aliases = {
+      alias = {
         # Squash changes into the previous commit
         fixup = "!git add -u && git commit --fixup=HEAD && git rebase -i --autosquash HEAD~2";
 

@@ -3,11 +3,11 @@
     "fish-ssh-agent": {
       "flake": false,
       "locked": {
-        "lastModified": 1605087262,
-        "narHash": "sha256-e94Sd1GSUAxwLVVo5yR6msq0jZLOn2m+JZJ6mvwQdLs=",
+        "lastModified": 1729455809,
+        "narHash": "sha256-cFroQ7PSBZ5BhXzZEKTKHnEAuEu8W9rFrGZAb8vTgIE=",
         "owner": "danhper",
         "repo": "fish-ssh-agent",
-        "rev": "fd70a2afdd03caf9bf609746bf6b993b9e83be57",
+        "rev": "f10d95775352931796fd17f54e6bf2f910163d1b",
         "type": "github"
       },
       "original": {
@@ -35,11 +35,11 @@
     "replay": {
       "flake": false,
       "locked": {
-        "lastModified": 1655689996,
-        "narHash": "sha256-bM6+oAd/HXaVgpJMut8bwqO54Le33hwO9qet9paK1kY=",
+        "lastModified": 1719805987,
+        "narHash": "sha256-TzQ97h9tBRUg+A7DSKeTBWLQuThicbu19DHMwkmUXdg=",
         "owner": "jorgebucaran",
         "repo": "replay.fish",
-        "rev": "bd8e5b89ec78313538e747f0292fcaf631e87bd2",
+        "rev": "d2ecacd3fe7126e822ce8918389f3ad93b14c86c",
         "type": "github"
       },
       "original": {

@@ -51,11 +51,11 @@
     "pico-api": {
       "flake": false,
       "locked": {
-        "lastModified": 1737417958,
-        "narHash": "sha256-M2XefvLQwgRae1ists/SOt4dEAGkbP3tE0pNDSvftqw=",
+        "lastModified": 1762952794,
+        "narHash": "sha256-PVgtpS7MLaL57NjC+0+ag0OUqVq6atLSwuhyjYMIhaI=",
         "owner": "ahai64",
         "repo": "pico-api",
-        "rev": "2f8388d0125d4f5fc06a40bb42922ac6c1e89f3e",
+        "rev": "27d03559227b1608ce51ceece9df060379c030e3",
         "type": "github"
       },
       "original": {

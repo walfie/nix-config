@@ -25,11 +25,11 @@
     "vim-ctrlsf": {
       "flake": false,
       "locked": {
-        "lastModified": 1662087703,
-        "narHash": "sha256-td8eE5t1t5xBAxYq19U5fQXMXS1ZIxAzl2Q6nsIRR6Q=",
+        "lastModified": 1778402245,
+        "narHash": "sha256-IYD/Ume7knN5IvMdSc8dxCeaCEFRCBBI2A4hT5QTTwY=",
         "owner": "dyng",
         "repo": "ctrlsf.vim",
-        "rev": "32236a8b376d9311dec9b5fe795ca99d32060b13",
+        "rev": "39db9af4d26a91a8a6261c66ffb624f8b3d29114",
         "type": "github"
       },
       "original": {

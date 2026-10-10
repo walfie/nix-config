@@ -2,8 +2,7 @@
 { pico-api, ... }:
 {
   config = {
-    plugins.lsp = {
-      enable = true;
+    lsp = {
       servers = {
         basedpyright.enable = true;
         clangd.enable = true;
@@ -18,8 +17,8 @@
 
         lua_ls = {
           enable = true;
-          settings.workspace.library = [ "${pico-api}/pico8" ];
-          settings.runtime.nonstandardSymbol = [
+          config.workspace.library = [ "${pico-api}/pico8" ];
+          config.runtime.nonstandardSymbol = [
             "+="
             "-="
             "*="
@@ -34,7 +33,7 @@
         };
 
         # To open file in Neovim when clicked in Godot app, configure settings in
-        # Editor Settings -> Text Editor -> External
+        # Editor settings -> Text Editor -> External
         #
         # * Exec Path: /Users/walfie/.nix-profile/bin/nvim
         # * Exec Flags: --server /tmp/godot.pipe --remote-send "<esc>:n {file}<CR>:call cursor({line},{col})<CR>"
@@ -45,7 +44,7 @@
         gdscript = {
           enable = true;
           package = null;
-          settings.cmd.__raw = "vim.lsp.rpc.connect('127.0.0.1', 6005)";
+          config.cmd.__raw = "vim.lsp.rpc.connect('127.0.0.1', 6005)";
         };
       };
     };

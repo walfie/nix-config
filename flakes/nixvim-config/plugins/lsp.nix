@@ -49,6 +49,7 @@
       };
     };
 
+    plugins.lspconfig.enable = true;
     plugins.rustaceanvim = {
       enable = true;
 
